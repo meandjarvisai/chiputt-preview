@@ -1,0 +1,2068 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Putting Practice Hub — Chiputt (Preview)</title>
+<style>
+/* Chiputt Theme CSS Variables (scheme-1) */
+:root {
+  --bg: #ffffff;
+  --heading: #06051e;
+  --text: #06051e;
+  --link: #06051e;
+  --border: #06051e;
+  --accent: #ffba00;
+  --accent-text: #06051e;
+  --text-alpha-25: rgba(6, 5, 30, 0.25);
+  --text-alpha-50: rgba(6, 5, 30, 0.50);
+  --COLOR-BORDER: rgba(6, 5, 30, 0.15);
+  --COLOR-BG: #ffffff;
+  --COLOR-HEADING: #06051e;
+  --COLOR-TEXT: #06051e;
+  --COLOR-LINK: #06051e;
+  --COLOR-ACCENT: #ffba00;
+  --COLOR-ERROR: #D02E2E;
+  --COLOR-SUCCESS: #56AD6A;
+  --COLOR-SUCCESS-BG: #ECFEF0;
+  --FONT-STACK-HEADING: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --FONT-STACK-BODY: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --FONT-STACK-BUTTON: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --FONT-WEIGHT-HEADING: 400;
+  --FONT-WEIGHT-HEADING-BOLD: 700;
+  --FONT-WEIGHT-BODY: 400;
+  --FONT-STYLE-HEADING: normal;
+  --PRIMARY-BUTTONS-COLOR-BG: #4f6a46;
+  --PRIMARY-BUTTONS-COLOR-TEXT: #ffffff;
+  --PRIMARY-BUTTONS-COLOR-BORDER: #4f6a46;
+  --PRIMARY-BUTTONS-COLOR-HOVER: #3f5738;
+  --SECONDARY-BUTTONS-COLOR-BG: #f7f6f4;
+  --SECONDARY-BUTTONS-COLOR-TEXT: #06051e;
+  --SECONDARY-BUTTONS-COLOR-BORDER: #06051e;
+  --RADIUS: 30px;
+  --RADIUS-SMALL: 22px;
+  --BORDER-WIDTH: 1px;
+  --LETTER-SPACING-BUTTON: 0.125em;
+  --BUTTON-TEXT-CAPS: uppercase;
+  --SITE-WIDTH: 1440px;
+  --gutter: 60px;
+  --gutter-mobile: 20px;
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  font-family: var(--FONT-STACK-BODY);
+  font-weight: var(--FONT-WEIGHT-BODY);
+  background: var(--bg);
+  color: var(--text);
+  -webkit-font-smoothing: antialiased;
+  line-height: 1.6;
+  font-size: 16px;
+}
+
+.wrapper {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 0 var(--gutter-mobile);
+}
+@media (min-width: 768px) { .wrapper { padding: 0 var(--gutter); } }
+
+.section-padding { padding-top: 60px; padding-bottom: 60px; }
+
+/* Theme button classes */
+.btn {
+  font-family: var(--FONT-STACK-BUTTON);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 12px 24px;
+  font-size: 14px;
+  line-height: 1;
+  border-radius: var(--RADIUS);
+  border: var(--BORDER-WIDTH) solid transparent;
+  cursor: pointer;
+  text-decoration: none;
+  text-transform: var(--BUTTON-TEXT-CAPS);
+  letter-spacing: var(--LETTER-SPACING-BUTTON);
+  transition: all 0.2s;
+  -webkit-tap-highlight-color: transparent;
+}
+.btn--primary.btn--solid {
+  background: var(--PRIMARY-BUTTONS-COLOR-BG);
+  color: var(--PRIMARY-BUTTONS-COLOR-TEXT);
+  border-color: var(--PRIMARY-BUTTONS-COLOR-BG);
+}
+.btn--primary.btn--solid:hover { opacity: 0.85; }
+.btn--secondary.btn--solid {
+  background: var(--SECONDARY-BUTTONS-COLOR-BG);
+  color: var(--SECONDARY-BUTTONS-COLOR-TEXT);
+  border-color: var(--COLOR-BORDER);
+}
+.btn--text {
+  background: none;
+  border: none;
+  color: var(--text);
+  opacity: 0.7;
+  padding: 8px 0;
+  text-transform: none;
+  letter-spacing: normal;
+}
+.btn--text:hover { opacity: 1; }
+
+/* Preview banner */
+.preview-banner {
+  background: var(--PRIMARY-BUTTONS-COLOR-BG);
+  color: #fff;
+  text-align: center;
+  padding: 10px;
+  font-size: 13px;
+  letter-spacing: 0.05em;
+}
+</style>
+<style>
+/* ==========================================================================
+   Putting Practice Hub — Styles
+   Uses theme CSS variables exclusively. No hardcoded colors.
+   ========================================================================== */
+
+/* Hero
+   ========================================================================== */
+
+.pp-hero {
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.pp-hero__title {
+  font-family: var(--FONT-STACK-HEADING);
+  font-weight: var(--FONT-WEIGHT-HEADING-BOLD);
+  font-style: var(--FONT-STYLE-HEADING);
+  color: var(--heading);
+  margin: 0 0 0.5rem;
+}
+
+.pp-hero__subtitle {
+  font-family: var(--FONT-STACK-BODY);
+  color: var(--text);
+  opacity: 0.8;
+  max-width: 640px;
+  margin: 0 auto;
+  line-height: 1.6;
+}
+
+/* Drill Selector Grid
+   ========================================================================== */
+
+.pp-drills__heading {
+  font-family: var(--FONT-STACK-HEADING);
+  font-weight: var(--FONT-WEIGHT-HEADING);
+  color: var(--heading);
+  text-align: center;
+  margin: 0 0 1.5rem;
+}
+
+.pp-drills__grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1rem;
+}
+
+@media only screen and (max-width: 767px) {
+  .pp-drills__grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media only screen and (max-width: 479px) {
+  .pp-drills__grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.pp-drill-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 1.5rem 1rem;
+  background: var(--bg);
+  border: var(--BORDER-WIDTH) solid var(--COLOR-BORDER, rgba(0,0,0,0.08));
+  border-radius: var(--RADIUS);
+  cursor: pointer;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  text-align: center;
+  font-family: var(--FONT-STACK-BODY);
+  color: var(--text);
+}
+
+.pp-drill-card:hover,
+.pp-drill-card:focus-visible {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 16px rgba(0,0,0,0.1);
+  outline: none;
+}
+
+.pp-drill-card:focus-visible {
+  outline: 2px solid var(--link);
+  outline-offset: 2px;
+}
+
+.pp-drill-card__emoji {
+  font-size: 2.5rem;
+  line-height: 1;
+}
+
+.pp-drill-card__name {
+  font-family: var(--FONT-STACK-HEADING);
+  font-weight: var(--FONT-WEIGHT-HEADING-BOLD);
+  color: var(--heading);
+  font-size: 1.1rem;
+}
+
+.pp-drill-card__desc {
+  font-size: 0.85rem;
+  opacity: 0.7;
+  line-height: 1.4;
+}
+
+/* Back Button
+   ========================================================================== */
+
+.pp-back {
+  margin-bottom: 1rem;
+  font-size: 0.9rem;
+}
+
+/* Instructions
+   ========================================================================== */
+
+.pp-instructions__content {
+  margin-bottom: 1.5rem;
+}
+
+.pp-instructions__content h2 {
+  font-family: var(--FONT-STACK-HEADING);
+  font-weight: var(--FONT-WEIGHT-HEADING-BOLD);
+  color: var(--heading);
+  margin: 0 0 0.75rem;
+}
+
+.pp-instructions__content p {
+  color: var(--text);
+  line-height: 1.6;
+  margin: 0 0 0.5rem;
+}
+
+.pp-instructions__content ul {
+  color: var(--text);
+  line-height: 1.6;
+  padding-left: 1.25rem;
+  margin: 0 0 0.75rem;
+}
+
+.pp-start-btn {
+  font-size: 1.1rem;
+  padding: 0.75rem 2rem;
+}
+
+/* Session Area
+   ========================================================================== */
+
+.pp-session__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 1.5rem;
+}
+
+.pp-session__title {
+  font-family: var(--FONT-STACK-HEADING);
+  font-weight: var(--FONT-WEIGHT-HEADING-BOLD);
+  color: var(--heading);
+  margin: 0;
+}
+
+.pp-session__quit {
+  font-size: 0.85rem;
+  opacity: 0.7;
+}
+
+.pp-session__body {
+  min-height: 200px;
+}
+
+/* Shared Drill UI Elements
+   ========================================================================== */
+
+.pp-drill-status {
+  text-align: center;
+  margin-bottom: 1.5rem;
+  color: var(--text);
+  font-size: 0.95rem;
+}
+
+.pp-drill-big-number {
+  text-align: center;
+  font-family: var(--FONT-STACK-HEADING);
+  font-weight: var(--FONT-WEIGHT-HEADING-BOLD);
+  font-size: 4rem;
+  color: var(--heading);
+  line-height: 1.1;
+  margin: 1rem 0;
+}
+
+.pp-drill-big-label {
+  text-align: center;
+  font-size: 0.9rem;
+  color: var(--text);
+  opacity: 0.7;
+  margin-bottom: 1.5rem;
+}
+
+.pp-drill-actions {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin-top: 1.5rem;
+}
+
+.pp-drill-actions .btn {
+  min-width: 140px;
+  padding: 0.75rem 1.5rem;
+  font-size: 1rem;
+}
+
+.pp-btn-made {
+  background: var(--PRIMARY-BUTTONS-COLOR-BG);
+  color: var(--PRIMARY-BUTTONS-COLOR-TEXT);
+  border: var(--BORDER-WIDTH) solid var(--PRIMARY-BUTTONS-COLOR-BG);
+  border-radius: var(--RADIUS);
+}
+
+.pp-btn-missed {
+  background: var(--SECONDARY-BUTTONS-COLOR-BG);
+  color: var(--SECONDARY-BUTTONS-COLOR-TEXT);
+  border: var(--BORDER-WIDTH) solid var(--COLOR-BORDER, rgba(0,0,0,0.15));
+  border-radius: var(--RADIUS);
+}
+
+/* Ladder Drill
+   ========================================================================== */
+
+.pp-ladder {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.75rem;
+  margin-bottom: 1.5rem;
+}
+
+.pp-ladder__step {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  max-width: 300px;
+  padding: 0.75rem 1rem;
+  border: var(--BORDER-WIDTH) solid var(--COLOR-BORDER, rgba(0,0,0,0.08));
+  border-radius: var(--RADIUS);
+  font-family: var(--FONT-STACK-HEADING);
+  font-weight: var(--FONT-WEIGHT-HEADING);
+  color: var(--text);
+  opacity: 0.4;
+  transition: all 0.3s ease;
+}
+
+.pp-ladder__step--active {
+  opacity: 1;
+  border-color: var(--PRIMARY-BUTTONS-COLOR-BG);
+  background: var(--bg);
+  box-shadow: 0 0 0 2px var(--PRIMARY-BUTTONS-COLOR-BG);
+}
+
+.pp-ladder__step--complete {
+  opacity: 1;
+  background: var(--PRIMARY-BUTTONS-COLOR-BG);
+  color: var(--PRIMARY-BUTTONS-COLOR-TEXT);
+  border-color: var(--PRIMARY-BUTTONS-COLOR-BG);
+}
+
+/* Dot Tracker (Speed Zone / Gate)
+   ========================================================================== */
+
+.pp-dots {
+  display: flex;
+  gap: 0.5rem;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin-bottom: 1.5rem;
+}
+
+.pp-dot {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  border: var(--BORDER-WIDTH) solid var(--COLOR-BORDER, rgba(0,0,0,0.15));
+  background: var(--bg);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.8rem;
+  transition: all 0.3s ease;
+}
+
+.pp-dot--active {
+  border-color: var(--PRIMARY-BUTTONS-COLOR-BG);
+  box-shadow: 0 0 0 2px var(--PRIMARY-BUTTONS-COLOR-BG);
+}
+
+.pp-dot--success {
+  background: var(--PRIMARY-BUTTONS-COLOR-BG);
+  color: var(--PRIMARY-BUTTONS-COLOR-TEXT);
+  border-color: var(--PRIMARY-BUTTONS-COLOR-BG);
+}
+
+.pp-dot--fail {
+  background: var(--SECONDARY-BUTTONS-COLOR-BG);
+  color: var(--SECONDARY-BUTTONS-COLOR-TEXT);
+  border-color: var(--SECONDARY-BUTTONS-COLOR-BG);
+  opacity: 0.7;
+}
+
+/* Streak Challenge
+   ========================================================================== */
+
+.pp-streak-fire {
+  text-align: center;
+  font-size: 2rem;
+  margin-bottom: 0.5rem;
+  min-height: 2.5rem;
+}
+
+.pp-streak-stats {
+  display: flex;
+  gap: 1.5rem;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin-top: 1rem;
+  color: var(--text);
+  font-size: 0.9rem;
+}
+
+.pp-streak-stats span {
+  opacity: 0.7;
+}
+
+.pp-streak-stats strong {
+  color: var(--heading);
+}
+
+/* Target 21
+   ========================================================================== */
+
+.pp-t21-distances {
+  display: flex;
+  gap: 0.75rem;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin-bottom: 1.5rem;
+}
+
+.pp-t21-dist-btn {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 0.75rem 1.25rem;
+  background: var(--bg);
+  border: var(--BORDER-WIDTH) solid var(--COLOR-BORDER, rgba(0,0,0,0.15));
+  border-radius: var(--RADIUS);
+  cursor: pointer;
+  font-family: var(--FONT-STACK-BODY);
+  color: var(--text);
+  transition: all 0.2s ease;
+}
+
+.pp-t21-dist-btn:hover,
+.pp-t21-dist-btn:focus-visible {
+  border-color: var(--PRIMARY-BUTTONS-COLOR-BG);
+  transform: translateY(-1px);
+}
+
+.pp-t21-dist-btn__distance {
+  font-family: var(--FONT-STACK-HEADING);
+  font-weight: var(--FONT-WEIGHT-HEADING-BOLD);
+  font-size: 1.25rem;
+  color: var(--heading);
+}
+
+.pp-t21-dist-btn__points {
+  font-size: 0.8rem;
+  opacity: 0.6;
+}
+
+.pp-t21-miss-btn {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 0.75rem 1.25rem;
+  background: var(--SECONDARY-BUTTONS-COLOR-BG);
+  color: var(--SECONDARY-BUTTONS-COLOR-TEXT);
+  border: var(--BORDER-WIDTH) solid var(--COLOR-BORDER, rgba(0,0,0,0.15));
+  border-radius: var(--RADIUS);
+  cursor: pointer;
+  font-family: var(--FONT-STACK-BODY);
+  transition: all 0.2s ease;
+}
+
+.pp-t21-score {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 2rem;
+  flex-wrap: wrap;
+  margin-bottom: 1.5rem;
+}
+
+.pp-t21-score__item {
+  text-align: center;
+}
+
+.pp-t21-score__value {
+  display: block;
+  font-family: var(--FONT-STACK-HEADING);
+  font-weight: var(--FONT-WEIGHT-HEADING-BOLD);
+  font-size: 2.5rem;
+  color: var(--heading);
+  line-height: 1.1;
+}
+
+.pp-t21-score__label {
+  font-size: 0.85rem;
+  color: var(--text);
+  opacity: 0.6;
+}
+
+/* Random Distance
+   ========================================================================== */
+
+.pp-random-distance {
+  font-family: var(--FONT-STACK-HEADING);
+  font-weight: var(--FONT-WEIGHT-HEADING-BOLD);
+  font-size: 5rem;
+  text-align: center;
+  color: var(--heading);
+  line-height: 1;
+  margin: 1rem 0 0.25rem;
+}
+
+.pp-random-label {
+  text-align: center;
+  font-size: 1rem;
+  color: var(--text);
+  opacity: 0.6;
+  margin-bottom: 1.5rem;
+}
+
+.pp-random-counter {
+  text-align: center;
+  color: var(--text);
+  font-size: 0.95rem;
+  margin-bottom: 1rem;
+}
+
+/* Complete View
+   ========================================================================== */
+
+.pp-complete__content {
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.pp-complete__content h2 {
+  font-family: var(--FONT-STACK-HEADING);
+  font-weight: var(--FONT-WEIGHT-HEADING-BOLD);
+  color: var(--heading);
+  margin: 0 0 1rem;
+}
+
+.pp-complete__content p {
+  color: var(--text);
+  line-height: 1.6;
+  margin: 0 0 0.5rem;
+}
+
+.pp-complete__summary {
+  display: flex;
+  gap: 1.5rem;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin: 1.5rem 0;
+}
+
+.pp-complete__stat {
+  text-align: center;
+}
+
+.pp-complete__stat-value {
+  display: block;
+  font-family: var(--FONT-STACK-HEADING);
+  font-weight: var(--FONT-WEIGHT-HEADING-BOLD);
+  font-size: 2rem;
+  color: var(--heading);
+  line-height: 1.1;
+}
+
+.pp-complete__stat-label {
+  font-size: 0.8rem;
+  color: var(--text);
+  opacity: 0.6;
+}
+
+.pp-complete__new-best {
+  display: inline-block;
+  padding: 0.25rem 0.75rem;
+  font-size: 0.8rem;
+  font-weight: var(--FONT-WEIGHT-HEADING-BOLD);
+  background: var(--PRIMARY-BUTTONS-COLOR-BG);
+  color: var(--PRIMARY-BUTTONS-COLOR-TEXT);
+  border-radius: var(--RADIUS);
+  margin-top: 0.5rem;
+}
+
+.pp-complete__actions {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.pp-complete__saved {
+  font-size: 0.85rem;
+  color: var(--text);
+  opacity: 0.7;
+}
+
+.pp-complete__login-prompt {
+  text-align: center;
+  margin-bottom: 0.5rem;
+}
+
+.pp-complete__login-prompt p {
+  margin: 0 0 0.5rem;
+  font-size: 0.9rem;
+  color: var(--text);
+}
+
+/* Stats Dashboard
+   ========================================================================== */
+
+.pp-stats {
+  margin-bottom: 2rem;
+  border: var(--BORDER-WIDTH) solid var(--COLOR-BORDER, rgba(0,0,0,0.08));
+  border-radius: var(--RADIUS);
+  padding: 1rem 1.25rem;
+  background: var(--bg);
+}
+
+.pp-stats__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.pp-stats__title {
+  font-family: var(--FONT-STACK-HEADING);
+  font-weight: var(--FONT-WEIGHT-HEADING-BOLD);
+  color: var(--heading);
+  margin: 0;
+  font-size: 1.2rem;
+}
+
+.pp-stats__body {
+  margin-top: 1.25rem;
+}
+
+.pp-stats__overview {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+@media only screen and (max-width: 479px) {
+  .pp-stats__overview {
+    grid-template-columns: 1fr;
+  }
+}
+
+.pp-stats__card {
+  text-align: center;
+  padding: 1rem;
+  border: var(--BORDER-WIDTH) solid var(--COLOR-BORDER, rgba(0,0,0,0.08));
+  border-radius: var(--RADIUS);
+}
+
+.pp-stats__card-value {
+  display: block;
+  font-family: var(--FONT-STACK-HEADING);
+  font-weight: var(--FONT-WEIGHT-HEADING-BOLD);
+  font-size: 2rem;
+  color: var(--heading);
+  line-height: 1.1;
+}
+
+.pp-stats__card-label {
+  font-size: 0.8rem;
+  color: var(--text);
+  opacity: 0.6;
+  margin-top: 0.25rem;
+}
+
+/* Streak Tracker
+   ========================================================================== */
+
+.pp-streak {
+  margin-bottom: 1.5rem;
+}
+
+.pp-streak__title,
+.pp-bests__title,
+.pp-recent__title {
+  font-family: var(--FONT-STACK-HEADING);
+  font-weight: var(--FONT-WEIGHT-HEADING);
+  color: var(--heading);
+  font-size: 1rem;
+  margin: 0 0 0.75rem;
+}
+
+.pp-streak__info {
+  display: flex;
+  gap: 2rem;
+  margin-bottom: 1rem;
+}
+
+.pp-streak__current,
+.pp-streak__best {
+  text-align: center;
+}
+
+.pp-streak__number {
+  display: block;
+  font-family: var(--FONT-STACK-HEADING);
+  font-weight: var(--FONT-WEIGHT-HEADING-BOLD);
+  font-size: 2rem;
+  color: var(--heading);
+  line-height: 1.1;
+}
+
+.pp-streak__label {
+  font-size: 0.75rem;
+  color: var(--text);
+  opacity: 0.6;
+}
+
+.pp-streak__calendar {
+  display: flex;
+  gap: 4px;
+  flex-wrap: wrap;
+}
+
+.pp-streak__day {
+  width: 24px;
+  height: 24px;
+  border-radius: 4px;
+  border: 1px solid var(--COLOR-BORDER, rgba(0,0,0,0.08));
+  background: var(--bg);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.6rem;
+  color: var(--text);
+  opacity: 0.4;
+}
+
+.pp-streak__day--active {
+  background: var(--PRIMARY-BUTTONS-COLOR-BG);
+  color: var(--PRIMARY-BUTTONS-COLOR-TEXT);
+  border-color: var(--PRIMARY-BUTTONS-COLOR-BG);
+  opacity: 1;
+}
+
+.pp-streak__day--today {
+  border-color: var(--heading);
+  opacity: 0.7;
+}
+
+.pp-streak__day--today.pp-streak__day--active {
+  opacity: 1;
+}
+
+/* Best Scores
+   ========================================================================== */
+
+.pp-bests__grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0.75rem;
+}
+
+@media only screen and (max-width: 767px) {
+  .pp-bests__grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media only screen and (max-width: 479px) {
+  .pp-bests__grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.pp-best-card {
+  padding: 0.75rem;
+  border: var(--BORDER-WIDTH) solid var(--COLOR-BORDER, rgba(0,0,0,0.08));
+  border-radius: var(--RADIUS);
+  text-align: center;
+}
+
+.pp-best-card__name {
+  font-size: 0.8rem;
+  color: var(--text);
+  opacity: 0.6;
+  margin-bottom: 0.25rem;
+}
+
+.pp-best-card__value {
+  font-family: var(--FONT-STACK-HEADING);
+  font-weight: var(--FONT-WEIGHT-HEADING-BOLD);
+  font-size: 1.25rem;
+  color: var(--heading);
+}
+
+.pp-best-card__date {
+  font-size: 0.7rem;
+  color: var(--text);
+  opacity: 0.4;
+  margin-top: 0.25rem;
+}
+
+/* Recent Sessions
+   ========================================================================== */
+
+.pp-recent {
+  margin-top: 1.5rem;
+}
+
+.pp-recent__empty {
+  color: var(--text);
+  opacity: 0.5;
+  font-size: 0.9rem;
+}
+
+.pp-recent__list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.pp-recent__item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.5rem 0.75rem;
+  border: var(--BORDER-WIDTH) solid var(--COLOR-BORDER, rgba(0,0,0,0.08));
+  border-radius: var(--RADIUS);
+  font-size: 0.85rem;
+  color: var(--text);
+}
+
+.pp-recent__item-drill {
+  font-weight: var(--FONT-WEIGHT-HEADING-BOLD);
+  color: var(--heading);
+}
+
+.pp-recent__item-summary {
+  opacity: 0.7;
+}
+
+.pp-recent__item-date {
+  font-size: 0.75rem;
+  opacity: 0.5;
+}
+
+/* Utility
+   ========================================================================== */
+
+.pp-accuracy {
+  text-align: center;
+  font-family: var(--FONT-STACK-HEADING);
+  font-weight: var(--FONT-WEIGHT-HEADING-BOLD);
+  font-size: 2rem;
+  color: var(--heading);
+  margin: 0.5rem 0;
+}
+
+.pp-timer {
+  text-align: center;
+  font-size: 0.85rem;
+  color: var(--text);
+  opacity: 0.5;
+  margin-top: 1rem;
+}
+</style>
+</head><body>
+<div class="preview-banner">⚡ PREVIEW — This is how it will look inside the Chiputt theme</div>
+<section
+  id="PuttingPractice--preview"
+  class="section-padding"
+  data-section-id="preview"
+  data-section-type="putting-practice-hub"
+  data-customer-logged-in="false"
+  data-customer-id=""
+>
+  <div class="wrapper">
+    <div class="pp-hero">
+      <h1 class="pp-hero__title">Putting Practice Hub</h1>
+      <p class="pp-hero__subtitle">Free interactive putting drills to sharpen your short game. Pick a drill, track your reps, and watch your putting improve.</p>
+    </div>
+
+    <div class="pp-stats" id="pp-stats" style="display:none;">
+      <div class="pp-stats__header">
+        <h2 class="pp-stats__title">Your Stats</h2>
+        <button class="pp-stats__toggle btn btn--text" id="pp-stats-toggle" aria-expanded="false" aria-controls="pp-stats-body">
+          <span class="pp-stats__toggle-text">Show</span>
+        </button>
+      </div>
+      <div class="pp-stats__body" id="pp-stats-body" style="display:none;">
+        <div class="pp-stats__overview">
+          <div class="pp-stats__card">
+            <span class="pp-stats__card-value" id="stat-sessions">0</span>
+            <span class="pp-stats__card-label">Sessions</span>
+          </div>
+          <div class="pp-stats__card">
+            <span class="pp-stats__card-value" id="stat-putts">0</span>
+            <span class="pp-stats__card-label">Total Putts</span>
+          </div>
+          <div class="pp-stats__card">
+            <span class="pp-stats__card-value" id="stat-minutes">0</span>
+            <span class="pp-stats__card-label">Minutes</span>
+          </div>
+        </div>
+        <div class="pp-streak">
+          <h3 class="pp-streak__title">Practice Streak</h3>
+          <div class="pp-streak__info">
+            <div class="pp-streak__current">
+              <span class="pp-streak__number" id="streak-current">0</span>
+              <span class="pp-streak__label">Current Streak (days)</span>
+            </div>
+            <div class="pp-streak__best">
+              <span class="pp-streak__number" id="streak-best">0</span>
+              <span class="pp-streak__label">Best Streak</span>
+            </div>
+          </div>
+          <div class="pp-streak__calendar" id="streak-calendar"></div>
+        </div>
+        <div class="pp-bests">
+          <h3 class="pp-bests__title">Personal Bests</h3>
+          <div class="pp-bests__grid" id="pp-bests-grid"></div>
+        </div>
+        <div class="pp-recent">
+          <h3 class="pp-recent__title">Recent Sessions</h3>
+          <div class="pp-recent__list" id="pp-recent-list">
+            <p class="pp-recent__empty">Complete a drill to see your recent sessions.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="pp-drills" id="pp-drills">
+      <h2 class="pp-drills__heading">Choose a Drill</h2>
+      <div class="pp-drills__grid">
+        <button class="pp-drill-card" data-drill="ladder" aria-label="Start Ladder Drill">
+          <span class="pp-drill-card__emoji" aria-hidden="true">&#x1F3AF;</span>
+          <span class="pp-drill-card__name">Ladder Drill</span>
+          <span class="pp-drill-card__desc">Make putts from increasing distances</span>
+        </button>
+        <button class="pp-drill-card" data-drill="speedzone" aria-label="Start Speed Zone Drill">
+          <span class="pp-drill-card__emoji" aria-hidden="true">&#x1F3CE;&#xFE0F;</span>
+          <span class="pp-drill-card__name">Speed Zone</span>
+          <span class="pp-drill-card__desc">Roll putts into the target zone</span>
+        </button>
+        <button class="pp-drill-card" data-drill="gate" aria-label="Start Gate Drill">
+          <span class="pp-drill-card__emoji" aria-hidden="true">&#x1F6AA;</span>
+          <span class="pp-drill-card__name">Gate Drill</span>
+          <span class="pp-drill-card__desc">Putt through the gate from set distances</span>
+        </button>
+        <button class="pp-drill-card" data-drill="streak" aria-label="Start Streak Challenge">
+          <span class="pp-drill-card__emoji" aria-hidden="true">&#x1F525;</span>
+          <span class="pp-drill-card__name">Streak Challenge</span>
+          <span class="pp-drill-card__desc">How many consecutive 3-footers can you make?</span>
+        </button>
+        <button class="pp-drill-card" data-drill="random" aria-label="Start Random Distance Drill">
+          <span class="pp-drill-card__emoji" aria-hidden="true">&#x1F3B2;</span>
+          <span class="pp-drill-card__name">Random Distance</span>
+          <span class="pp-drill-card__desc">Practice from random distances</span>
+        </button>
+        <button class="pp-drill-card" data-drill="target21" aria-label="Start Target 21 Drill">
+          <span class="pp-drill-card__emoji" aria-hidden="true">&#x1F3C6;</span>
+          <span class="pp-drill-card__name">Target 21</span>
+          <span class="pp-drill-card__desc">Reach exactly 21 points</span>
+        </button>
+      </div>
+    </div>
+
+    <div class="pp-active" id="pp-active" style="display:none;">
+      <div class="pp-instructions" id="pp-instructions" style="display:none;">
+        <button class="pp-back btn btn--text" id="pp-back-to-drills" aria-label="Back to drill selection">&larr; Back to Drills</button>
+        <div class="pp-instructions__content" id="pp-instructions-content"></div>
+        <button class="pp-start-btn btn btn--primary btn--solid" id="pp-start-drill">Start Drill</button>
+      </div>
+      <div class="pp-session" id="pp-session" style="display:none;">
+        <div class="pp-session__header">
+          <h2 class="pp-session__title" id="pp-session-title"></h2>
+          <button class="pp-session__quit btn btn--text" id="pp-quit-drill">Quit</button>
+        </div>
+        <div class="pp-session__body" id="pp-session-body"></div>
+      </div>
+      <div class="pp-complete" id="pp-complete" style="display:none;">
+        <div class="pp-complete__content" id="pp-complete-content"></div>
+        <div class="pp-complete__actions">
+          <div class="pp-complete__login-prompt" id="pp-login-prompt">
+            <p>Want to save your progress?</p>
+            <a href="#" class="btn btn--secondary btn--solid" onclick="alert('In the live version, this opens Shopify customer login');return false;">Log In to Save</a>
+          </div>
+          <button class="btn btn--primary btn--solid" id="pp-try-again">Try Again</button>
+          <button class="btn btn--text" id="pp-back-to-drills-complete">&larr; Back to Drills</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<script>
+/* ==========================================================================
+   Putting Practice Hub — Interactive Drill Logic + Tier 2 Persistence
+   Vanilla JS, no dependencies.
+   ========================================================================== */
+
+(function () {
+  'use strict';
+
+  var STORAGE_KEY = 'chiputt_putting_practice';
+  var API_BASE = 'https://chiputt-ops-production.up.railway.app';
+
+  /* =========================================================================
+     Server Sync — Tier 2: logged-in customer persistence
+     ========================================================================= */
+
+  function getCustomerInfo() {
+    var section = document.querySelector('[data-section-type="putting-practice-hub"]');
+    if (!section) return null;
+    var loggedIn = section.getAttribute('data-customer-logged-in') === 'true';
+    var customerId = section.getAttribute('data-customer-id');
+    if (loggedIn && customerId) return { id: customerId };
+    return null;
+  }
+
+  function syncToServer(session) {
+    var customer = getCustomerInfo();
+    if (!customer) return; // Not logged in, skip
+
+    try {
+      var xhr = new XMLHttpRequest();
+      xhr.open('POST', API_BASE + '/api/practice/save', true);
+      xhr.setRequestHeader('Content-Type', 'application/json');
+      xhr.setRequestHeader('X-Practice-Key', 'practice_public_v1');
+      xhr.send(JSON.stringify({
+        customer_id: customer.id,
+        session: session
+      }));
+      // Fire and forget — localStorage is source of truth for immediate UI
+    } catch (e) {
+      // Silently fail — localStorage already has the data
+    }
+  }
+
+  /* =========================================================================
+     Data Layer — localStorage persistence
+     ========================================================================= */
+
+  function getDefaultData() {
+    return {
+      totalSessions: 0,
+      totalPutts: 0,
+      totalMinutes: 0,
+      streak: { current: 0, best: 0, lastDate: null },
+      drillBests: {},
+      recentSessions: [],
+      practiceDays: []
+    };
+  }
+
+  function loadData() {
+    try {
+      var raw = localStorage.getItem(STORAGE_KEY);
+      if (raw) {
+        var data = JSON.parse(raw);
+        // Ensure all fields exist
+        var defaults = getDefaultData();
+        for (var key in defaults) {
+          if (!(key in data)) data[key] = defaults[key];
+        }
+        return data;
+      }
+    } catch (e) {
+      // Corrupted data, start fresh
+    }
+    return getDefaultData();
+  }
+
+  function saveData(data) {
+    try {
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(data));
+    } catch (e) {
+      // Storage full or unavailable
+    }
+  }
+
+  function getTodayStr() {
+    return new Date().toISOString().slice(0, 10);
+  }
+
+  function updateStreak(data) {
+    var today = getTodayStr();
+    var lastDate = data.streak.lastDate;
+
+    if (lastDate === today) return; // Already practiced today
+
+    var yesterday = new Date();
+    yesterday.setDate(yesterday.getDate() - 1);
+    var yesterdayStr = yesterday.toISOString().slice(0, 10);
+
+    if (lastDate === yesterdayStr) {
+      data.streak.current += 1;
+    } else {
+      data.streak.current = 1;
+    }
+
+    if (data.streak.current > data.streak.best) {
+      data.streak.best = data.streak.current;
+    }
+
+    data.streak.lastDate = today;
+
+    // Track practice day
+    if (!data.practiceDays) data.practiceDays = [];
+    if (data.practiceDays.indexOf(today) === -1) {
+      data.practiceDays.push(today);
+      // Keep only last 90 days
+      if (data.practiceDays.length > 90) {
+        data.practiceDays = data.practiceDays.slice(-90);
+      }
+    }
+  }
+
+  function recordSession(drillId, summary, puttsCount, durationSec, drillExtra) {
+    var data = loadData();
+    data.totalSessions += 1;
+    data.totalPutts += puttsCount;
+    data.totalMinutes += Math.round(durationSec / 60);
+    updateStreak(data);
+
+    data.recentSessions.unshift({
+      drill: drillId,
+      summary: summary,
+      date: getTodayStr(),
+      putts: puttsCount
+    });
+    // Keep last 20
+    if (data.recentSessions.length > 20) {
+      data.recentSessions = data.recentSessions.slice(0, 20);
+    }
+
+    saveData(data);
+
+    // Tier 2: Sync to server for logged-in customers
+    var sessionPayload = {
+      drill: drillId,
+      putts: puttsCount,
+      minutes: Math.round(durationSec / 60),
+      summary: summary
+    };
+    if (drillExtra) {
+      for (var k in drillExtra) {
+        if (drillExtra.hasOwnProperty(k)) sessionPayload[k] = drillExtra[k];
+      }
+    }
+    syncToServer(sessionPayload);
+
+    return data;
+  }
+
+  function updateBest(drillId, bestObj) {
+    var data = loadData();
+    if (!data.drillBests) data.drillBests = {};
+    var current = data.drillBests[drillId];
+    var isNew = false;
+
+    if (!current) {
+      isNew = true;
+    } else {
+      // Compare depending on drill type
+      if (drillId === 'ladder' || drillId === 'target21') {
+        // Lower is better (fewer attempts/putts)
+        if (bestObj.value < current.value) isNew = true;
+      } else if (drillId === 'speedzone' || drillId === 'gate') {
+        // Higher is better (accuracy)
+        if (bestObj.value > current.value) isNew = true;
+      } else if (drillId === 'streak') {
+        // Higher streak is better
+        if (bestObj.value > current.value) isNew = true;
+      } else if (drillId === 'random') {
+        // Higher accuracy is better
+        if (bestObj.value > current.value) isNew = true;
+      }
+    }
+
+    if (isNew) {
+      data.drillBests[drillId] = {
+        value: bestObj.value,
+        label: bestObj.label,
+        date: getTodayStr()
+      };
+      saveData(data);
+    }
+
+    return isNew;
+  }
+
+  /* =========================================================================
+     DOM Helpers
+     ========================================================================= */
+
+  function $(sel, ctx) { return (ctx || document).querySelector(sel); }
+  function $$(sel, ctx) { return Array.prototype.slice.call((ctx || document).querySelectorAll(sel)); }
+
+  function show(el) { if (el) el.style.display = ''; }
+  function hide(el) { if (el) el.style.display = 'none'; }
+
+  function html(el, content) { if (el) el.innerHTML = content; }
+
+  /* =========================================================================
+     Drill Definitions
+     ========================================================================= */
+
+  var DRILLS = {
+    ladder: {
+      name: 'Ladder Drill',
+      emoji: '\uD83C\uDFAF',
+      instructions: '<h2>\uD83C\uDFAF Ladder Drill</h2>' +
+        '<p><strong>Goal:</strong> Make putts from increasing distances — 3ft, 6ft, 9ft, 12ft.</p>' +
+        '<ul><li>You must make the putt to advance to the next distance.</li>' +
+        '<li>If you miss, you start the ladder over from 3ft.</li>' +
+        '<li>Try to complete the ladder in as few total attempts as possible.</li></ul>' +
+        '<p><strong>Tip:</strong> Focus on a consistent stroke. Don\'t rush.</p>'
+    },
+    speedzone: {
+      name: 'Speed Zone Drill',
+      emoji: '\uD83C\uDFCE\uFE0F',
+      instructions: '<h2>\uD83C\uDFCE\uFE0F Speed Zone Drill</h2>' +
+        '<p><strong>Goal:</strong> Roll 10 putts so they stop in the target zone (not too short, not too long).</p>' +
+        '<ul><li>Set up a target zone about 1 club-length past the hole.</li>' +
+        '<li>Each putt: mark "In Zone" if it stops in the zone, or "Out of Zone" if not.</li>' +
+        '<li>Track your accuracy percentage.</li></ul>' +
+        '<p><strong>Tip:</strong> Speed control is the #1 factor in lag putting.</p>'
+    },
+    gate: {
+      name: 'Gate Drill',
+      emoji: '\uD83D\uDEAA',
+      instructions: '<h2>\uD83D\uDEAA Gate Drill</h2>' +
+        '<p><strong>Goal:</strong> Putt through a gate (two tees, just wider than your putter) from set distances.</p>' +
+        '<ul><li>10 putts total from your chosen distance.</li>' +
+        '<li>Mark "Through Gate" or "Missed Gate" for each putt.</li>' +
+        '<li>Track your gate accuracy percentage.</li></ul>' +
+        '<p><strong>Tip:</strong> This drill trains your start line. Focus on face angle at impact.</p>'
+    },
+    streak: {
+      name: 'Streak Challenge',
+      emoji: '\uD83D\uDD25',
+      instructions: '<h2>\uD83D\uDD25 Streak Challenge</h2>' +
+        '<p><strong>Goal:</strong> Make as many consecutive 3-foot putts as possible.</p>' +
+        '<ul><li>Keep putting from 3 feet until you miss.</li>' +
+        '<li>Your streak ends on the first miss.</li>' +
+        '<li>Try to beat your best streak!</li></ul>' +
+        '<p><strong>Tip:</strong> Stay in your routine. Don\'t let the pressure of a high streak rush you.</p>'
+    },
+    random: {
+      name: 'Random Distance',
+      emoji: '\uD83C\uDFB2',
+      instructions: '<h2>\uD83C\uDFB2 Random Distance Drill</h2>' +
+        '<p><strong>Goal:</strong> Practice putts from random distances between 3 and 12 feet.</p>' +
+        '<ul><li>The app picks a random distance. Set up your putt.</li>' +
+        '<li>Mark each putt as made or missed.</li>' +
+        '<li>Complete 10 putts and see your accuracy.</li></ul>' +
+        '<p><strong>Tip:</strong> This simulates real putting — you never know what distance you\'ll face.</p>'
+    },
+    target21: {
+      name: 'Target 21',
+      emoji: '\uD83C\uDFC6',
+      instructions: '<h2>\uD83C\uDFC6 Target 21</h2>' +
+        '<p><strong>Goal:</strong> Reach exactly 21 points.</p>' +
+        '<ul><li>3ft = 1 point, 6ft = 2 points, 9ft = 3 points, 12ft = 5 points</li>' +
+        '<li>A miss scores 0 points.</li>' +
+        '<li>If you go over 21, your score resets to 15.</li>' +
+        '<li>Try to reach 21 in as few putts as possible.</li></ul>' +
+        '<p><strong>Tip:</strong> Think strategically about which distances to attempt as you get close to 21.</p>'
+    }
+  };
+
+  /* =========================================================================
+     App State
+     ========================================================================= */
+
+  var state = {
+    currentDrill: null,
+    sessionStart: null,
+    // Ladder
+    ladderStep: 0,
+    ladderAttempts: 0,
+    ladderDistances: [3, 6, 9, 12],
+    // Speed Zone
+    szAttempt: 0,
+    szResults: [],
+    // Gate
+    gateAttempt: 0,
+    gateResults: [],
+    // Streak
+    streakCurrent: 0,
+    streakTotal: 0,
+    streakAttempts: 0,
+    // Random
+    randomAttempt: 0,
+    randomMade: 0,
+    randomTotal: 10,
+    randomCurrentDist: 0,
+    // Target 21
+    t21Score: 0,
+    t21Putts: 0
+  };
+
+  /* =========================================================================
+     UI References
+     ========================================================================= */
+
+  var els = {};
+
+  function initElements() {
+    els.section = $('[data-section-type="putting-practice-hub"]');
+    if (!els.section) return false;
+
+    els.drills = $('#pp-drills');
+    els.active = $('#pp-active');
+    els.instructions = $('#pp-instructions');
+    els.instructionsContent = $('#pp-instructions-content');
+    els.session = $('#pp-session');
+    els.sessionTitle = $('#pp-session-title');
+    els.sessionBody = $('#pp-session-body');
+    els.complete = $('#pp-complete');
+    els.completeContent = $('#pp-complete-content');
+    els.stats = $('#pp-stats');
+    els.statsBody = $('#pp-stats-body');
+    els.statsToggle = $('#pp-stats-toggle');
+    return true;
+  }
+
+  /* =========================================================================
+     Navigation
+     ========================================================================= */
+
+  function showDrills() {
+    show(els.drills);
+    hide(els.active);
+    hide(els.instructions);
+    hide(els.session);
+    hide(els.complete);
+    state.currentDrill = null;
+    refreshStats();
+  }
+
+  function showInstructions(drillId) {
+    state.currentDrill = drillId;
+    var drill = DRILLS[drillId];
+    hide(els.drills);
+    show(els.active);
+    show(els.instructions);
+    hide(els.session);
+    hide(els.complete);
+    html(els.instructionsContent, drill.instructions);
+  }
+
+  function showSession(drillId) {
+    hide(els.instructions);
+    show(els.session);
+    hide(els.complete);
+    state.sessionStart = Date.now();
+    var drill = DRILLS[drillId];
+    html(els.sessionTitle, drill.emoji + ' ' + drill.name);
+    initDrill(drillId);
+  }
+
+  function showComplete(contentHtml) {
+    hide(els.session);
+    show(els.complete);
+    html(els.completeContent, contentHtml);
+  }
+
+  /* =========================================================================
+     Drill Initializers
+     ========================================================================= */
+
+  function initDrill(drillId) {
+    switch (drillId) {
+      case 'ladder': initLadder(); break;
+      case 'speedzone': initSpeedZone(); break;
+      case 'gate': initGate(); break;
+      case 'streak': initStreak(); break;
+      case 'random': initRandom(); break;
+      case 'target21': initTarget21(); break;
+    }
+  }
+
+  /* --- Ladder Drill --- */
+
+  function initLadder() {
+    state.ladderStep = 0;
+    state.ladderAttempts = 0;
+    renderLadder();
+  }
+
+  function renderLadder() {
+    var dists = state.ladderDistances;
+    var step = state.ladderStep;
+    var h = '<div class="pp-ladder" id="ladder-visual">';
+    for (var i = dists.length - 1; i >= 0; i--) {
+      var cls = 'pp-ladder__step';
+      if (i < step) cls += ' pp-ladder__step--complete';
+      else if (i === step) cls += ' pp-ladder__step--active';
+      h += '<div class="' + cls + '">' + dists[i] + ' ft' + (i < step ? ' &#x2713;' : '') + '</div>';
+    }
+    h += '</div>';
+    h += '<div class="pp-drill-status">Attempts: <strong>' + state.ladderAttempts + '</strong></div>';
+    h += '<div class="pp-drill-big-number">' + dists[step] + ' ft</div>';
+    h += '<div class="pp-drill-big-label">Current Distance</div>';
+    h += '<div class="pp-drill-actions">';
+    h += '<button class="btn pp-btn-made" data-action="ladder-made">Made It</button>';
+    h += '<button class="btn pp-btn-missed" data-action="ladder-missed">Missed</button>';
+    h += '</div>';
+    html(els.sessionBody, h);
+  }
+
+  function ladderMade() {
+    state.ladderAttempts++;
+    state.ladderStep++;
+    if (state.ladderStep >= state.ladderDistances.length) {
+      completeLadder();
+    } else {
+      renderLadder();
+    }
+  }
+
+  function ladderMissed() {
+    state.ladderAttempts++;
+    state.ladderStep = 0;
+    renderLadder();
+  }
+
+  function completeLadder() {
+    var dur = (Date.now() - state.sessionStart) / 1000;
+    var attempts = state.ladderAttempts;
+    var isNewBest = updateBest('ladder', { value: attempts, label: attempts + ' attempts' });
+
+    var h = '<h2>Ladder Complete!</h2>';
+    h += '<div class="pp-complete__summary">';
+    h += '<div class="pp-complete__stat"><span class="pp-complete__stat-value">' + attempts + '</span><span class="pp-complete__stat-label">Total Attempts</span></div>';
+    h += '<div class="pp-complete__stat"><span class="pp-complete__stat-value">4/4</span><span class="pp-complete__stat-label">Distances Cleared</span></div>';
+    h += '</div>';
+    if (isNewBest) h += '<div class="pp-complete__new-best">New Personal Best!</div>';
+
+    recordSession('ladder', attempts + ' attempts to complete', attempts, dur, { attempts: attempts });
+    showComplete(h);
+  }
+
+  /* --- Speed Zone Drill --- */
+
+  function initSpeedZone() {
+    state.szAttempt = 0;
+    state.szResults = [];
+    renderSpeedZone();
+  }
+
+  function renderSpeedZone() {
+    var total = 10;
+    var attempt = state.szAttempt;
+    var results = state.szResults;
+    var inZone = results.filter(function (r) { return r; }).length;
+    var pct = attempt > 0 ? Math.round((inZone / attempt) * 100) : 0;
+
+    var h = '<div class="pp-dots">';
+    for (var i = 0; i < total; i++) {
+      var cls = 'pp-dot';
+      if (i < attempt) {
+        cls += results[i] ? ' pp-dot--success' : ' pp-dot--fail';
+      } else if (i === attempt) {
+        cls += ' pp-dot--active';
+      }
+      h += '<div class="' + cls + '">' + (i + 1) + '</div>';
+    }
+    h += '</div>';
+    h += '<div class="pp-accuracy">' + pct + '%</div>';
+    h += '<div class="pp-drill-big-label">Accuracy (' + inZone + '/' + attempt + ' in zone)</div>';
+    h += '<div class="pp-drill-status">Putt ' + (attempt + 1) + ' of ' + total + '</div>';
+    h += '<div class="pp-drill-actions">';
+    h += '<button class="btn pp-btn-made" data-action="sz-in">In Zone</button>';
+    h += '<button class="btn pp-btn-missed" data-action="sz-out">Out of Zone</button>';
+    h += '</div>';
+    html(els.sessionBody, h);
+  }
+
+  function szRecord(inZone) {
+    state.szResults.push(inZone);
+    state.szAttempt++;
+    if (state.szAttempt >= 10) {
+      completeSpeedZone();
+    } else {
+      renderSpeedZone();
+    }
+  }
+
+  function completeSpeedZone() {
+    var dur = (Date.now() - state.sessionStart) / 1000;
+    var inZone = state.szResults.filter(function (r) { return r; }).length;
+    var pct = Math.round((inZone / 10) * 100);
+    var isNewBest = updateBest('speedzone', { value: pct, label: pct + '% accuracy' });
+
+    var h = '<h2>Speed Zone Complete!</h2>';
+    h += '<div class="pp-complete__summary">';
+    h += '<div class="pp-complete__stat"><span class="pp-complete__stat-value">' + pct + '%</span><span class="pp-complete__stat-label">Accuracy</span></div>';
+    h += '<div class="pp-complete__stat"><span class="pp-complete__stat-value">' + inZone + '/10</span><span class="pp-complete__stat-label">In Zone</span></div>';
+    h += '</div>';
+    if (isNewBest) h += '<div class="pp-complete__new-best">New Personal Best!</div>';
+
+    recordSession('speedzone', pct + '% accuracy (' + inZone + '/10)', 10, dur, { accuracy: pct });
+    showComplete(h);
+  }
+
+  /* --- Gate Drill --- */
+
+  function initGate() {
+    state.gateAttempt = 0;
+    state.gateResults = [];
+    renderGate();
+  }
+
+  function renderGate() {
+    var total = 10;
+    var attempt = state.gateAttempt;
+    var results = state.gateResults;
+    var through = results.filter(function (r) { return r; }).length;
+    var pct = attempt > 0 ? Math.round((through / attempt) * 100) : 0;
+
+    var h = '<div class="pp-dots">';
+    for (var i = 0; i < total; i++) {
+      var cls = 'pp-dot';
+      if (i < attempt) {
+        cls += results[i] ? ' pp-dot--success' : ' pp-dot--fail';
+      } else if (i === attempt) {
+        cls += ' pp-dot--active';
+      }
+      h += '<div class="' + cls + '">' + (i + 1) + '</div>';
+    }
+    h += '</div>';
+    h += '<div class="pp-accuracy">' + pct + '%</div>';
+    h += '<div class="pp-drill-big-label">Gate Accuracy (' + through + '/' + attempt + ' through)</div>';
+    h += '<div class="pp-drill-status">Putt ' + (attempt + 1) + ' of ' + total + '</div>';
+    h += '<div class="pp-drill-actions">';
+    h += '<button class="btn pp-btn-made" data-action="gate-through">Through Gate</button>';
+    h += '<button class="btn pp-btn-missed" data-action="gate-missed">Missed Gate</button>';
+    h += '</div>';
+    html(els.sessionBody, h);
+  }
+
+  function gateRecord(through) {
+    state.gateResults.push(through);
+    state.gateAttempt++;
+    if (state.gateAttempt >= 10) {
+      completeGate();
+    } else {
+      renderGate();
+    }
+  }
+
+  function completeGate() {
+    var dur = (Date.now() - state.sessionStart) / 1000;
+    var through = state.gateResults.filter(function (r) { return r; }).length;
+    var pct = Math.round((through / 10) * 100);
+    var isNewBest = updateBest('gate', { value: pct, label: pct + '% accuracy' });
+
+    var h = '<h2>Gate Drill Complete!</h2>';
+    h += '<div class="pp-complete__summary">';
+    h += '<div class="pp-complete__stat"><span class="pp-complete__stat-value">' + pct + '%</span><span class="pp-complete__stat-label">Gate Accuracy</span></div>';
+    h += '<div class="pp-complete__stat"><span class="pp-complete__stat-value">' + through + '/10</span><span class="pp-complete__stat-label">Through Gate</span></div>';
+    h += '</div>';
+    if (isNewBest) h += '<div class="pp-complete__new-best">New Personal Best!</div>';
+
+    recordSession('gate', pct + '% accuracy (' + through + '/10)', 10, dur, { accuracy: pct });
+    showComplete(h);
+  }
+
+  /* --- Streak Challenge --- */
+
+  function initStreak() {
+    state.streakCurrent = 0;
+    state.streakTotal = 0;
+    state.streakAttempts = 0;
+    renderStreak();
+  }
+
+  function renderStreak() {
+    var current = state.streakCurrent;
+    var fireEmojis = '';
+    var fires = Math.min(current, 20);
+    for (var i = 0; i < fires; i++) fireEmojis += '\uD83D\uDD25';
+    if (current === 0) fireEmojis = '\u2014';
+
+    var h = '<div class="pp-streak-fire">' + fireEmojis + '</div>';
+    h += '<div class="pp-drill-big-number">' + current + '</div>';
+    h += '<div class="pp-drill-big-label">Current Streak</div>';
+    h += '<div class="pp-streak-stats">';
+    h += '<div><strong>' + state.streakTotal + '</strong> <span>makes</span></div>';
+    h += '<div><strong>' + state.streakAttempts + '</strong> <span>attempts</span></div>';
+    h += '</div>';
+    h += '<div class="pp-drill-actions">';
+    h += '<button class="btn pp-btn-made" data-action="streak-made">Made It</button>';
+    h += '<button class="btn pp-btn-missed" data-action="streak-missed">Missed</button>';
+    h += '</div>';
+    html(els.sessionBody, h);
+  }
+
+  function streakMade() {
+    state.streakCurrent++;
+    state.streakTotal++;
+    state.streakAttempts++;
+    renderStreak();
+  }
+
+  function streakMissed() {
+    state.streakAttempts++;
+    completeStreak();
+  }
+
+  function completeStreak() {
+    var dur = (Date.now() - state.sessionStart) / 1000;
+    var streak = state.streakCurrent;
+    var total = state.streakTotal;
+    var attempts = state.streakAttempts;
+    var isNewBest = updateBest('streak', { value: streak, label: streak + ' in a row' });
+
+    var h = '<h2>Streak Over!</h2>';
+    h += '<div class="pp-complete__summary">';
+    h += '<div class="pp-complete__stat"><span class="pp-complete__stat-value">' + streak + '</span><span class="pp-complete__stat-label">Streak</span></div>';
+    h += '<div class="pp-complete__stat"><span class="pp-complete__stat-value">' + total + '</span><span class="pp-complete__stat-label">Total Makes</span></div>';
+    h += '<div class="pp-complete__stat"><span class="pp-complete__stat-value">' + attempts + '</span><span class="pp-complete__stat-label">Attempts</span></div>';
+    h += '</div>';
+    if (isNewBest) h += '<div class="pp-complete__new-best">New Personal Best!</div>';
+
+    recordSession('streak', streak + ' in a row (' + total + '/' + attempts + ')', attempts, dur, { makes: streak, attempts: attempts });
+    showComplete(h);
+  }
+
+  /* --- Random Distance --- */
+
+  function initRandom() {
+    state.randomAttempt = 0;
+    state.randomMade = 0;
+    state.randomCurrentDist = randomDist();
+    renderRandom();
+  }
+
+  function randomDist() {
+    return Math.floor(Math.random() * 10) + 3; // 3-12
+  }
+
+  function renderRandom() {
+    var attempt = state.randomAttempt;
+    var total = state.randomTotal;
+    var made = state.randomMade;
+    var pct = attempt > 0 ? Math.round((made / attempt) * 100) : 0;
+
+    var h = '<div class="pp-random-distance">' + state.randomCurrentDist + ' ft</div>';
+    h += '<div class="pp-random-label">Your distance</div>';
+    h += '<div class="pp-random-counter">';
+    h += 'Putt ' + (attempt + 1) + ' of ' + total;
+    h += ' &middot; Made: ' + made + '/' + attempt;
+    if (attempt > 0) h += ' (' + pct + '%)';
+    h += '</div>';
+    h += '<div class="pp-drill-actions">';
+    h += '<button class="btn pp-btn-made" data-action="random-made">Made It</button>';
+    h += '<button class="btn pp-btn-missed" data-action="random-missed">Missed</button>';
+    h += '</div>';
+    html(els.sessionBody, h);
+  }
+
+  function randomRecord(made) {
+    state.randomAttempt++;
+    if (made) state.randomMade++;
+    if (state.randomAttempt >= state.randomTotal) {
+      completeRandom();
+    } else {
+      state.randomCurrentDist = randomDist();
+      renderRandom();
+    }
+  }
+
+  function completeRandom() {
+    var dur = (Date.now() - state.sessionStart) / 1000;
+    var made = state.randomMade;
+    var total = state.randomTotal;
+    var pct = Math.round((made / total) * 100);
+    var isNewBest = updateBest('random', { value: pct, label: pct + '% (' + made + '/' + total + ')' });
+
+    var h = '<h2>Random Distance Complete!</h2>';
+    h += '<div class="pp-complete__summary">';
+    h += '<div class="pp-complete__stat"><span class="pp-complete__stat-value">' + pct + '%</span><span class="pp-complete__stat-label">Accuracy</span></div>';
+    h += '<div class="pp-complete__stat"><span class="pp-complete__stat-value">' + made + '/' + total + '</span><span class="pp-complete__stat-label">Putts Made</span></div>';
+    h += '</div>';
+    if (isNewBest) h += '<div class="pp-complete__new-best">New Personal Best!</div>';
+
+    recordSession('random', pct + '% accuracy (' + made + '/' + total + ')', total, dur, { accuracy: pct });
+    showComplete(h);
+  }
+
+  /* --- Target 21 --- */
+
+  var T21_POINTS = { 3: 1, 6: 2, 9: 3, 12: 5 };
+
+  function initTarget21() {
+    state.t21Score = 0;
+    state.t21Putts = 0;
+    renderTarget21();
+  }
+
+  function renderTarget21() {
+    var score = state.t21Score;
+    var putts = state.t21Putts;
+    var data = loadData();
+    var best = data.drillBests && data.drillBests.target21 ? data.drillBests.target21.value : '—';
+
+    var h = '<div class="pp-t21-score">';
+    h += '<div class="pp-t21-score__item"><span class="pp-t21-score__value">' + score + '</span><span class="pp-t21-score__label">Score / 21</span></div>';
+    h += '<div class="pp-t21-score__item"><span class="pp-t21-score__value">' + putts + '</span><span class="pp-t21-score__label">Putts</span></div>';
+    h += '<div class="pp-t21-score__item"><span class="pp-t21-score__value">' + best + '</span><span class="pp-t21-score__label">Best</span></div>';
+    h += '</div>';
+
+    h += '<div class="pp-drill-status">Tap the distance you made, or tap Miss.</div>';
+
+    h += '<div class="pp-t21-distances">';
+    var dists = [3, 6, 9, 12];
+    for (var i = 0; i < dists.length; i++) {
+      var d = dists[i];
+      h += '<button class="pp-t21-dist-btn" data-action="t21-made" data-distance="' + d + '">';
+      h += '<span class="pp-t21-dist-btn__distance">' + d + ' ft</span>';
+      h += '<span class="pp-t21-dist-btn__points">+' + T21_POINTS[d] + ' pt' + (T21_POINTS[d] > 1 ? 's' : '') + '</span>';
+      h += '</button>';
+    }
+    h += '<button class="pp-t21-miss-btn" data-action="t21-miss">';
+    h += '<span>Miss</span><span class="pp-t21-dist-btn__points">+0 pts</span>';
+    h += '</button>';
+    h += '</div>';
+
+    if (score > 15) {
+      h += '<div class="pp-drill-status" style="opacity:0.7;">Careful! Going over 21 resets you to 15.</div>';
+    }
+
+    html(els.sessionBody, h);
+  }
+
+  function t21Made(distance) {
+    var pts = T21_POINTS[distance] || 0;
+    state.t21Putts++;
+    state.t21Score += pts;
+
+    if (state.t21Score > 21) {
+      state.t21Score = 15;
+      renderTarget21();
+    } else if (state.t21Score === 21) {
+      completeTarget21();
+    } else {
+      renderTarget21();
+    }
+  }
+
+  function t21Miss() {
+    state.t21Putts++;
+    renderTarget21();
+  }
+
+  function completeTarget21() {
+    var dur = (Date.now() - state.sessionStart) / 1000;
+    var putts = state.t21Putts;
+    var isNewBest = updateBest('target21', { value: putts, label: putts + ' putts' });
+
+    var h = '<h2>Target 21 — You Win!</h2>';
+    h += '<div class="pp-complete__summary">';
+    h += '<div class="pp-complete__stat"><span class="pp-complete__stat-value">21</span><span class="pp-complete__stat-label">Final Score</span></div>';
+    h += '<div class="pp-complete__stat"><span class="pp-complete__stat-value">' + putts + '</span><span class="pp-complete__stat-label">Putts Taken</span></div>';
+    h += '</div>';
+    if (isNewBest) h += '<div class="pp-complete__new-best">New Personal Best!</div>';
+
+    recordSession('target21', '21 points in ' + putts + ' putts', putts, dur, { score: 21 });
+    showComplete(h);
+  }
+
+  /* =========================================================================
+     Stats Dashboard (Tier 2)
+     ========================================================================= */
+
+  function refreshStats() {
+    var data = loadData();
+
+    // Show stats panel if user has any data
+    if (data.totalSessions > 0) {
+      show(els.stats);
+    } else {
+      hide(els.stats);
+      return;
+    }
+
+    // Overview numbers
+    var elSessions = $('#stat-sessions');
+    var elPutts = $('#stat-putts');
+    var elMinutes = $('#stat-minutes');
+    if (elSessions) elSessions.textContent = data.totalSessions;
+    if (elPutts) elPutts.textContent = data.totalPutts;
+    if (elMinutes) elMinutes.textContent = data.totalMinutes;
+
+    // Streak info
+    var elStreakCurrent = $('#streak-current');
+    var elStreakBest = $('#streak-best');
+    if (elStreakCurrent) elStreakCurrent.textContent = data.streak.current;
+    if (elStreakBest) elStreakBest.textContent = data.streak.best;
+
+    // Streak calendar (last 30 days)
+    renderCalendar(data);
+
+    // Bests
+    renderBests(data);
+
+    // Recent
+    renderRecent(data);
+  }
+
+  function renderCalendar(data) {
+    var cal = $('#streak-calendar');
+    if (!cal) return;
+
+    var days = data.practiceDays || [];
+    var h = '';
+    var today = new Date();
+    for (var i = 29; i >= 0; i--) {
+      var d = new Date(today);
+      d.setDate(d.getDate() - i);
+      var dStr = d.toISOString().slice(0, 10);
+      var dayNum = d.getDate();
+      var cls = 'pp-streak__day';
+      if (days.indexOf(dStr) !== -1) cls += ' pp-streak__day--active';
+      if (i === 0) cls += ' pp-streak__day--today';
+      h += '<div class="' + cls + '" title="' + dStr + '">' + dayNum + '</div>';
+    }
+    cal.innerHTML = h;
+  }
+
+  var DRILL_LABELS = {
+    ladder: 'Ladder',
+    speedzone: 'Speed Zone',
+    gate: 'Gate',
+    streak: 'Streak',
+    random: 'Random',
+    target21: 'Target 21'
+  };
+
+  function renderBests(data) {
+    var grid = $('#pp-bests-grid');
+    if (!grid) return;
+
+    var bests = data.drillBests || {};
+    var h = '';
+    var drills = ['ladder', 'speedzone', 'gate', 'streak', 'random', 'target21'];
+    var hasAny = false;
+
+    for (var i = 0; i < drills.length; i++) {
+      var id = drills[i];
+      var best = bests[id];
+      if (best) {
+        hasAny = true;
+        h += '<div class="pp-best-card">';
+        h += '<div class="pp-best-card__name">' + DRILL_LABELS[id] + '</div>';
+        h += '<div class="pp-best-card__value">' + best.label + '</div>';
+        h += '<div class="pp-best-card__date">' + best.date + '</div>';
+        h += '</div>';
+      }
+    }
+
+    if (!hasAny) {
+      h = '<p style="color:var(--text);opacity:0.5;font-size:0.9rem;">Complete drills to see your personal bests.</p>';
+    }
+
+    grid.innerHTML = h;
+  }
+
+  function renderRecent(data) {
+    var list = $('#pp-recent-list');
+    if (!list) return;
+
+    var sessions = data.recentSessions || [];
+    if (sessions.length === 0) {
+      list.innerHTML = '<p class="pp-recent__empty">Complete a drill to see your recent sessions.</p>';
+      return;
+    }
+
+    var h = '';
+    var max = Math.min(sessions.length, 10);
+    for (var i = 0; i < max; i++) {
+      var s = sessions[i];
+      h += '<div class="pp-recent__item">';
+      h += '<span class="pp-recent__item-drill">' + (DRILL_LABELS[s.drill] || s.drill) + '</span>';
+      h += '<span class="pp-recent__item-summary">' + s.summary + '</span>';
+      h += '<span class="pp-recent__item-date">' + s.date + '</span>';
+      h += '</div>';
+    }
+    list.innerHTML = h;
+  }
+
+  /* =========================================================================
+     Event Handling
+     ========================================================================= */
+
+  function handleAction(action, target) {
+    switch (action) {
+      case 'ladder-made': ladderMade(); break;
+      case 'ladder-missed': ladderMissed(); break;
+      case 'sz-in': szRecord(true); break;
+      case 'sz-out': szRecord(false); break;
+      case 'gate-through': gateRecord(true); break;
+      case 'gate-missed': gateRecord(false); break;
+      case 'streak-made': streakMade(); break;
+      case 'streak-missed': streakMissed(); break;
+      case 'random-made': randomRecord(true); break;
+      case 'random-missed': randomRecord(false); break;
+      case 't21-made':
+        var dist = parseInt(target.getAttribute('data-distance'), 10);
+        t21Made(dist);
+        break;
+      case 't21-miss': t21Miss(); break;
+    }
+  }
+
+  function bindEvents() {
+    // Drill card selection
+    $$('.pp-drill-card').forEach(function (card) {
+      card.addEventListener('click', function () {
+        var drillId = this.getAttribute('data-drill');
+        showInstructions(drillId);
+      });
+    });
+
+    // Start drill
+    var startBtn = $('#pp-start-drill');
+    if (startBtn) {
+      startBtn.addEventListener('click', function () {
+        showSession(state.currentDrill);
+      });
+    }
+
+    // Back to drills
+    var backBtns = ['#pp-back-to-drills', '#pp-back-to-drills-complete'];
+    backBtns.forEach(function (sel) {
+      var btn = $(sel);
+      if (btn) btn.addEventListener('click', showDrills);
+    });
+
+    // Quit drill
+    var quitBtn = $('#pp-quit-drill');
+    if (quitBtn) {
+      quitBtn.addEventListener('click', showDrills);
+    }
+
+    // Try again
+    var tryAgainBtn = $('#pp-try-again');
+    if (tryAgainBtn) {
+      tryAgainBtn.addEventListener('click', function () {
+        showSession(state.currentDrill);
+      });
+    }
+
+    // Session body actions (delegated)
+    if (els.sessionBody) {
+      els.sessionBody.addEventListener('click', function (e) {
+        var btn = e.target.closest('[data-action]');
+        if (btn) {
+          var action = btn.getAttribute('data-action');
+          handleAction(action, btn);
+        }
+      });
+    }
+
+    // Stats toggle
+    if (els.statsToggle) {
+      els.statsToggle.addEventListener('click', function () {
+        var body = els.statsBody;
+        var expanded = this.getAttribute('aria-expanded') === 'true';
+        if (expanded) {
+          hide(body);
+          this.setAttribute('aria-expanded', 'false');
+          $('.pp-stats__toggle-text', this).textContent = 'Show';
+        } else {
+          show(body);
+          this.setAttribute('aria-expanded', 'true');
+          $('.pp-stats__toggle-text', this).textContent = 'Hide';
+        }
+      });
+    }
+  }
+
+  /* =========================================================================
+     Init
+     ========================================================================= */
+
+  function init() {
+    if (!initElements()) return;
+    bindEvents();
+    refreshStats();
+
+    // Recalculate streak on load (in case days have passed)
+    var data = loadData();
+    if (data.streak.lastDate) {
+      var today = getTodayStr();
+      var last = data.streak.lastDate;
+      if (last !== today) {
+        var yesterday = new Date();
+        yesterday.setDate(yesterday.getDate() - 1);
+        var yesterdayStr = yesterday.toISOString().slice(0, 10);
+        if (last !== yesterdayStr) {
+          // Streak broken
+          data.streak.current = 0;
+          saveData(data);
+        }
+      }
+    }
+  }
+
+  // Run on DOMContentLoaded or immediately if already loaded
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', init);
+  } else {
+    init();
+  }
+})();
+</script></body></html>
