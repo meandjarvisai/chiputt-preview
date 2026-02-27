@@ -5,2065 +5,1824 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Putting Practice Hub — Chiputt (Preview)</title>
 <style>
-/* Chiputt Theme CSS Variables (scheme-1) */
 :root {
-  --bg: #ffffff;
-  --heading: #06051e;
-  --text: #06051e;
-  --link: #06051e;
-  --border: #06051e;
-  --accent: #ffba00;
-  --accent-text: #06051e;
-  --text-alpha-25: rgba(6, 5, 30, 0.25);
-  --text-alpha-50: rgba(6, 5, 30, 0.50);
-  --COLOR-BORDER: rgba(6, 5, 30, 0.15);
-  --COLOR-BG: #ffffff;
-  --COLOR-HEADING: #06051e;
-  --COLOR-TEXT: #06051e;
-  --COLOR-LINK: #06051e;
-  --COLOR-ACCENT: #ffba00;
-  --COLOR-ERROR: #D02E2E;
-  --COLOR-SUCCESS: #56AD6A;
-  --COLOR-SUCCESS-BG: #ECFEF0;
+  --bg: #ffffff; --heading: #06051e; --text: #06051e; --link: #06051e;
+  --COLOR-BORDER: rgba(6, 5, 30, 0.15); --COLOR-HEADING: #06051e; --COLOR-TEXT: #06051e;
   --FONT-STACK-HEADING: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
   --FONT-STACK-BODY: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
   --FONT-STACK-BUTTON: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-  --FONT-WEIGHT-HEADING: 400;
-  --FONT-WEIGHT-HEADING-BOLD: 700;
-  --FONT-WEIGHT-BODY: 400;
+  --FONT-WEIGHT-HEADING: 400; --FONT-WEIGHT-HEADING-BOLD: 700; --FONT-WEIGHT-BODY: 400;
   --FONT-STYLE-HEADING: normal;
-  --PRIMARY-BUTTONS-COLOR-BG: #4f6a46;
-  --PRIMARY-BUTTONS-COLOR-TEXT: #ffffff;
-  --PRIMARY-BUTTONS-COLOR-BORDER: #4f6a46;
-  --PRIMARY-BUTTONS-COLOR-HOVER: #3f5738;
-  --SECONDARY-BUTTONS-COLOR-BG: #f7f6f4;
-  --SECONDARY-BUTTONS-COLOR-TEXT: #06051e;
+  --PRIMARY-BUTTONS-COLOR-BG: #4f6a46; --PRIMARY-BUTTONS-COLOR-TEXT: #ffffff;
+  --SECONDARY-BUTTONS-COLOR-BG: #f7f6f4; --SECONDARY-BUTTONS-COLOR-TEXT: #06051e;
   --SECONDARY-BUTTONS-COLOR-BORDER: #06051e;
-  --RADIUS: 30px;
-  --RADIUS-SMALL: 22px;
-  --BORDER-WIDTH: 1px;
-  --LETTER-SPACING-BUTTON: 0.125em;
-  --BUTTON-TEXT-CAPS: uppercase;
-  --SITE-WIDTH: 1440px;
-  --gutter: 60px;
-  --gutter-mobile: 20px;
+  --RADIUS: 30px; --BORDER-WIDTH: 1px;
+  --LETTER-SPACING-BUTTON: 0.125em; --BUTTON-TEXT-CAPS: uppercase;
 }
-
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
-body {
-  font-family: var(--FONT-STACK-BODY);
-  font-weight: var(--FONT-WEIGHT-BODY);
-  background: var(--bg);
-  color: var(--text);
-  -webkit-font-smoothing: antialiased;
-  line-height: 1.6;
-  font-size: 16px;
-}
-
-.wrapper {
-  max-width: 900px;
-  margin: 0 auto;
-  padding: 0 var(--gutter-mobile);
-}
-@media (min-width: 768px) { .wrapper { padding: 0 var(--gutter); } }
-
+body { font-family: var(--FONT-STACK-BODY); font-weight: var(--FONT-WEIGHT-BODY); background: var(--bg); color: var(--text); -webkit-font-smoothing: antialiased; line-height: 1.6; font-size: 16px; }
+.wrapper { max-width: 780px; margin: 0 auto; padding: 0 20px; }
+@media (min-width: 768px) { .wrapper { padding: 0 60px; } }
 .section-padding { padding-top: 60px; padding-bottom: 60px; }
-
-/* Theme button classes */
-.btn {
-  font-family: var(--FONT-STACK-BUTTON);
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  padding: 12px 24px;
-  font-size: 14px;
-  line-height: 1;
-  border-radius: var(--RADIUS);
-  border: var(--BORDER-WIDTH) solid transparent;
-  cursor: pointer;
-  text-decoration: none;
-  text-transform: var(--BUTTON-TEXT-CAPS);
-  letter-spacing: var(--LETTER-SPACING-BUTTON);
-  transition: all 0.2s;
-  -webkit-tap-highlight-color: transparent;
-}
-.btn--primary.btn--solid {
-  background: var(--PRIMARY-BUTTONS-COLOR-BG);
-  color: var(--PRIMARY-BUTTONS-COLOR-TEXT);
-  border-color: var(--PRIMARY-BUTTONS-COLOR-BG);
-}
+.btn { font-family: var(--FONT-STACK-BUTTON); display: inline-flex; align-items: center; justify-content: center; padding: 12px 24px; font-size: 14px; line-height: 1; border-radius: var(--RADIUS); border: var(--BORDER-WIDTH) solid transparent; cursor: pointer; text-decoration: none; text-transform: var(--BUTTON-TEXT-CAPS); letter-spacing: var(--LETTER-SPACING-BUTTON); transition: all 0.2s; -webkit-tap-highlight-color: transparent; }
+.btn--primary.btn--solid { background: var(--PRIMARY-BUTTONS-COLOR-BG); color: var(--PRIMARY-BUTTONS-COLOR-TEXT); border-color: var(--PRIMARY-BUTTONS-COLOR-BG); }
 .btn--primary.btn--solid:hover { opacity: 0.85; }
-.btn--secondary.btn--solid {
-  background: var(--SECONDARY-BUTTONS-COLOR-BG);
-  color: var(--SECONDARY-BUTTONS-COLOR-TEXT);
-  border-color: var(--COLOR-BORDER);
-}
-.btn--text {
-  background: none;
-  border: none;
-  color: var(--text);
-  opacity: 0.7;
-  padding: 8px 0;
-  text-transform: none;
-  letter-spacing: normal;
-}
+.btn--primary.btn--solid:disabled { opacity: 0.35; cursor: not-allowed; }
+.btn--secondary.btn--solid { background: var(--SECONDARY-BUTTONS-COLOR-BG); color: var(--SECONDARY-BUTTONS-COLOR-TEXT); border-color: var(--COLOR-BORDER); }
+.btn--text { background: none; border: none; color: var(--text); opacity: 0.7; padding: 8px 0; text-transform: none; letter-spacing: normal; cursor: pointer; font-size: 14px; font-family: var(--FONT-STACK-BODY); }
 .btn--text:hover { opacity: 1; }
-
-/* Preview banner */
-.preview-banner {
-  background: var(--PRIMARY-BUTTONS-COLOR-BG);
-  color: #fff;
-  text-align: center;
-  padding: 10px;
-  font-size: 13px;
-  letter-spacing: 0.05em;
-}
+.preview-banner { background: var(--PRIMARY-BUTTONS-COLOR-BG); color: #fff; text-align: center; padding: 10px; font-size: 13px; letter-spacing: 0.05em; }
 </style>
 <style>
 /* ==========================================================================
    Putting Practice Hub — Styles
-   Uses theme CSS variables exclusively. No hardcoded colors.
+   Uses Chiputt theme CSS variables (no hardcoded colors except fallbacks)
    ========================================================================== */
 
-/* Hero
-   ========================================================================== */
-
+/* ═══════════════════════════════════════════
+   Hero
+   ═══════════════════════════════════════════ */
 .pp-hero {
   text-align: center;
   margin-bottom: 2rem;
 }
-
 .pp-hero__title {
-  font-family: var(--FONT-STACK-HEADING);
-  font-weight: var(--FONT-WEIGHT-HEADING-BOLD);
-  font-style: var(--FONT-STYLE-HEADING);
-  color: var(--heading);
-  margin: 0 0 0.5rem;
+  font-family: var(--FONT-STACK-HEADING, system-ui, sans-serif);
+  font-weight: var(--FONT-WEIGHT-HEADING, 400);
+  font-style: var(--FONT-STYLE-HEADING, normal);
+  font-size: clamp(1.75rem, 5vw, 2.25rem);
+  color: var(--heading, var(--COLOR-HEADING, #06051e));
+  line-height: 1.2;
+  margin-bottom: 0.5rem;
 }
-
 .pp-hero__subtitle {
-  font-family: var(--FONT-STACK-BODY);
-  color: var(--text);
-  opacity: 0.8;
-  max-width: 640px;
-  margin: 0 auto;
+  font-size: 0.938rem;
+  color: var(--text, var(--COLOR-TEXT, #06051e));
+  opacity: 0.55;
   line-height: 1.6;
+  max-width: 480px;
+  margin: 0 auto;
 }
 
-/* Drill Selector Grid
-   ========================================================================== */
-
-.pp-drills__heading {
-  font-family: var(--FONT-STACK-HEADING);
-  font-weight: var(--FONT-WEIGHT-HEADING);
-  color: var(--heading);
-  text-align: center;
-  margin: 0 0 1.5rem;
-}
-
-.pp-drills__grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 1rem;
-}
-
-@media only screen and (max-width: 767px) {
-  .pp-drills__grid {
-    grid-template-columns: repeat(2, 1fr);
-  }
-}
-
-@media only screen and (max-width: 479px) {
-  .pp-drills__grid {
-    grid-template-columns: 1fr;
-  }
-}
-
-.pp-drill-card {
+/* ═══════════════════════════════════════════
+   Mode Picker (Home)
+   ═══════════════════════════════════════════ */
+.pp-mode-picker {
   display: flex;
   flex-direction: column;
+  gap: 12px;
+  max-width: 520px;
+  margin: 0 auto;
+}
+.pp-mode-card {
+  display: flex;
   align-items: center;
-  gap: 0.5rem;
-  padding: 1.5rem 1rem;
-  background: var(--bg);
-  border: var(--BORDER-WIDTH) solid var(--COLOR-BORDER, rgba(0,0,0,0.08));
-  border-radius: var(--RADIUS);
+  gap: 16px;
+  padding: 24px 20px;
+  border-radius: 8px;
+  border: var(--BORDER-WIDTH, 1px) solid var(--COLOR-BORDER, rgba(6,5,30,0.15));
+  background: var(--bg, #fff);
   cursor: pointer;
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
-  text-align: center;
-  font-family: var(--FONT-STACK-BODY);
-  color: var(--text);
+  text-align: left;
+  transition: border-color 0.2s, background 0.15s;
+  -webkit-tap-highlight-color: transparent;
+  font-family: inherit;
 }
-
-.pp-drill-card:hover,
-.pp-drill-card:focus-visible {
-  transform: translateY(-2px);
-  box-shadow: 0 4px 16px rgba(0,0,0,0.1);
-  outline: none;
+.pp-mode-card:hover,
+.pp-mode-card:focus-visible {
+  border-color: var(--heading, #06051e);
+  background: rgba(6,5,30,0.02);
 }
-
-.pp-drill-card:focus-visible {
-  outline: 2px solid var(--link);
-  outline-offset: 2px;
+.pp-mode-card__emoji {
+  font-size: 2rem;
+  flex-shrink: 0;
+  width: 48px;
+  height: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(6,5,30,0.04);
+  border-radius: 8px;
 }
-
-.pp-drill-card__emoji {
-  font-size: 2.5rem;
-  line-height: 1;
+.pp-mode-card__name {
+  display: block;
+  font-family: var(--FONT-STACK-HEADING, system-ui, sans-serif);
+  font-weight: var(--FONT-WEIGHT-HEADING-BOLD, 700);
+  font-size: 1rem;
+  color: var(--heading, #06051e);
+  margin-bottom: 2px;
 }
-
-.pp-drill-card__name {
-  font-family: var(--FONT-STACK-HEADING);
-  font-weight: var(--FONT-WEIGHT-HEADING-BOLD);
-  color: var(--heading);
-  font-size: 1.1rem;
-}
-
-.pp-drill-card__desc {
-  font-size: 0.85rem;
-  opacity: 0.7;
+.pp-mode-card__desc {
+  display: block;
+  font-size: 0.813rem;
+  color: var(--text, #06051e);
+  opacity: 0.5;
   line-height: 1.4;
 }
 
-/* Back Button
-   ========================================================================== */
-
-.pp-back {
-  margin-bottom: 1rem;
-  font-size: 0.9rem;
+/* ═══════════════════════════════════════════
+   Card Header
+   ═══════════════════════════════════════════ */
+.pp-card-header { margin-bottom: 1.5rem; }
+.pp-eyebrow {
+  display: block;
+  font-family: var(--FONT-STACK-HEADING, system-ui, sans-serif);
+  font-size: 0.688rem;
+  letter-spacing: 0.025em;
+  text-transform: uppercase;
+  color: var(--text, #06051e);
+  opacity: 0.45;
+  margin-bottom: 0.75rem;
+}
+.pp-card-title {
+  font-family: var(--FONT-STACK-HEADING, system-ui, sans-serif);
+  font-weight: var(--FONT-WEIGHT-HEADING, 400);
+  font-size: clamp(1.25rem, 4vw, 1.625rem);
+  color: var(--heading, #06051e);
+  line-height: 1.3;
+  margin-bottom: 0.5rem;
+}
+.pp-card-desc {
+  font-size: 0.875rem;
+  color: var(--text, #06051e);
+  opacity: 0.5;
+  line-height: 1.6;
 }
 
-/* Instructions
-   ========================================================================== */
+/* ═══════════════════════════════════════════
+   Back / Button Stack / Full-width Button
+   ═══════════════════════════════════════════ */
+.pp-back { margin-bottom: 1.25rem; }
+.pp-btn-stack {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-top: 1.5rem;
+}
+.pp-btn-full { width: 100%; }
 
-.pp-instructions__content {
+/* ═══════════════════════════════════════════
+   Mode Toggle (Time / Putts)
+   ═══════════════════════════════════════════ */
+.pp-mode-toggle {
+  display: inline-flex;
+  border: var(--BORDER-WIDTH, 1px) solid var(--COLOR-BORDER, rgba(6,5,30,0.15));
+  border-radius: var(--RADIUS, 30px);
+  padding: 3px;
   margin-bottom: 1.5rem;
 }
-
-.pp-instructions__content h2 {
-  font-family: var(--FONT-STACK-HEADING);
-  font-weight: var(--FONT-WEIGHT-HEADING-BOLD);
-  color: var(--heading);
-  margin: 0 0 0.75rem;
+.pp-mode-toggle__btn {
+  padding: 10px 24px;
+  border-radius: var(--RADIUS, 30px);
+  border: none;
+  background: transparent;
+  font-family: var(--FONT-STACK-HEADING, system-ui, sans-serif);
+  font-weight: var(--FONT-WEIGHT-HEADING, 400);
+  font-size: 0.75rem;
+  letter-spacing: 0.125em;
+  text-transform: uppercase;
+  color: var(--text, #06051e);
+  opacity: 0.5;
+  cursor: pointer;
+  transition: all 0.2s;
+  -webkit-tap-highlight-color: transparent;
+}
+.pp-mode-toggle__btn.active {
+  background: var(--heading, #06051e);
+  color: #fff;
+  opacity: 1;
 }
 
-.pp-instructions__content p {
-  color: var(--text);
-  line-height: 1.6;
-  margin: 0 0 0.5rem;
+/* ═══════════════════════════════════════════
+   Pill Buttons (variant selector)
+   ═══════════════════════════════════════════ */
+.pp-pill-group {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 1.5rem;
+}
+.pp-pill {
+  padding: 12px 24px;
+  border-radius: var(--RADIUS, 30px);
+  border: var(--BORDER-WIDTH, 1px) solid var(--COLOR-BORDER, rgba(6,5,30,0.15));
+  background: var(--bg, #fff);
+  font-family: var(--FONT-STACK-HEADING, system-ui, sans-serif);
+  font-weight: var(--FONT-WEIGHT-HEADING, 400);
+  font-size: 0.813rem;
+  letter-spacing: 0.125em;
+  text-transform: uppercase;
+  color: var(--text, #06051e);
+  cursor: pointer;
+  transition: border-color 0.2s, background 0.2s, color 0.2s;
+  -webkit-tap-highlight-color: transparent;
+}
+.pp-pill:hover { border-color: var(--heading, #06051e); }
+.pp-pill.active {
+  background: var(--heading, #06051e);
+  border-color: var(--heading, #06051e);
+  color: #fff;
 }
 
-.pp-instructions__content ul {
-  color: var(--text);
-  line-height: 1.6;
-  padding-left: 1.25rem;
-  margin: 0 0 0.75rem;
-}
-
-.pp-start-btn {
-  font-size: 1.1rem;
-  padding: 0.75rem 2rem;
-}
-
-/* Session Area
-   ========================================================================== */
-
-.pp-session__header {
+/* ═══════════════════════════════════════════
+   Toggle Row (Extender)
+   ═══════════════════════════════════════════ */
+.pp-toggle-row {
   display: flex;
   align-items: center;
   justify-content: space-between;
+  padding: 16px 20px;
+  margin-bottom: 1.25rem;
+  border: var(--BORDER-WIDTH, 1px) solid var(--COLOR-BORDER, rgba(6,5,30,0.15));
+  border-radius: 8px;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+  transition: border-color 0.2s;
+}
+.pp-toggle-row:hover { border-color: rgba(6,5,30,0.3); }
+.pp-toggle-row__info { flex: 1; }
+.pp-toggle-row__label { font-size: 0.875rem; color: var(--text, #06051e); }
+.pp-toggle-row__sub { font-size: 0.75rem; color: var(--text, #06051e); opacity: 0.5; margin-top: 2px; }
+.pp-switch {
+  width: 44px; height: 24px;
+  background: rgba(6,5,30,0.15);
+  border-radius: 12px;
+  position: relative;
+  flex-shrink: 0;
+  transition: background 0.2s;
+  margin-left: 16px;
+}
+.pp-switch.on { background: var(--PRIMARY-BUTTONS-COLOR-BG, #4f6a46); }
+.pp-switch::after {
+  content: '';
+  position: absolute;
+  top: 2px; left: 2px;
+  width: 20px; height: 20px;
+  border-radius: 50%;
+  background: #fff;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.12);
+  transition: left 0.2s;
+}
+.pp-switch.on::after { left: 22px; }
+
+/* ═══════════════════════════════════════════
+   Range Preview
+   ═══════════════════════════════════════════ */
+.pp-range-preview {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 14px 18px;
+  background: rgba(86,173,106,0.06);
+  border-radius: 8px;
   margin-bottom: 1.5rem;
+  font-size: 0.813rem;
+  color: var(--text, #06051e);
+}
+.pp-range-preview__icon { font-size: 1rem; }
+
+/* ═══════════════════════════════════════════
+   Session Meta / Chips
+   ═══════════════════════════════════════════ */
+.pp-session-meta {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 1rem;
+}
+.pp-session-meta__round {
+  font-size: 0.688rem;
+  letter-spacing: 0.025em;
+  text-transform: uppercase;
+  color: var(--text, #06051e);
+  opacity: 0.45;
+}
+.pp-chip {
+  font-size: 0.688rem;
+  padding: 4px 12px;
+  border-radius: var(--RADIUS, 30px);
+  border: var(--BORDER-WIDTH, 1px) solid var(--COLOR-BORDER, rgba(6,5,30,0.15));
+  color: var(--text, #06051e);
+  opacity: 0.5;
+  letter-spacing: 0.025em;
+  text-transform: uppercase;
+  font-weight: 500;
+}
+.pp-chip--success { border-color: rgba(86,173,106,0.35); color: #56AD6A; opacity: 1; }
+.pp-chip--error { border-color: rgba(208,46,46,0.25); color: #D02E2E; opacity: 1; }
+
+/* ═══════════════════════════════════════════
+   Timer Row
+   ═══════════════════════════════════════════ */
+.pp-timer-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 14px 18px;
+  border: var(--BORDER-WIDTH, 1px) solid var(--COLOR-BORDER, rgba(6,5,30,0.15));
+  border-radius: 8px;
+  margin-bottom: 1rem;
+}
+.pp-timer-row__label { font-size: 0.813rem; color: var(--text, #06051e); opacity: 0.5; }
+.pp-timer-row__value {
+  font-family: var(--FONT-STACK-HEADING, system-ui, sans-serif);
+  font-size: 1.375rem;
+  font-weight: var(--FONT-WEIGHT-HEADING, 400);
+  color: var(--heading, #06051e);
+  font-variant-numeric: tabular-nums;
+}
+.pp-timer-row__value.urgent { color: #D02E2E; }
+
+/* ═══════════════════════════════════════════
+   Progress Bar
+   ═══════════════════════════════════════════ */
+.pp-progress-bar { display: flex; gap: 3px; margin-bottom: 1.25rem; }
+.pp-progress-bar__seg {
+  height: 3px; flex: 1; border-radius: 2px;
+  background: rgba(6,5,30,0.1);
+  transition: background 0.3s;
+}
+.pp-progress-bar__seg.done { background: var(--PRIMARY-BUTTONS-COLOR-BG, #4f6a46); }
+.pp-progress-bar__seg.current { background: rgba(6,5,30,0.45); }
+
+/* ═══════════════════════════════════════════
+   Putt Cards (Randomizer)
+   ═══════════════════════════════════════════ */
+.pp-putt-list { display: flex; flex-direction: column; gap: 8px; margin-bottom: 1.5rem; }
+.pp-putt-card {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 18px 20px;
+  border: var(--BORDER-WIDTH, 1px) solid var(--COLOR-BORDER, rgba(6,5,30,0.15));
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.2s;
+  -webkit-tap-highlight-color: transparent;
+}
+.pp-putt-card:hover { border-color: rgba(6,5,30,0.3); }
+.pp-putt-card.done { opacity: 0.4; background: rgba(6,5,30,0.03); }
+.pp-putt-card__check {
+  width: 22px; height: 22px;
+  border-radius: 50%;
+  border: var(--BORDER-WIDTH, 1px) solid var(--COLOR-BORDER, rgba(6,5,30,0.15));
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s;
+}
+.pp-putt-card.done .pp-putt-card__check {
+  background: var(--PRIMARY-BUTTONS-COLOR-BG, #4f6a46);
+  border-color: var(--PRIMARY-BUTTONS-COLOR-BG, #4f6a46);
+}
+.pp-putt-card__tick {
+  font-size: 0.688rem;
+  color: #fff;
+  opacity: 0;
+  transition: opacity 0.15s;
+  font-weight: 700;
+}
+.pp-putt-card.done .pp-putt-card__tick { opacity: 1; }
+.pp-putt-card__info { flex: 1; min-width: 0; }
+.pp-putt-card__type { font-size: 0.875rem; color: var(--text, #06051e); margin-bottom: 2px; }
+.pp-putt-card__tip { font-size: 0.75rem; color: var(--text, #06051e); opacity: 0.5; line-height: 1.4; }
+.pp-putt-card__distance { text-align: right; flex-shrink: 0; }
+.pp-putt-card__ft {
+  font-family: var(--FONT-STACK-HEADING, system-ui, sans-serif);
+  font-size: 2rem;
+  font-weight: var(--FONT-WEIGHT-HEADING, 400);
+  color: var(--heading, #06051e);
+  line-height: 1;
+}
+.pp-putt-card__ft-label {
+  font-size: 0.625rem;
+  letter-spacing: 0.025em;
+  text-transform: uppercase;
+  color: var(--text, #06051e);
+  opacity: 0.45;
+  margin-top: 2px;
 }
 
-.pp-session__title {
-  font-family: var(--FONT-STACK-HEADING);
-  font-weight: var(--FONT-WEIGHT-HEADING-BOLD);
-  color: var(--heading);
-  margin: 0;
+/* ═══════════════════════════════════════════
+   Drill Cards
+   ═══════════════════════════════════════════ */
+.pp-drills__grid {
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+  border: var(--BORDER-WIDTH, 1px) solid var(--COLOR-BORDER, rgba(6,5,30,0.15));
+  border-radius: 8px;
+  overflow: hidden;
+}
+.pp-drill-card {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 20px;
+  background: var(--bg, #fff);
+  cursor: pointer;
+  border: none;
+  text-align: left;
+  font-family: inherit;
+  transition: background 0.15s;
+  -webkit-tap-highlight-color: transparent;
+  border-bottom: var(--BORDER-WIDTH, 1px) solid rgba(6,5,30,0.05);
+}
+.pp-drill-card:last-child { border-bottom: none; }
+.pp-drill-card:hover,
+.pp-drill-card:focus-visible { background: rgba(6,5,30,0.02); }
+.pp-drill-card__emoji {
+  font-size: 1.5rem;
+  width: 44px; height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(6,5,30,0.04);
+  border-radius: 8px;
+  flex-shrink: 0;
+}
+.pp-drill-card__name {
+  display: block;
+  font-family: var(--FONT-STACK-HEADING, system-ui, sans-serif);
+  font-weight: var(--FONT-WEIGHT-HEADING, 400);
+  font-size: 0.938rem;
+  color: var(--heading, #06051e);
+  margin-bottom: 2px;
+}
+.pp-drill-card__desc {
+  display: block;
+  font-size: 0.813rem;
+  color: var(--text, #06051e);
+  opacity: 0.5;
+  line-height: 1.4;
+}
+.pp-drill-card__badge {
+  margin-left: auto;
+  font-size: 0.625rem;
+  letter-spacing: 0.025em;
+  text-transform: uppercase;
+  color: var(--PRIMARY-BUTTONS-COLOR-BG, #4f6a46);
+  padding: 4px 12px;
+  background: rgba(79,106,70,0.08);
+  border-radius: var(--RADIUS, 30px);
+  white-space: nowrap;
+  font-weight: 500;
+  flex-shrink: 0;
 }
 
-.pp-session__quit {
-  font-size: 0.85rem;
-  opacity: 0.7;
+/* ═══════════════════════════════════════════
+   Instructions
+   ═══════════════════════════════════════════ */
+.pp-instructions__content {
+  margin-bottom: 2rem;
 }
-
-.pp-session__body {
-  min-height: 200px;
+.pp-instructions__content h2 {
+  font-family: var(--FONT-STACK-HEADING, system-ui, sans-serif);
+  font-weight: var(--FONT-WEIGHT-HEADING, 400);
+  font-size: 1.375rem;
+  color: var(--heading, #06051e);
+  margin-bottom: 1rem;
 }
+.pp-instructions__content p { font-size: 0.938rem; line-height: 1.6; margin-bottom: 0.75rem; }
+.pp-instructions__content ul { list-style: disc; padding-left: 1.25rem; margin-bottom: 1rem; }
+.pp-instructions__content li { font-size: 0.938rem; line-height: 1.6; margin-bottom: 0.25rem; }
 
-/* Shared Drill UI Elements
-   ========================================================================== */
-
-.pp-drill-status {
-  text-align: center;
-  margin-bottom: 1.5rem;
-  color: var(--text);
-  font-size: 0.95rem;
-}
-
-.pp-drill-big-number {
-  text-align: center;
-  font-family: var(--FONT-STACK-HEADING);
-  font-weight: var(--FONT-WEIGHT-HEADING-BOLD);
-  font-size: 4rem;
-  color: var(--heading);
-  line-height: 1.1;
-  margin: 1rem 0;
-}
-
-.pp-drill-big-label {
-  text-align: center;
-  font-size: 0.9rem;
-  color: var(--text);
-  opacity: 0.7;
-  margin-bottom: 1.5rem;
-}
-
+/* ═══════════════════════════════════════════
+   Drill Actions (Made / Missed buttons)
+   ═══════════════════════════════════════════ */
 .pp-drill-actions {
   display: flex;
-  gap: 1rem;
-  justify-content: center;
-  flex-wrap: wrap;
+  gap: 10px;
   margin-top: 1.5rem;
 }
-
-.pp-drill-actions .btn {
-  min-width: 140px;
-  padding: 0.75rem 1.5rem;
-  font-size: 1rem;
-}
-
+.pp-drill-actions .btn { flex: 1; }
 .pp-btn-made {
-  background: var(--PRIMARY-BUTTONS-COLOR-BG);
-  color: var(--PRIMARY-BUTTONS-COLOR-TEXT);
-  border: var(--BORDER-WIDTH) solid var(--PRIMARY-BUTTONS-COLOR-BG);
-  border-radius: var(--RADIUS);
+  padding: 16px;
+  border-radius: var(--RADIUS, 30px);
+  border: var(--BORDER-WIDTH, 1px) solid var(--PRIMARY-BUTTONS-COLOR-BG, #4f6a46);
+  background: var(--PRIMARY-BUTTONS-COLOR-BG, #4f6a46);
+  color: var(--PRIMARY-BUTTONS-COLOR-TEXT, #fff);
+  font-family: var(--FONT-STACK-HEADING, system-ui, sans-serif);
+  font-size: 0.875rem;
+  letter-spacing: 0.125em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: opacity 0.2s;
+  -webkit-tap-highlight-color: transparent;
 }
-
+.pp-btn-made:hover { opacity: 0.85; }
 .pp-btn-missed {
-  background: var(--SECONDARY-BUTTONS-COLOR-BG);
-  color: var(--SECONDARY-BUTTONS-COLOR-TEXT);
-  border: var(--BORDER-WIDTH) solid var(--COLOR-BORDER, rgba(0,0,0,0.15));
-  border-radius: var(--RADIUS);
-}
-
-/* Ladder Drill
-   ========================================================================== */
-
-.pp-ladder {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 0.75rem;
-  margin-bottom: 1.5rem;
-}
-
-.pp-ladder__step {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 100%;
-  max-width: 300px;
-  padding: 0.75rem 1rem;
-  border: var(--BORDER-WIDTH) solid var(--COLOR-BORDER, rgba(0,0,0,0.08));
-  border-radius: var(--RADIUS);
-  font-family: var(--FONT-STACK-HEADING);
-  font-weight: var(--FONT-WEIGHT-HEADING);
-  color: var(--text);
-  opacity: 0.4;
-  transition: all 0.3s ease;
-}
-
-.pp-ladder__step--active {
-  opacity: 1;
-  border-color: var(--PRIMARY-BUTTONS-COLOR-BG);
-  background: var(--bg);
-  box-shadow: 0 0 0 2px var(--PRIMARY-BUTTONS-COLOR-BG);
-}
-
-.pp-ladder__step--complete {
-  opacity: 1;
-  background: var(--PRIMARY-BUTTONS-COLOR-BG);
-  color: var(--PRIMARY-BUTTONS-COLOR-TEXT);
-  border-color: var(--PRIMARY-BUTTONS-COLOR-BG);
-}
-
-/* Dot Tracker (Speed Zone / Gate)
-   ========================================================================== */
-
-.pp-dots {
-  display: flex;
-  gap: 0.5rem;
-  justify-content: center;
-  flex-wrap: wrap;
-  margin-bottom: 1.5rem;
-}
-
-.pp-dot {
-  width: 36px;
-  height: 36px;
-  border-radius: 50%;
-  border: var(--BORDER-WIDTH) solid var(--COLOR-BORDER, rgba(0,0,0,0.15));
-  background: var(--bg);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 0.8rem;
-  transition: all 0.3s ease;
-}
-
-.pp-dot--active {
-  border-color: var(--PRIMARY-BUTTONS-COLOR-BG);
-  box-shadow: 0 0 0 2px var(--PRIMARY-BUTTONS-COLOR-BG);
-}
-
-.pp-dot--success {
-  background: var(--PRIMARY-BUTTONS-COLOR-BG);
-  color: var(--PRIMARY-BUTTONS-COLOR-TEXT);
-  border-color: var(--PRIMARY-BUTTONS-COLOR-BG);
-}
-
-.pp-dot--fail {
-  background: var(--SECONDARY-BUTTONS-COLOR-BG);
-  color: var(--SECONDARY-BUTTONS-COLOR-TEXT);
-  border-color: var(--SECONDARY-BUTTONS-COLOR-BG);
-  opacity: 0.7;
-}
-
-/* Streak Challenge
-   ========================================================================== */
-
-.pp-streak-fire {
-  text-align: center;
-  font-size: 2rem;
-  margin-bottom: 0.5rem;
-  min-height: 2.5rem;
-}
-
-.pp-streak-stats {
-  display: flex;
-  gap: 1.5rem;
-  justify-content: center;
-  flex-wrap: wrap;
-  margin-top: 1rem;
-  color: var(--text);
-  font-size: 0.9rem;
-}
-
-.pp-streak-stats span {
-  opacity: 0.7;
-}
-
-.pp-streak-stats strong {
-  color: var(--heading);
-}
-
-/* Target 21
-   ========================================================================== */
-
-.pp-t21-distances {
-  display: flex;
-  gap: 0.75rem;
-  justify-content: center;
-  flex-wrap: wrap;
-  margin-bottom: 1.5rem;
-}
-
-.pp-t21-dist-btn {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  padding: 0.75rem 1.25rem;
-  background: var(--bg);
-  border: var(--BORDER-WIDTH) solid var(--COLOR-BORDER, rgba(0,0,0,0.15));
-  border-radius: var(--RADIUS);
+  padding: 16px;
+  border-radius: var(--RADIUS, 30px);
+  border: var(--BORDER-WIDTH, 1px) solid rgba(208,46,46,0.25);
+  background: transparent;
+  color: #D02E2E;
+  font-family: var(--FONT-STACK-HEADING, system-ui, sans-serif);
+  font-size: 0.875rem;
+  letter-spacing: 0.125em;
+  text-transform: uppercase;
   cursor: pointer;
-  font-family: var(--FONT-STACK-BODY);
-  color: var(--text);
-  transition: all 0.2s ease;
+  transition: border-color 0.2s;
+  -webkit-tap-highlight-color: transparent;
 }
+.pp-btn-missed:hover { border-color: #D02E2E; }
 
-.pp-t21-dist-btn:hover,
-.pp-t21-dist-btn:focus-visible {
-  border-color: var(--PRIMARY-BUTTONS-COLOR-BG);
-  transform: translateY(-1px);
-}
-
-.pp-t21-dist-btn__distance {
-  font-family: var(--FONT-STACK-HEADING);
-  font-weight: var(--FONT-WEIGHT-HEADING-BOLD);
-  font-size: 1.25rem;
-  color: var(--heading);
-}
-
-.pp-t21-dist-btn__points {
-  font-size: 0.8rem;
-  opacity: 0.6;
-}
-
-.pp-t21-miss-btn {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  padding: 0.75rem 1.25rem;
-  background: var(--SECONDARY-BUTTONS-COLOR-BG);
-  color: var(--SECONDARY-BUTTONS-COLOR-TEXT);
-  border: var(--BORDER-WIDTH) solid var(--COLOR-BORDER, rgba(0,0,0,0.15));
-  border-radius: var(--RADIUS);
-  cursor: pointer;
-  font-family: var(--FONT-STACK-BODY);
-  transition: all 0.2s ease;
-}
-
-.pp-t21-score {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 2rem;
-  flex-wrap: wrap;
-  margin-bottom: 1.5rem;
-}
-
-.pp-t21-score__item {
+/* ═══════════════════════════════════════════
+   Big Number / Label
+   ═══════════════════════════════════════════ */
+.pp-big-number {
   text-align: center;
-}
-
-.pp-t21-score__value {
-  display: block;
-  font-family: var(--FONT-STACK-HEADING);
-  font-weight: var(--FONT-WEIGHT-HEADING-BOLD);
-  font-size: 2.5rem;
-  color: var(--heading);
-  line-height: 1.1;
-}
-
-.pp-t21-score__label {
-  font-size: 0.85rem;
-  color: var(--text);
-  opacity: 0.6;
-}
-
-/* Random Distance
-   ========================================================================== */
-
-.pp-random-distance {
-  font-family: var(--FONT-STACK-HEADING);
-  font-weight: var(--FONT-WEIGHT-HEADING-BOLD);
-  font-size: 5rem;
-  text-align: center;
-  color: var(--heading);
+  font-family: var(--FONT-STACK-HEADING, system-ui, sans-serif);
+  font-size: 3.5rem;
+  font-weight: var(--FONT-WEIGHT-HEADING, 400);
+  color: var(--heading, #06051e);
   line-height: 1;
   margin: 1rem 0 0.25rem;
 }
-
-.pp-random-label {
+.pp-big-label {
   text-align: center;
-  font-size: 1rem;
-  color: var(--text);
-  opacity: 0.6;
-  margin-bottom: 1.5rem;
-}
-
-.pp-random-counter {
-  text-align: center;
-  color: var(--text);
-  font-size: 0.95rem;
-  margin-bottom: 1rem;
-}
-
-/* Complete View
-   ========================================================================== */
-
-.pp-complete__content {
-  text-align: center;
-  margin-bottom: 2rem;
-}
-
-.pp-complete__content h2 {
-  font-family: var(--FONT-STACK-HEADING);
-  font-weight: var(--FONT-WEIGHT-HEADING-BOLD);
-  color: var(--heading);
-  margin: 0 0 1rem;
-}
-
-.pp-complete__content p {
-  color: var(--text);
-  line-height: 1.6;
-  margin: 0 0 0.5rem;
-}
-
-.pp-complete__summary {
-  display: flex;
-  gap: 1.5rem;
-  justify-content: center;
-  flex-wrap: wrap;
-  margin: 1.5rem 0;
-}
-
-.pp-complete__stat {
-  text-align: center;
-}
-
-.pp-complete__stat-value {
-  display: block;
-  font-family: var(--FONT-STACK-HEADING);
-  font-weight: var(--FONT-WEIGHT-HEADING-BOLD);
-  font-size: 2rem;
-  color: var(--heading);
-  line-height: 1.1;
-}
-
-.pp-complete__stat-label {
-  font-size: 0.8rem;
-  color: var(--text);
-  opacity: 0.6;
-}
-
-.pp-complete__new-best {
-  display: inline-block;
-  padding: 0.25rem 0.75rem;
-  font-size: 0.8rem;
-  font-weight: var(--FONT-WEIGHT-HEADING-BOLD);
-  background: var(--PRIMARY-BUTTONS-COLOR-BG);
-  color: var(--PRIMARY-BUTTONS-COLOR-TEXT);
-  border-radius: var(--RADIUS);
-  margin-top: 0.5rem;
-}
-
-.pp-complete__actions {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 0.75rem;
-}
-
-.pp-complete__saved {
-  font-size: 0.85rem;
-  color: var(--text);
-  opacity: 0.7;
-}
-
-.pp-complete__login-prompt {
-  text-align: center;
+  font-size: 0.688rem;
+  letter-spacing: 0.025em;
+  text-transform: uppercase;
+  color: var(--text, #06051e);
+  opacity: 0.45;
   margin-bottom: 0.5rem;
 }
 
-.pp-complete__login-prompt p {
-  margin: 0 0 0.5rem;
-  font-size: 0.9rem;
-  color: var(--text);
+/* ═══════════════════════════════════════════
+   Ladder Drill
+   ═══════════════════════════════════════════ */
+.pp-ladder { display: flex; flex-direction: column; gap: 6px; margin: 1rem 0; }
+.pp-ladder__rung {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 14px 18px;
+  border: var(--BORDER-WIDTH, 1px) solid var(--COLOR-BORDER, rgba(6,5,30,0.15));
+  border-radius: 8px;
+  transition: all 0.2s;
+}
+.pp-ladder__rung.current { border-color: var(--PRIMARY-BUTTONS-COLOR-BG, #4f6a46); background: rgba(79,106,70,0.04); }
+.pp-ladder__rung.made { border-color: #56AD6A; background: rgba(86,173,106,0.04); opacity: 0.55; }
+.pp-ladder__num {
+  width: 28px; height: 28px; border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 0.75rem; font-weight: 600; flex-shrink: 0;
+  border: var(--BORDER-WIDTH, 1px) solid var(--COLOR-BORDER, rgba(6,5,30,0.15));
+  color: var(--text, #06051e);
+  opacity: 0.5;
+}
+.pp-ladder__rung.current .pp-ladder__num { border-color: var(--PRIMARY-BUTTONS-COLOR-BG, #4f6a46); color: var(--PRIMARY-BUTTONS-COLOR-BG, #4f6a46); opacity: 1; }
+.pp-ladder__rung.made .pp-ladder__num { border-color: #56AD6A; color: #56AD6A; background: rgba(86,173,106,0.08); opacity: 1; }
+.pp-ladder__info { flex: 1; }
+.pp-ladder__dist { font-size: 0.938rem; color: var(--text, #06051e); }
+.pp-ladder__rung.current .pp-ladder__dist { font-weight: 600; }
+.pp-ladder__status { font-size: 0.75rem; color: var(--text, #06051e); opacity: 0.5; }
+
+/* ═══════════════════════════════════════════
+   Dots (Speed Zone / Gate)
+   ═══════════════════════════════════════════ */
+.pp-dots { display: flex; flex-wrap: wrap; gap: 6px; justify-content: center; margin: 1rem 0; }
+.pp-dot {
+  width: 32px; height: 32px;
+  border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 0.688rem;
+  font-weight: 600;
+  border: var(--BORDER-WIDTH, 1px) solid var(--COLOR-BORDER, rgba(6,5,30,0.15));
+  color: var(--text, #06051e);
+  opacity: 0.35;
+}
+.pp-dot--active { border-color: var(--PRIMARY-BUTTONS-COLOR-BG, #4f6a46); color: var(--PRIMARY-BUTTONS-COLOR-BG, #4f6a46); opacity: 1; }
+.pp-dot--success { border-color: #56AD6A; color: #56AD6A; background: rgba(86,173,106,0.06); opacity: 1; }
+.pp-dot--fail { border-color: #D02E2E; color: #D02E2E; background: rgba(208,46,46,0.04); opacity: 1; }
+
+/* ═══════════════════════════════════════════
+   Streak
+   ═══════════════════════════════════════════ */
+.pp-streak-fire { text-align: center; font-size: 1.5rem; margin: 1rem 0 0; min-height: 2rem; }
+.pp-streak-stats {
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
+  margin: 1rem 0;
+  font-size: 0.875rem;
+  color: var(--text, #06051e);
+  opacity: 0.6;
+}
+.pp-streak-stats strong { font-weight: 600; opacity: 1; }
+
+/* ═══════════════════════════════════════════
+   Target 21
+   ═══════════════════════════════════════════ */
+.pp-t21-score {
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
+  margin: 1.5rem 0;
+  text-align: center;
+}
+.pp-t21-score__item { display: flex; flex-direction: column; }
+.pp-t21-score__value {
+  font-family: var(--FONT-STACK-HEADING, system-ui, sans-serif);
+  font-size: 2rem;
+  font-weight: var(--FONT-WEIGHT-HEADING, 400);
+  color: var(--heading, #06051e);
+  line-height: 1;
+}
+.pp-t21-score__label {
+  font-size: 0.625rem;
+  letter-spacing: 0.025em;
+  text-transform: uppercase;
+  color: var(--text, #06051e);
+  opacity: 0.45;
+  margin-top: 6px;
+}
+.pp-t21-hint, .pp-t21-warn { text-align: center; font-size: 0.813rem; color: var(--text, #06051e); opacity: 0.5; margin-bottom: 1rem; }
+.pp-t21-warn { color: #D02E2E; opacity: 0.8; }
+.pp-t21-distances { display: grid; grid-template-columns: repeat(2, 1fr); gap: 8px; margin-bottom: 1rem; }
+.pp-t21-dist-btn {
+  padding: 16px;
+  border-radius: 8px;
+  border: var(--BORDER-WIDTH, 1px) solid var(--COLOR-BORDER, rgba(6,5,30,0.15));
+  background: var(--bg, #fff);
+  cursor: pointer;
+  text-align: center;
+  transition: border-color 0.2s, background 0.15s;
+  -webkit-tap-highlight-color: transparent;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  font-family: inherit;
+}
+.pp-t21-dist-btn:hover,
+.pp-t21-dist-btn:focus-visible {
+  border-color: var(--PRIMARY-BUTTONS-COLOR-BG, #4f6a46);
+  background: rgba(79,106,70,0.03);
+}
+.pp-t21-dist-btn__distance {
+  font-family: var(--FONT-STACK-HEADING, system-ui, sans-serif);
+  font-size: 1.125rem;
+  font-weight: var(--FONT-WEIGHT-HEADING, 400);
+  color: var(--heading, #06051e);
+}
+.pp-t21-dist-btn__points {
+  font-size: 0.688rem;
+  color: var(--PRIMARY-BUTTONS-COLOR-BG, #4f6a46);
+  letter-spacing: 0.02em;
+}
+.pp-t21-miss-btn {
+  grid-column: 1 / -1;
+  padding: 14px;
+  border-radius: 8px;
+  border: var(--BORDER-WIDTH, 1px) solid rgba(208,46,46,0.2);
+  background: transparent;
+  cursor: pointer;
+  text-align: center;
+  font-family: inherit;
+  color: #D02E2E;
+  font-size: 0.875rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+  transition: border-color 0.2s;
+  -webkit-tap-highlight-color: transparent;
+}
+.pp-t21-miss-btn:hover { border-color: #D02E2E; }
+
+/* ═══════════════════════════════════════════
+   Summary / Complete
+   ═══════════════════════════════════════════ */
+.pp-summary-hero { text-align: center; padding: 0.75rem 0 2rem; }
+.pp-summary-hero__emoji { font-size: 3rem; margin-bottom: 1rem; }
+.pp-summary-hero__title {
+  font-family: var(--FONT-STACK-HEADING, system-ui, sans-serif);
+  font-weight: var(--FONT-WEIGHT-HEADING, 400);
+  font-size: clamp(1.375rem, 4vw, 1.75rem);
+  color: var(--heading, #06051e);
+  margin-bottom: 0.5rem;
+}
+.pp-summary-hero__sub { font-size: 0.875rem; color: var(--text, #06051e); opacity: 0.5; }
+
+.pp-new-best {
+  text-align: center;
+  font-size: 0.938rem;
+  color: var(--PRIMARY-BUTTONS-COLOR-BG, #4f6a46);
+  font-weight: 600;
+  margin-bottom: 1.5rem;
 }
 
-/* Stats Dashboard
-   ========================================================================== */
+.pp-stat-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; margin-bottom: 1.75rem; }
+.pp-stat-box {
+  background: rgba(6,5,30,0.04);
+  border-radius: 8px;
+  padding: 20px 12px;
+  text-align: center;
+}
+.pp-stat-box__num {
+  font-family: var(--FONT-STACK-HEADING, system-ui, sans-serif);
+  font-size: 1.75rem;
+  font-weight: var(--FONT-WEIGHT-HEADING, 400);
+  color: var(--heading, #06051e);
+  line-height: 1;
+}
+.pp-stat-box__label {
+  font-size: 0.625rem;
+  letter-spacing: 0.025em;
+  text-transform: uppercase;
+  color: var(--text, #06051e);
+  opacity: 0.45;
+  margin-top: 8px;
+  font-weight: 500;
+}
 
+.pp-dist-breakdown {
+  border: var(--BORDER-WIDTH, 1px) solid var(--COLOR-BORDER, rgba(6,5,30,0.15));
+  border-radius: 8px;
+  padding: 1.5rem;
+  margin-bottom: 1.75rem;
+}
+.pp-dist-breakdown__title {
+  font-size: 0.688rem;
+  letter-spacing: 0.025em;
+  text-transform: uppercase;
+  color: var(--text, #06051e);
+  opacity: 0.45;
+  margin-bottom: 1rem;
+  font-weight: 500;
+}
+.pp-dist-bar-list { display: flex; flex-direction: column; gap: 10px; }
+.pp-dist-bar-row { display: flex; align-items: center; gap: 12px; }
+.pp-dist-bar-row__label { font-size: 0.813rem; width: 38px; color: var(--text, #06051e); }
+.pp-dist-bar-row__track { flex: 1; height: 6px; background: rgba(6,5,30,0.05); border-radius: 3px; overflow: hidden; }
+.pp-dist-bar-row__fill { height: 100%; background: var(--PRIMARY-BUTTONS-COLOR-BG, #4f6a46); border-radius: 3px; transition: width 0.5s ease; }
+.pp-dist-bar-row__count { font-size: 0.75rem; color: var(--text, #06051e); opacity: 0.5; width: 28px; text-align: right; }
+
+.pp-complete__actions { display: flex; flex-direction: column; gap: 10px; }
+.pp-complete__login-prompt {
+  text-align: center;
+  padding: 1.25rem;
+  border: var(--BORDER-WIDTH, 1px) dashed var(--COLOR-BORDER, rgba(6,5,30,0.15));
+  border-radius: 8px;
+  margin-bottom: 0.5rem;
+}
+.pp-complete__login-prompt p { font-size: 0.875rem; margin-bottom: 0.75rem; color: var(--text, #06051e); opacity: 0.6; }
+
+/* ═══════════════════════════════════════════
+   Stats Dashboard
+   ═══════════════════════════════════════════ */
 .pp-stats {
+  border: var(--BORDER-WIDTH, 1px) solid var(--COLOR-BORDER, rgba(6,5,30,0.15));
+  border-radius: 8px;
   margin-bottom: 2rem;
-  border: var(--BORDER-WIDTH) solid var(--COLOR-BORDER, rgba(0,0,0,0.08));
-  border-radius: var(--RADIUS);
-  padding: 1rem 1.25rem;
-  background: var(--bg);
+  overflow: hidden;
 }
-
 .pp-stats__header {
   display: flex;
   align-items: center;
   justify-content: space-between;
+  padding: 16px 20px;
 }
-
 .pp-stats__title {
-  font-family: var(--FONT-STACK-HEADING);
-  font-weight: var(--FONT-WEIGHT-HEADING-BOLD);
-  color: var(--heading);
-  margin: 0;
-  font-size: 1.2rem;
+  font-family: var(--FONT-STACK-HEADING, system-ui, sans-serif);
+  font-weight: var(--FONT-WEIGHT-HEADING, 400);
+  font-size: 1rem;
+  color: var(--heading, #06051e);
 }
-
-.pp-stats__body {
-  margin-top: 1.25rem;
-}
-
-.pp-stats__overview {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 1rem;
-  margin-bottom: 1.5rem;
-}
-
-@media only screen and (max-width: 479px) {
-  .pp-stats__overview {
-    grid-template-columns: 1fr;
-  }
-}
-
+.pp-stats__body { padding: 0 20px 20px; }
+.pp-stats__overview { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; margin-bottom: 1.5rem; }
 .pp-stats__card {
+  background: rgba(6,5,30,0.04);
+  border-radius: 8px;
+  padding: 16px 10px;
   text-align: center;
-  padding: 1rem;
-  border: var(--BORDER-WIDTH) solid var(--COLOR-BORDER, rgba(0,0,0,0.08));
-  border-radius: var(--RADIUS);
 }
-
 .pp-stats__card-value {
   display: block;
-  font-family: var(--FONT-STACK-HEADING);
-  font-weight: var(--FONT-WEIGHT-HEADING-BOLD);
-  font-size: 2rem;
-  color: var(--heading);
-  line-height: 1.1;
+  font-family: var(--FONT-STACK-HEADING, system-ui, sans-serif);
+  font-size: 1.5rem;
+  font-weight: var(--FONT-WEIGHT-HEADING, 400);
+  color: var(--heading, #06051e);
+  line-height: 1;
 }
-
 .pp-stats__card-label {
-  font-size: 0.8rem;
-  color: var(--text);
-  opacity: 0.6;
-  margin-top: 0.25rem;
+  display: block;
+  font-size: 0.625rem;
+  letter-spacing: 0.025em;
+  text-transform: uppercase;
+  color: var(--text, #06051e);
+  opacity: 0.45;
+  margin-top: 6px;
+  font-weight: 500;
 }
 
-/* Streak Tracker
-   ========================================================================== */
-
-.pp-streak {
-  margin-bottom: 1.5rem;
+.pp-streak__title, .pp-bests__title, .pp-recent__title {
+  font-family: var(--FONT-STACK-HEADING, system-ui, sans-serif);
+  font-weight: var(--FONT-WEIGHT-HEADING-BOLD, 700);
+  font-size: 0.875rem;
+  color: var(--heading, #06051e);
+  margin-bottom: 0.75rem;
 }
-
-.pp-streak__title,
-.pp-bests__title,
-.pp-recent__title {
-  font-family: var(--FONT-STACK-HEADING);
-  font-weight: var(--FONT-WEIGHT-HEADING);
-  color: var(--heading);
-  font-size: 1rem;
-  margin: 0 0 0.75rem;
-}
-
 .pp-streak__info {
   display: flex;
   gap: 2rem;
   margin-bottom: 1rem;
 }
-
-.pp-streak__current,
-.pp-streak__best {
-  text-align: center;
-}
-
 .pp-streak__number {
   display: block;
-  font-family: var(--FONT-STACK-HEADING);
-  font-weight: var(--FONT-WEIGHT-HEADING-BOLD);
-  font-size: 2rem;
-  color: var(--heading);
-  line-height: 1.1;
+  font-family: var(--FONT-STACK-HEADING, system-ui, sans-serif);
+  font-size: 1.75rem;
+  font-weight: var(--FONT-WEIGHT-HEADING, 400);
+  color: var(--heading, #06051e);
+  line-height: 1;
 }
-
 .pp-streak__label {
-  font-size: 0.75rem;
-  color: var(--text);
-  opacity: 0.6;
+  display: block;
+  font-size: 0.625rem;
+  letter-spacing: 0.025em;
+  text-transform: uppercase;
+  color: var(--text, #06051e);
+  opacity: 0.45;
+  margin-top: 4px;
 }
-
 .pp-streak__calendar {
-  display: flex;
+  display: grid;
+  grid-template-columns: repeat(10, 1fr);
   gap: 4px;
-  flex-wrap: wrap;
+  margin-bottom: 1.5rem;
 }
-
 .pp-streak__day {
-  width: 24px;
-  height: 24px;
-  border-radius: 4px;
-  border: 1px solid var(--COLOR-BORDER, rgba(0,0,0,0.08));
-  background: var(--bg);
+  aspect-ratio: 1;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 0.6rem;
-  color: var(--text);
-  opacity: 0.4;
+  font-size: 0.625rem;
+  border-radius: 4px;
+  background: rgba(6,5,30,0.04);
+  color: var(--text, #06051e);
+  opacity: 0.3;
 }
-
-.pp-streak__day--active {
-  background: var(--PRIMARY-BUTTONS-COLOR-BG);
-  color: var(--PRIMARY-BUTTONS-COLOR-TEXT);
-  border-color: var(--PRIMARY-BUTTONS-COLOR-BG);
-  opacity: 1;
-}
-
-.pp-streak__day--today {
-  border-color: var(--heading);
-  opacity: 0.7;
-}
-
-.pp-streak__day--today.pp-streak__day--active {
-  opacity: 1;
-}
-
-/* Best Scores
-   ========================================================================== */
+.pp-streak__day--active { background: var(--PRIMARY-BUTTONS-COLOR-BG, #4f6a46); color: #fff; opacity: 1; }
+.pp-streak__day--today { outline: 2px solid var(--heading, #06051e); outline-offset: -1px; }
 
 .pp-bests__grid {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 0.75rem;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 8px;
+  margin-bottom: 1.5rem;
 }
-
-@media only screen and (max-width: 767px) {
-  .pp-bests__grid {
-    grid-template-columns: repeat(2, 1fr);
-  }
-}
-
-@media only screen and (max-width: 479px) {
-  .pp-bests__grid {
-    grid-template-columns: 1fr;
-  }
-}
-
 .pp-best-card {
-  padding: 0.75rem;
-  border: var(--BORDER-WIDTH) solid var(--COLOR-BORDER, rgba(0,0,0,0.08));
-  border-radius: var(--RADIUS);
-  text-align: center;
+  padding: 12px;
+  border-radius: 8px;
+  background: rgba(6,5,30,0.04);
 }
+.pp-best-card__name { font-size: 0.688rem; text-transform: uppercase; letter-spacing: 0.025em; opacity: 0.45; margin-bottom: 4px; }
+.pp-best-card__value { font-family: var(--FONT-STACK-HEADING, system-ui, sans-serif); font-size: 1rem; font-weight: var(--FONT-WEIGHT-HEADING-BOLD, 700); color: var(--heading, #06051e); }
+.pp-best-card__date { font-size: 0.688rem; opacity: 0.35; margin-top: 2px; }
 
-.pp-best-card__name {
-  font-size: 0.8rem;
-  color: var(--text);
-  opacity: 0.6;
-  margin-bottom: 0.25rem;
-}
-
-.pp-best-card__value {
-  font-family: var(--FONT-STACK-HEADING);
-  font-weight: var(--FONT-WEIGHT-HEADING-BOLD);
-  font-size: 1.25rem;
-  color: var(--heading);
-}
-
-.pp-best-card__date {
-  font-size: 0.7rem;
-  color: var(--text);
-  opacity: 0.4;
-  margin-top: 0.25rem;
-}
-
-/* Recent Sessions
-   ========================================================================== */
-
-.pp-recent {
-  margin-top: 1.5rem;
-}
-
-.pp-recent__empty {
-  color: var(--text);
-  opacity: 0.5;
-  font-size: 0.9rem;
-}
-
-.pp-recent__list {
-  display: flex;
-  flex-direction: column;
-  gap: 0.5rem;
-}
-
+.pp-recent__list { display: flex; flex-direction: column; gap: 8px; }
 .pp-recent__item {
   display: flex;
   align-items: center;
-  justify-content: space-between;
-  padding: 0.5rem 0.75rem;
-  border: var(--BORDER-WIDTH) solid var(--COLOR-BORDER, rgba(0,0,0,0.08));
-  border-radius: var(--RADIUS);
-  font-size: 0.85rem;
-  color: var(--text);
+  gap: 10px;
+  font-size: 0.813rem;
 }
-
 .pp-recent__item-drill {
-  font-weight: var(--FONT-WEIGHT-HEADING-BOLD);
-  color: var(--heading);
+  font-weight: 600;
+  min-width: 80px;
+  color: var(--heading, #06051e);
+}
+.pp-recent__item-summary { flex: 1; opacity: 0.6; }
+.pp-recent__item-date { opacity: 0.35; font-size: 0.75rem; }
+.pp-recent__empty { font-size: 0.875rem; opacity: 0.4; }
+
+/* ═══════════════════════════════════════════
+   Session Header (drill active)
+   ═══════════════════════════════════════════ */
+.pp-session-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 1rem;
+}
+.pp-session-header__title {
+  font-family: var(--FONT-STACK-HEADING, system-ui, sans-serif);
+  font-weight: var(--FONT-WEIGHT-HEADING, 400);
+  font-size: 1.125rem;
+  color: var(--heading, #06051e);
 }
 
-.pp-recent__item-summary {
-  opacity: 0.7;
-}
-
-.pp-recent__item-date {
-  font-size: 0.75rem;
-  opacity: 0.5;
-}
-
-/* Utility
-   ========================================================================== */
-
-.pp-accuracy {
+.pp-drill-status {
   text-align: center;
-  font-family: var(--FONT-STACK-HEADING);
-  font-weight: var(--FONT-WEIGHT-HEADING-BOLD);
-  font-size: 2rem;
-  color: var(--heading);
+  font-size: 0.813rem;
+  color: var(--text, #06051e);
+  opacity: 0.5;
   margin: 0.5rem 0;
 }
 
-.pp-timer {
-  text-align: center;
-  font-size: 0.85rem;
-  color: var(--text);
-  opacity: 0.5;
-  margin-top: 1rem;
+/* ═══════════════════════════════════════════
+   Responsive
+   ═══════════════════════════════════════════ */
+@media (max-width: 479px) {
+  .pp-putt-card__ft { font-size: 1.625rem; }
+  .pp-big-number { font-size: 2.875rem; }
+  .pp-stat-box__num { font-size: 1.5rem; }
+  .pp-t21-distances { grid-template-columns: repeat(2, 1fr); }
+  .pp-bests__grid { grid-template-columns: 1fr; }
 }
-</style>
-</head><body>
-<div class="preview-banner">⚡ PREVIEW — This is how it will look inside the Chiputt theme</div>
-<section
-  id="PuttingPractice--preview"
-  class="section-padding"
-  data-section-id="preview"
-  data-section-type="putting-practice-hub"
-  data-customer-logged-in="false"
-  data-customer-id=""
->
+</style></head><body>
+<div class="preview-banner">⚡ PREVIEW — Putting Practice Hub</div>
+<section class="section-padding" data-section-type="putting-practice-hub" data-customer-logged-in="false" data-customer-id="">
   <div class="wrapper">
     <div class="pp-hero">
       <h1 class="pp-hero__title">Putting Practice Hub</h1>
-      <p class="pp-hero__subtitle">Free interactive putting drills to sharpen your short game. Pick a drill, track your reps, and watch your putting improve.</p>
+      <p class="pp-hero__subtitle">Free interactive putting drills to sharpen your short game. Pick a mode, track your reps, and watch your putting improve.</p>
     </div>
-
     <div class="pp-stats" id="pp-stats" style="display:none;">
       <div class="pp-stats__header">
         <h2 class="pp-stats__title">Your Stats</h2>
-        <button class="pp-stats__toggle btn btn--text" id="pp-stats-toggle" aria-expanded="false" aria-controls="pp-stats-body">
-          <span class="pp-stats__toggle-text">Show</span>
-        </button>
+        <button class="pp-stats__toggle btn btn--text" id="pp-stats-toggle" aria-expanded="false"><span class="pp-stats__toggle-text">Show</span></button>
       </div>
       <div class="pp-stats__body" id="pp-stats-body" style="display:none;">
         <div class="pp-stats__overview">
-          <div class="pp-stats__card">
-            <span class="pp-stats__card-value" id="stat-sessions">0</span>
-            <span class="pp-stats__card-label">Sessions</span>
-          </div>
-          <div class="pp-stats__card">
-            <span class="pp-stats__card-value" id="stat-putts">0</span>
-            <span class="pp-stats__card-label">Total Putts</span>
-          </div>
-          <div class="pp-stats__card">
-            <span class="pp-stats__card-value" id="stat-minutes">0</span>
-            <span class="pp-stats__card-label">Minutes</span>
-          </div>
+          <div class="pp-stats__card"><span class="pp-stats__card-value" id="stat-sessions">0</span><span class="pp-stats__card-label">Sessions</span></div>
+          <div class="pp-stats__card"><span class="pp-stats__card-value" id="stat-putts">0</span><span class="pp-stats__card-label">Total Putts</span></div>
+          <div class="pp-stats__card"><span class="pp-stats__card-value" id="stat-minutes">0</span><span class="pp-stats__card-label">Minutes</span></div>
         </div>
-        <div class="pp-streak">
-          <h3 class="pp-streak__title">Practice Streak</h3>
-          <div class="pp-streak__info">
-            <div class="pp-streak__current">
-              <span class="pp-streak__number" id="streak-current">0</span>
-              <span class="pp-streak__label">Current Streak (days)</span>
-            </div>
-            <div class="pp-streak__best">
-              <span class="pp-streak__number" id="streak-best">0</span>
-              <span class="pp-streak__label">Best Streak</span>
-            </div>
-          </div>
+        <div class="pp-streak"><h3 class="pp-streak__title">Practice Streak</h3>
+          <div class="pp-streak__info"><div class="pp-streak__current"><span class="pp-streak__number" id="streak-current">0</span><span class="pp-streak__label">Current (days)</span></div>
+          <div class="pp-streak__best"><span class="pp-streak__number" id="streak-best">0</span><span class="pp-streak__label">Best</span></div></div>
           <div class="pp-streak__calendar" id="streak-calendar"></div>
         </div>
-        <div class="pp-bests">
-          <h3 class="pp-bests__title">Personal Bests</h3>
-          <div class="pp-bests__grid" id="pp-bests-grid"></div>
-        </div>
-        <div class="pp-recent">
-          <h3 class="pp-recent__title">Recent Sessions</h3>
-          <div class="pp-recent__list" id="pp-recent-list">
-            <p class="pp-recent__empty">Complete a drill to see your recent sessions.</p>
-          </div>
-        </div>
+        <div class="pp-bests"><h3 class="pp-bests__title">Personal Bests</h3><div class="pp-bests__grid" id="pp-bests-grid"></div></div>
+        <div class="pp-recent"><h3 class="pp-recent__title">Recent Sessions</h3><div class="pp-recent__list" id="pp-recent-list"><p class="pp-recent__empty">Complete a drill to see history.</p></div></div>
       </div>
     </div>
-
-    <div class="pp-drills" id="pp-drills">
-      <h2 class="pp-drills__heading">Choose a Drill</h2>
-      <div class="pp-drills__grid">
-        <button class="pp-drill-card" data-drill="ladder" aria-label="Start Ladder Drill">
-          <span class="pp-drill-card__emoji" aria-hidden="true">&#x1F3AF;</span>
-          <span class="pp-drill-card__name">Ladder Drill</span>
-          <span class="pp-drill-card__desc">Make putts from increasing distances</span>
-        </button>
-        <button class="pp-drill-card" data-drill="speedzone" aria-label="Start Speed Zone Drill">
-          <span class="pp-drill-card__emoji" aria-hidden="true">&#x1F3CE;&#xFE0F;</span>
-          <span class="pp-drill-card__name">Speed Zone</span>
-          <span class="pp-drill-card__desc">Roll putts into the target zone</span>
-        </button>
-        <button class="pp-drill-card" data-drill="gate" aria-label="Start Gate Drill">
-          <span class="pp-drill-card__emoji" aria-hidden="true">&#x1F6AA;</span>
-          <span class="pp-drill-card__name">Gate Drill</span>
-          <span class="pp-drill-card__desc">Putt through the gate from set distances</span>
-        </button>
-        <button class="pp-drill-card" data-drill="streak" aria-label="Start Streak Challenge">
-          <span class="pp-drill-card__emoji" aria-hidden="true">&#x1F525;</span>
-          <span class="pp-drill-card__name">Streak Challenge</span>
-          <span class="pp-drill-card__desc">How many consecutive 3-footers can you make?</span>
-        </button>
-        <button class="pp-drill-card" data-drill="random" aria-label="Start Random Distance Drill">
-          <span class="pp-drill-card__emoji" aria-hidden="true">&#x1F3B2;</span>
-          <span class="pp-drill-card__name">Random Distance</span>
-          <span class="pp-drill-card__desc">Practice from random distances</span>
-        </button>
-        <button class="pp-drill-card" data-drill="target21" aria-label="Start Target 21 Drill">
-          <span class="pp-drill-card__emoji" aria-hidden="true">&#x1F3C6;</span>
-          <span class="pp-drill-card__name">Target 21</span>
-          <span class="pp-drill-card__desc">Reach exactly 21 points</span>
-        </button>
-      </div>
-    </div>
-
-    <div class="pp-active" id="pp-active" style="display:none;">
-      <div class="pp-instructions" id="pp-instructions" style="display:none;">
-        <button class="pp-back btn btn--text" id="pp-back-to-drills" aria-label="Back to drill selection">&larr; Back to Drills</button>
-        <div class="pp-instructions__content" id="pp-instructions-content"></div>
-        <button class="pp-start-btn btn btn--primary btn--solid" id="pp-start-drill">Start Drill</button>
-      </div>
-      <div class="pp-session" id="pp-session" style="display:none;">
-        <div class="pp-session__header">
-          <h2 class="pp-session__title" id="pp-session-title"></h2>
-          <button class="pp-session__quit btn btn--text" id="pp-quit-drill">Quit</button>
-        </div>
-        <div class="pp-session__body" id="pp-session-body"></div>
-      </div>
-      <div class="pp-complete" id="pp-complete" style="display:none;">
-        <div class="pp-complete__content" id="pp-complete-content"></div>
-        <div class="pp-complete__actions">
-          <div class="pp-complete__login-prompt" id="pp-login-prompt">
-            <p>Want to save your progress?</p>
-            <a href="#" class="btn btn--secondary btn--solid" onclick="alert('In the live version, this opens Shopify customer login');return false;">Log In to Save</a>
-          </div>
-          <button class="btn btn--primary btn--solid" id="pp-try-again">Try Again</button>
-          <button class="btn btn--text" id="pp-back-to-drills-complete">&larr; Back to Drills</button>
-        </div>
-      </div>
-    </div>
+    <div id="pp-app"></div>
   </div>
 </section>
 <script>
 /* ==========================================================================
-   Putting Practice Hub — Interactive Drill Logic + Tier 2 Persistence
+   Putting Practice Hub — Randomizer + Drills + Tier 2 Persistence
    Vanilla JS, no dependencies.
    ========================================================================== */
-
 (function () {
   'use strict';
 
   var STORAGE_KEY = 'chiputt_putting_practice';
   var API_BASE = 'https://chiputt-ops-production.up.railway.app';
 
-  /* =========================================================================
-     Server Sync — Tier 2: logged-in customer persistence
-     ========================================================================= */
-
+  /* ═══════════════════════════════════════════
+     Server Sync — Tier 2
+     ═══════════════════════════════════════════ */
   function getCustomerInfo() {
-    var section = document.querySelector('[data-section-type="putting-practice-hub"]');
-    if (!section) return null;
-    var loggedIn = section.getAttribute('data-customer-logged-in') === 'true';
-    var customerId = section.getAttribute('data-customer-id');
-    if (loggedIn && customerId) return { id: customerId };
-    return null;
+    var sec = document.querySelector('[data-section-type="putting-practice-hub"]');
+    if (!sec) return null;
+    var loggedIn = sec.getAttribute('data-customer-logged-in') === 'true';
+    var cid = sec.getAttribute('data-customer-id');
+    return (loggedIn && cid) ? { id: cid } : null;
   }
 
   function syncToServer(session) {
-    var customer = getCustomerInfo();
-    if (!customer) return; // Not logged in, skip
-
+    var c = getCustomerInfo();
+    if (!c) return;
     try {
       var xhr = new XMLHttpRequest();
       xhr.open('POST', API_BASE + '/api/practice/save', true);
       xhr.setRequestHeader('Content-Type', 'application/json');
       xhr.setRequestHeader('X-Practice-Key', 'practice_public_v1');
-      xhr.send(JSON.stringify({
-        customer_id: customer.id,
-        session: session
-      }));
-      // Fire and forget — localStorage is source of truth for immediate UI
-    } catch (e) {
-      // Silently fail — localStorage already has the data
-    }
+      xhr.send(JSON.stringify({ customer_id: c.id, session: session }));
+    } catch (e) { /* silent */ }
   }
 
-  /* =========================================================================
-     Data Layer — localStorage persistence
-     ========================================================================= */
-
+  /* ═══════════════════════════════════════════
+     Data Layer — localStorage
+     ═══════════════════════════════════════════ */
   function getDefaultData() {
-    return {
-      totalSessions: 0,
-      totalPutts: 0,
-      totalMinutes: 0,
+    return { totalSessions: 0, totalPutts: 0, totalMinutes: 0,
       streak: { current: 0, best: 0, lastDate: null },
-      drillBests: {},
-      recentSessions: [],
-      practiceDays: []
-    };
+      drillBests: {}, recentSessions: [], practiceDays: [] };
   }
 
   function loadData() {
     try {
       var raw = localStorage.getItem(STORAGE_KEY);
       if (raw) {
-        var data = JSON.parse(raw);
-        // Ensure all fields exist
-        var defaults = getDefaultData();
-        for (var key in defaults) {
-          if (!(key in data)) data[key] = defaults[key];
-        }
-        return data;
+        var d = JSON.parse(raw), defaults = getDefaultData();
+        for (var k in defaults) { if (!(k in d)) d[k] = defaults[k]; }
+        return d;
       }
-    } catch (e) {
-      // Corrupted data, start fresh
-    }
+    } catch (e) {}
     return getDefaultData();
   }
 
-  function saveData(data) {
-    try {
-      localStorage.setItem(STORAGE_KEY, JSON.stringify(data));
-    } catch (e) {
-      // Storage full or unavailable
+  function saveData(d) {
+    try { localStorage.setItem(STORAGE_KEY, JSON.stringify(d)); } catch (e) {}
+  }
+
+  function getTodayStr() { return new Date().toISOString().slice(0, 10); }
+
+  function updateStreak(d) {
+    var today = getTodayStr(), last = d.streak.lastDate;
+    if (last === today) return;
+    var yest = new Date(); yest.setDate(yest.getDate() - 1);
+    var yStr = yest.toISOString().slice(0, 10);
+    d.streak.current = (last === yStr) ? d.streak.current + 1 : 1;
+    if (d.streak.current > d.streak.best) d.streak.best = d.streak.current;
+    d.streak.lastDate = today;
+    if (!d.practiceDays) d.practiceDays = [];
+    if (d.practiceDays.indexOf(today) === -1) {
+      d.practiceDays.push(today);
+      if (d.practiceDays.length > 90) d.practiceDays = d.practiceDays.slice(-90);
     }
   }
 
-  function getTodayStr() {
-    return new Date().toISOString().slice(0, 10);
-  }
-
-  function updateStreak(data) {
-    var today = getTodayStr();
-    var lastDate = data.streak.lastDate;
-
-    if (lastDate === today) return; // Already practiced today
-
-    var yesterday = new Date();
-    yesterday.setDate(yesterday.getDate() - 1);
-    var yesterdayStr = yesterday.toISOString().slice(0, 10);
-
-    if (lastDate === yesterdayStr) {
-      data.streak.current += 1;
-    } else {
-      data.streak.current = 1;
-    }
-
-    if (data.streak.current > data.streak.best) {
-      data.streak.best = data.streak.current;
-    }
-
-    data.streak.lastDate = today;
-
-    // Track practice day
-    if (!data.practiceDays) data.practiceDays = [];
-    if (data.practiceDays.indexOf(today) === -1) {
-      data.practiceDays.push(today);
-      // Keep only last 90 days
-      if (data.practiceDays.length > 90) {
-        data.practiceDays = data.practiceDays.slice(-90);
-      }
-    }
-  }
-
-  function recordSession(drillId, summary, puttsCount, durationSec, drillExtra) {
-    var data = loadData();
-    data.totalSessions += 1;
-    data.totalPutts += puttsCount;
-    data.totalMinutes += Math.round(durationSec / 60);
-    updateStreak(data);
-
-    data.recentSessions.unshift({
-      drill: drillId,
-      summary: summary,
-      date: getTodayStr(),
-      putts: puttsCount
-    });
-    // Keep last 20
-    if (data.recentSessions.length > 20) {
-      data.recentSessions = data.recentSessions.slice(0, 20);
-    }
-
-    saveData(data);
-
-    // Tier 2: Sync to server for logged-in customers
-    var sessionPayload = {
-      drill: drillId,
-      putts: puttsCount,
-      minutes: Math.round(durationSec / 60),
-      summary: summary
-    };
-    if (drillExtra) {
-      for (var k in drillExtra) {
-        if (drillExtra.hasOwnProperty(k)) sessionPayload[k] = drillExtra[k];
-      }
-    }
-    syncToServer(sessionPayload);
-
-    return data;
+  function recordSession(drillId, summary, puttsCount, durationSec, extra) {
+    var d = loadData();
+    d.totalSessions += 1;
+    d.totalPutts += puttsCount;
+    d.totalMinutes += Math.round(durationSec / 60);
+    updateStreak(d);
+    d.recentSessions.unshift({ drill: drillId, summary: summary, date: getTodayStr(), putts: puttsCount });
+    if (d.recentSessions.length > 20) d.recentSessions = d.recentSessions.slice(0, 20);
+    saveData(d);
+    var payload = { drill: drillId, putts: puttsCount, minutes: Math.round(durationSec / 60), summary: summary };
+    if (extra) { for (var k in extra) { if (extra.hasOwnProperty(k)) payload[k] = extra[k]; } }
+    syncToServer(payload);
+    return d;
   }
 
   function updateBest(drillId, bestObj) {
-    var data = loadData();
-    if (!data.drillBests) data.drillBests = {};
-    var current = data.drillBests[drillId];
-    var isNew = false;
-
-    if (!current) {
-      isNew = true;
-    } else {
-      // Compare depending on drill type
-      if (drillId === 'ladder' || drillId === 'target21') {
-        // Lower is better (fewer attempts/putts)
-        if (bestObj.value < current.value) isNew = true;
-      } else if (drillId === 'speedzone' || drillId === 'gate') {
-        // Higher is better (accuracy)
-        if (bestObj.value > current.value) isNew = true;
-      } else if (drillId === 'streak') {
-        // Higher streak is better
-        if (bestObj.value > current.value) isNew = true;
-      } else if (drillId === 'random') {
-        // Higher accuracy is better
-        if (bestObj.value > current.value) isNew = true;
-      }
-    }
-
+    var d = loadData();
+    if (!d.drillBests) d.drillBests = {};
+    var cur = d.drillBests[drillId], isNew = false;
+    if (!cur) { isNew = true; }
+    else if (drillId === 'ladder' || drillId === 'target21') { if (bestObj.value < cur.value) isNew = true; }
+    else { if (bestObj.value > cur.value) isNew = true; }
     if (isNew) {
-      data.drillBests[drillId] = {
-        value: bestObj.value,
-        label: bestObj.label,
-        date: getTodayStr()
-      };
-      saveData(data);
+      d.drillBests[drillId] = { value: bestObj.value, label: bestObj.label, date: getTodayStr() };
+      saveData(d);
     }
-
     return isNew;
   }
 
-  /* =========================================================================
+  /* ═══════════════════════════════════════════
      DOM Helpers
-     ========================================================================= */
+     ═══════════════════════════════════════════ */
+  function $(s, c) { return (c || document).querySelector(s); }
+  function $$(s, c) { return Array.prototype.slice.call((c || document).querySelectorAll(s)); }
 
-  function $(sel, ctx) { return (ctx || document).querySelector(sel); }
-  function $$(sel, ctx) { return Array.prototype.slice.call((ctx || document).querySelectorAll(sel)); }
+  var app;
 
-  function show(el) { if (el) el.style.display = ''; }
-  function hide(el) { if (el) el.style.display = 'none'; }
-
-  function html(el, content) { if (el) el.innerHTML = content; }
-
-  /* =========================================================================
-     Drill Definitions
-     ========================================================================= */
-
-  var DRILLS = {
-    ladder: {
-      name: 'Ladder Drill',
-      emoji: '\uD83C\uDFAF',
-      instructions: '<h2>\uD83C\uDFAF Ladder Drill</h2>' +
-        '<p><strong>Goal:</strong> Make putts from increasing distances — 3ft, 6ft, 9ft, 12ft.</p>' +
-        '<ul><li>You must make the putt to advance to the next distance.</li>' +
-        '<li>If you miss, you start the ladder over from 3ft.</li>' +
-        '<li>Try to complete the ladder in as few total attempts as possible.</li></ul>' +
-        '<p><strong>Tip:</strong> Focus on a consistent stroke. Don\'t rush.</p>'
-    },
-    speedzone: {
-      name: 'Speed Zone Drill',
-      emoji: '\uD83C\uDFCE\uFE0F',
-      instructions: '<h2>\uD83C\uDFCE\uFE0F Speed Zone Drill</h2>' +
-        '<p><strong>Goal:</strong> Roll 10 putts so they stop in the target zone (not too short, not too long).</p>' +
-        '<ul><li>Set up a target zone about 1 club-length past the hole.</li>' +
-        '<li>Each putt: mark "In Zone" if it stops in the zone, or "Out of Zone" if not.</li>' +
-        '<li>Track your accuracy percentage.</li></ul>' +
-        '<p><strong>Tip:</strong> Speed control is the #1 factor in lag putting.</p>'
-    },
-    gate: {
-      name: 'Gate Drill',
-      emoji: '\uD83D\uDEAA',
-      instructions: '<h2>\uD83D\uDEAA Gate Drill</h2>' +
-        '<p><strong>Goal:</strong> Putt through a gate (two tees, just wider than your putter) from set distances.</p>' +
-        '<ul><li>10 putts total from your chosen distance.</li>' +
-        '<li>Mark "Through Gate" or "Missed Gate" for each putt.</li>' +
-        '<li>Track your gate accuracy percentage.</li></ul>' +
-        '<p><strong>Tip:</strong> This drill trains your start line. Focus on face angle at impact.</p>'
-    },
-    streak: {
-      name: 'Streak Challenge',
-      emoji: '\uD83D\uDD25',
-      instructions: '<h2>\uD83D\uDD25 Streak Challenge</h2>' +
-        '<p><strong>Goal:</strong> Make as many consecutive 3-foot putts as possible.</p>' +
-        '<ul><li>Keep putting from 3 feet until you miss.</li>' +
-        '<li>Your streak ends on the first miss.</li>' +
-        '<li>Try to beat your best streak!</li></ul>' +
-        '<p><strong>Tip:</strong> Stay in your routine. Don\'t let the pressure of a high streak rush you.</p>'
-    },
-    random: {
-      name: 'Random Distance',
-      emoji: '\uD83C\uDFB2',
-      instructions: '<h2>\uD83C\uDFB2 Random Distance Drill</h2>' +
-        '<p><strong>Goal:</strong> Practice putts from random distances between 3 and 12 feet.</p>' +
-        '<ul><li>The app picks a random distance. Set up your putt.</li>' +
-        '<li>Mark each putt as made or missed.</li>' +
-        '<li>Complete 10 putts and see your accuracy.</li></ul>' +
-        '<p><strong>Tip:</strong> This simulates real putting — you never know what distance you\'ll face.</p>'
-    },
-    target21: {
-      name: 'Target 21',
-      emoji: '\uD83C\uDFC6',
-      instructions: '<h2>\uD83C\uDFC6 Target 21</h2>' +
-        '<p><strong>Goal:</strong> Reach exactly 21 points.</p>' +
-        '<ul><li>3ft = 1 point, 6ft = 2 points, 9ft = 3 points, 12ft = 5 points</li>' +
-        '<li>A miss scores 0 points.</li>' +
-        '<li>If you go over 21, your score resets to 15.</li>' +
-        '<li>Try to reach 21 in as few putts as possible.</li></ul>' +
-        '<p><strong>Tip:</strong> Think strategically about which distances to attempt as you get close to 21.</p>'
-    }
-  };
-
-  /* =========================================================================
-     App State
-     ========================================================================= */
-
-  var state = {
-    currentDrill: null,
-    sessionStart: null,
-    // Ladder
-    ladderStep: 0,
-    ladderAttempts: 0,
-    ladderDistances: [3, 6, 9, 12],
-    // Speed Zone
-    szAttempt: 0,
-    szResults: [],
-    // Gate
-    gateAttempt: 0,
-    gateResults: [],
-    // Streak
-    streakCurrent: 0,
-    streakTotal: 0,
-    streakAttempts: 0,
-    // Random
-    randomAttempt: 0,
-    randomMade: 0,
-    randomTotal: 10,
-    randomCurrentDist: 0,
-    // Target 21
-    t21Score: 0,
-    t21Putts: 0
-  };
-
-  /* =========================================================================
-     UI References
-     ========================================================================= */
-
-  var els = {};
-
-  function initElements() {
-    els.section = $('[data-section-type="putting-practice-hub"]');
-    if (!els.section) return false;
-
-    els.drills = $('#pp-drills');
-    els.active = $('#pp-active');
-    els.instructions = $('#pp-instructions');
-    els.instructionsContent = $('#pp-instructions-content');
-    els.session = $('#pp-session');
-    els.sessionTitle = $('#pp-session-title');
-    els.sessionBody = $('#pp-session-body');
-    els.complete = $('#pp-complete');
-    els.completeContent = $('#pp-complete-content');
-    els.stats = $('#pp-stats');
-    els.statsBody = $('#pp-stats-body');
-    els.statsToggle = $('#pp-stats-toggle');
-    return true;
+  function render(html) {
+    app.innerHTML = html;
+    app.scrollIntoView({ behavior: 'smooth', block: 'start' });
   }
 
-  /* =========================================================================
-     Navigation
-     ========================================================================= */
+  /* ═══════════════════════════════════════════
+     Tips (for randomizer)
+     ═══════════════════════════════════════════ */
+  var TIPS = [
+    'Smooth pendulum, no hands.','Eyes over the ball.','Square face at impact.',
+    'Watch the ball, not the hole.','Accelerate through impact.','Light grip pressure.',
+    'One steady tempo.','Keep your head still.','Trust your read.',
+    'Feel the putter weight.','Breathe out before you stroke.','Same stroke every time.',
+    'Hit it firm — 1 foot past.'
+  ];
+  var tipIdx = 0;
+  function nextTip() { return TIPS[tipIdx++ % TIPS.length]; }
 
-  function showDrills() {
-    show(els.drills);
-    hide(els.active);
-    hide(els.instructions);
-    hide(els.session);
-    hide(els.complete);
-    state.currentDrill = null;
+  /* ═══════════════════════════════════════════
+     Mat Config (shared)
+     ═══════════════════════════════════════════ */
+  var RANGES = { 8: { base: 7, ext: 10 }, 11: { base: 10, ext: 13 }, 14: { base: 13, ext: 16 } };
+  var S = { randMode: 'time', randAmount: null, mat: null, ext: false, minFt: 3, maxFt: 7 };
+
+  function updateRange() {
+    if (!S.mat) return;
+    var r = RANGES[S.mat];
+    S.maxFt = S.ext ? r.ext : r.base;
+    S.minFt = 3;
+  }
+
+  function randomFt() { return S.minFt + Math.floor(Math.random() * (S.maxFt - S.minFt + 1)); }
+
+  /* ═══════════════════════════════════════════
+     VIEW: Home
+     ═══════════════════════════════════════════ */
+  function showHome() {
+    render(
+      '<div class="pp-mode-picker">' +
+        '<button class="pp-mode-card" id="go-random">' +
+          '<span class="pp-mode-card__emoji">🎲</span>' +
+          '<span class="pp-mode-card__name">Randomized Practice</span>' +
+          '<span class="pp-mode-card__desc">Random distances, set by time or number of putts</span>' +
+        '</button>' +
+        '<button class="pp-mode-card" id="go-drills">' +
+          '<span class="pp-mode-card__emoji">📋</span>' +
+          '<span class="pp-mode-card__name">Preset Drills</span>' +
+          '<span class="pp-mode-card__desc">Classic putting drills with guided sessions</span>' +
+        '</button>' +
+      '</div>'
+    );
+    $('#go-random').onclick = showRandSetup1;
+    $('#go-drills').onclick = showDrillMenu;
     refreshStats();
   }
 
-  function showInstructions(drillId) {
-    state.currentDrill = drillId;
-    var drill = DRILLS[drillId];
-    hide(els.drills);
-    show(els.active);
-    show(els.instructions);
-    hide(els.session);
-    hide(els.complete);
-    html(els.instructionsContent, drill.instructions);
+  /* ═══════════════════════════════════════════
+     VIEW: Randomizer Setup Step 1
+     ═══════════════════════════════════════════ */
+  function showRandSetup1() {
+    S.randAmount = null;
+    render(
+      '<button class="pp-back btn btn--text" id="rs1-back">&larr; Back</button>' +
+      '<div class="pp-card-header">' +
+        '<span class="pp-eyebrow">Randomized · Step 1 of 2</span>' +
+        '<h2 class="pp-card-title">How do you want to practice?</h2>' +
+        '<p class="pp-card-desc">Set your session by time or number of putts.</p>' +
+      '</div>' +
+      '<div class="pp-mode-toggle" id="mode-toggle">' +
+        '<button class="pp-mode-toggle__btn active" data-m="time">By Time</button>' +
+        '<button class="pp-mode-toggle__btn" data-m="putts">By Putts</button>' +
+      '</div>' +
+      '<div id="time-opts">' +
+        '<div class="pp-pill-group">' +
+          '<button class="pp-pill" data-v="5">5 min</button>' +
+          '<button class="pp-pill" data-v="10">10 min</button>' +
+          '<button class="pp-pill" data-v="15">15 min</button>' +
+          '<button class="pp-pill" data-v="20">20 min</button>' +
+          '<button class="pp-pill" data-v="30">30 min</button>' +
+        '</div>' +
+      '</div>' +
+      '<div id="putts-opts" style="display:none">' +
+        '<div class="pp-pill-group">' +
+          '<button class="pp-pill" data-v="10">10</button>' +
+          '<button class="pp-pill" data-v="20">20</button>' +
+          '<button class="pp-pill" data-v="30">30</button>' +
+          '<button class="pp-pill" data-v="50">50</button>' +
+        '</div>' +
+      '</div>' +
+      '<div class="pp-btn-stack"><button class="btn btn--primary btn--solid pp-btn-full" id="rs1-next" disabled>Continue</button></div>'
+    );
+    $('#rs1-back').onclick = showHome;
+    $$('#mode-toggle .pp-mode-toggle__btn').forEach(function (b) {
+      b.onclick = function () {
+        S.randMode = this.getAttribute('data-m');
+        S.randAmount = null;
+        $$('#mode-toggle .pp-mode-toggle__btn').forEach(function (x) { x.classList.remove('active'); });
+        this.classList.add('active');
+        $('#time-opts').style.display = S.randMode === 'time' ? '' : 'none';
+        $('#putts-opts').style.display = S.randMode === 'putts' ? '' : 'none';
+        $$('.pp-pill').forEach(function (p) { p.classList.remove('active'); });
+        $('#rs1-next').disabled = true;
+      };
+    });
+    $$('.pp-pill').forEach(function (p) {
+      p.onclick = function () {
+        this.closest('.pp-pill-group').querySelectorAll('.pp-pill').forEach(function (x) { x.classList.remove('active'); });
+        this.classList.add('active');
+        S.randAmount = parseInt(this.getAttribute('data-v'), 10);
+        $('#rs1-next').disabled = false;
+      };
+    });
+    $('#rs1-next').onclick = function () { showMatSetup('rand'); };
   }
 
-  function showSession(drillId) {
-    hide(els.instructions);
-    show(els.session);
-    hide(els.complete);
-    state.sessionStart = Date.now();
-    var drill = DRILLS[drillId];
-    html(els.sessionTitle, drill.emoji + ' ' + drill.name);
-    initDrill(drillId);
+  /* ═══════════════════════════════════════════
+     VIEW: Mat Setup (shared by randomizer + some drills)
+     ═══════════════════════════════════════════ */
+  var matContext = 'rand'; // 'rand' | drill id
+
+  function showMatSetup(ctx) {
+    matContext = ctx;
+    S.mat = null; S.ext = false;
+    var eyebrow = ctx === 'rand' ? 'Randomized · Step 2 of 2' : 'Setup';
+    render(
+      '<button class="pp-back btn btn--text" id="mat-back">&larr; Back</button>' +
+      '<div class="pp-card-header">' +
+        '<span class="pp-eyebrow">' + eyebrow + '</span>' +
+        '<h2 class="pp-card-title">What\'s your mat setup?</h2>' +
+        '<p class="pp-card-desc">We\'ll adjust distances to fit your mat.</p>' +
+      '</div>' +
+      '<div class="pp-pill-group" id="mat-pills">' +
+        '<button class="pp-pill" data-v="8">8 ft</button>' +
+        '<button class="pp-pill" data-v="11">11 ft</button>' +
+        '<button class="pp-pill" data-v="14">14 ft</button>' +
+      '</div>' +
+      '<div class="pp-toggle-row" id="ext-toggle" style="display:none">' +
+        '<div class="pp-toggle-row__info">' +
+          '<div class="pp-toggle-row__label">Step-on mat connected?</div>' +
+          '<div class="pp-toggle-row__sub">Adds extra putting distance to your range</div>' +
+        '</div>' +
+        '<div class="pp-switch" id="ext-switch"></div>' +
+      '</div>' +
+      '<div class="pp-range-preview" id="range-preview" style="display:none">' +
+        '<span class="pp-range-preview__icon">📏</span>' +
+        '<span>Putting distances: <strong id="range-text">—</strong></span>' +
+      '</div>' +
+      '<div class="pp-btn-stack"><button class="btn btn--primary btn--solid pp-btn-full" id="mat-go" disabled>Start Practice</button></div>'
+    );
+    $('#mat-back').onclick = function () {
+      if (matContext === 'rand') showRandSetup1();
+      else showDrillMenu();
+    };
+    $$('#mat-pills .pp-pill').forEach(function (p) {
+      p.onclick = function () {
+        $$('#mat-pills .pp-pill').forEach(function (x) { x.classList.remove('active'); });
+        this.classList.add('active');
+        S.mat = parseInt(this.getAttribute('data-v'), 10);
+        S.ext = false;
+        $('#ext-switch').classList.remove('on');
+        $('#ext-toggle').style.display = 'flex';
+        updateRange();
+        $('#range-preview').style.display = 'flex';
+        $('#range-text').textContent = S.minFt + ' ft – ' + S.maxFt + ' ft';
+        $('#mat-go').disabled = false;
+      };
+    });
+    $('#ext-toggle').onclick = function () {
+      if (!S.mat) return;
+      S.ext = !S.ext;
+      $('#ext-switch').classList.toggle('on', S.ext);
+      updateRange();
+      $('#range-text').textContent = S.minFt + ' ft – ' + S.maxFt + ' ft';
+    };
+    $('#mat-go').onclick = function () {
+      if (matContext === 'rand') startRandSession();
+      else if (matContext === 'ladder') startLadder();
+      else if (matContext === 'speedzone') startSpeedZone();
+      else if (matContext === 'gate') startGate();
+      else if (matContext === 'target21') startTarget21();
+    };
   }
 
-  function showComplete(contentHtml) {
-    hide(els.session);
-    show(els.complete);
-    html(els.completeContent, contentHtml);
+  /* ═══════════════════════════════════════════
+     RANDOMIZER SESSION
+     ═══════════════════════════════════════════ */
+  var rand = { totalPutts: 0, totalRounds: 0, roundIdx: 0, puttLog: [],
+    timerSec: 0, timerInterval: null, rounds: [], sessionStart: 0 };
+
+  function genRound(n) {
+    var fts = [];
+    for (var i = 0; i < n; i++) {
+      var ft, a = 0;
+      do { ft = randomFt(); a++; } while (fts.length && ft === fts[fts.length - 1] && a < 20);
+      fts.push(ft);
+    }
+    return fts;
   }
 
-  /* =========================================================================
-     Drill Initializers
-     ========================================================================= */
-
-  function initDrill(drillId) {
-    switch (drillId) {
-      case 'ladder': initLadder(); break;
-      case 'speedzone': initSpeedZone(); break;
-      case 'gate': initGate(); break;
-      case 'streak': initStreak(); break;
-      case 'random': initRandom(); break;
-      case 'target21': initTarget21(); break;
+  function startRandSession() {
+    rand.totalPutts = S.randMode === 'putts' ? S.randAmount : Math.round((S.randAmount * 60) / 30);
+    rand.totalRounds = Math.ceil(rand.totalPutts / 3);
+    rand.roundIdx = 0; rand.puttLog = []; tipIdx = 0;
+    rand.rounds = [];
+    rand.sessionStart = Date.now();
+    for (var i = 0; i < rand.totalRounds; i++) rand.rounds.push(genRound(3));
+    renderRandSession();
+    if (S.randMode === 'time') {
+      rand.timerSec = S.randAmount * 60;
+      rand.timerInterval = setInterval(function () {
+        rand.timerSec--;
+        renderTimer();
+        if (rand.timerSec <= 0) { clearInterval(rand.timerInterval); finishRand(); }
+      }, 1000);
     }
   }
 
-  /* --- Ladder Drill --- */
+  function renderRandSession() {
+    var fts = rand.rounds[rand.roundIdx];
+    var left = Math.max(0, rand.totalPutts - rand.roundIdx * 3);
+    var isLast = rand.roundIdx + 1 >= rand.totalRounds;
 
-  function initLadder() {
-    state.ladderStep = 0;
-    state.ladderAttempts = 0;
+    var h = '<div class="pp-session-meta">' +
+      '<span class="pp-session-meta__round">Round ' + (rand.roundIdx + 1) + ' of ' + rand.totalRounds + '</span>' +
+      '<span class="pp-chip">' + left + ' left</span></div>';
+
+    if (S.randMode === 'time') {
+      var m = Math.floor(rand.timerSec / 60), s = rand.timerSec % 60;
+      var cls = rand.timerSec <= 60 ? ' urgent' : '';
+      h += '<div class="pp-timer-row"><span class="pp-timer-row__label">Time remaining</span>' +
+        '<span class="pp-timer-row__value' + cls + '" id="timer-val">' +
+        String(m).padStart(2, '0') + ':' + String(s).padStart(2, '0') + '</span></div>';
+    }
+
+    // Progress bar
+    h += '<div class="pp-progress-bar">';
+    for (var p = 0; p < rand.totalRounds; p++) {
+      var segCls = p < rand.roundIdx ? 'done' : p === rand.roundIdx ? 'current' : '';
+      h += '<div class="pp-progress-bar__seg ' + segCls + '"></div>';
+    }
+    h += '</div>';
+
+    // Putt cards
+    h += '<div class="pp-putt-list">';
+    for (var i = 0; i < fts.length; i++) {
+      h += '<div class="pp-putt-card" data-ft="' + fts[i] + '" data-idx="' + i + '">' +
+        '<div class="pp-putt-card__check"><span class="pp-putt-card__tick">✓</span></div>' +
+        '<div class="pp-putt-card__info"><div class="pp-putt-card__type">Straight Putt</div>' +
+        '<div class="pp-putt-card__tip">' + nextTip() + '</div></div>' +
+        '<div class="pp-putt-card__distance"><div class="pp-putt-card__ft">' + fts[i] + '</div>' +
+        '<div class="pp-putt-card__ft-label">FEET</div></div></div>';
+    }
+    h += '</div>';
+
+    h += '<div class="pp-btn-stack">' +
+      '<button class="btn btn--primary btn--solid pp-btn-full" id="rand-next">' +
+      (isLast ? 'Finish Session' : 'Next 3 Putts') + '</button>' +
+      '<button class="btn btn--text pp-btn-full" id="rand-end">End Session</button></div>';
+
+    render(h);
+
+    // Putt card click
+    $$('.pp-putt-card').forEach(function (card) {
+      card.onclick = function () {
+        var done = this.classList.toggle('done');
+        var ft = parseInt(this.getAttribute('data-ft'), 10);
+        if (done) rand.puttLog.push(ft);
+        else { var idx = rand.puttLog.lastIndexOf(ft); if (idx !== -1) rand.puttLog.splice(idx, 1); }
+      };
+    });
+    $('#rand-next').onclick = function () {
+      rand.roundIdx++;
+      if (rand.roundIdx >= rand.totalRounds) finishRand();
+      else renderRandSession();
+    };
+    $('#rand-end').onclick = finishRand;
+  }
+
+  function renderTimer() {
+    var el = $('#timer-val');
+    if (!el) return;
+    var m = Math.floor(rand.timerSec / 60), s = rand.timerSec % 60;
+    el.textContent = String(m).padStart(2, '0') + ':' + String(s).padStart(2, '0');
+    el.classList.toggle('urgent', rand.timerSec <= 60);
+  }
+
+  function finishRand() {
+    clearInterval(rand.timerInterval);
+    var dur = (Date.now() - rand.sessionStart) / 1000;
+    var putts = rand.roundIdx * 3;
+    var mins = S.randMode === 'time' ? Math.round((S.randAmount * 60 - rand.timerSec) / 60) : Math.round(putts * 30 / 60);
+
+    recordSession('random', rand.puttLog.length + ' putts, ' + rand.roundIdx + ' rounds', putts, dur);
+
+    var counts = {};
+    rand.puttLog.forEach(function (ft) { counts[ft] = (counts[ft] || 0) + 1; });
+    var max = Math.max.apply(null, Object.values(counts).concat([1]));
+    var sorted = Object.entries(counts).sort(function (a, b) { return +a[0] - +b[0]; });
+
+    var h = '<div class="pp-summary-hero">' +
+      '<div class="pp-summary-hero__emoji">🎯</div>' +
+      '<h2 class="pp-summary-hero__title">Nice work!</h2>' +
+      '<p class="pp-summary-hero__sub">' + rand.puttLog.length + ' putts across ' + rand.roundIdx + ' rounds.</p></div>';
+
+    h += '<div class="pp-stat-grid">' +
+      '<div class="pp-stat-box"><div class="pp-stat-box__num">' + rand.roundIdx + '</div><div class="pp-stat-box__label">Rounds</div></div>' +
+      '<div class="pp-stat-box"><div class="pp-stat-box__num">' + putts + '</div><div class="pp-stat-box__label">Putts</div></div>' +
+      '<div class="pp-stat-box"><div class="pp-stat-box__num">' + mins + 'm</div><div class="pp-stat-box__label">Time</div></div></div>';
+
+    if (sorted.length > 0) {
+      h += '<div class="pp-dist-breakdown"><div class="pp-dist-breakdown__title">Distances Practiced</div><div class="pp-dist-bar-list">';
+      sorted.forEach(function (e) {
+        var ft = e[0], cnt = e[1];
+        h += '<div class="pp-dist-bar-row"><div class="pp-dist-bar-row__label">' + ft + ' ft</div>' +
+          '<div class="pp-dist-bar-row__track"><div class="pp-dist-bar-row__fill" style="width:' + Math.round(cnt / max * 100) + '%"></div></div>' +
+          '<div class="pp-dist-bar-row__count">' + cnt + '</div></div>';
+      });
+      h += '</div></div>';
+    }
+
+    h += '<div class="pp-btn-stack"><button class="btn btn--primary btn--solid pp-btn-full" id="sum-home">Back to Hub</button></div>';
+    render(h);
+    $('#sum-home').onclick = showHome;
+  }
+
+  /* ═══════════════════════════════════════════
+     VIEW: Drill Menu
+     ═══════════════════════════════════════════ */
+  var DRILLS = [
+    { id: 'ladder', emoji: '🪜', name: 'Ladder Drill', desc: 'Progressive distances. Miss one and restart.', badge: 'Speed', needsMat: true },
+    { id: 'speedzone', emoji: '🎯', name: 'Speed Zone', desc: 'Past the hole, before the backstop. 10 putts.', badge: 'Control', needsMat: true },
+    { id: 'gate', emoji: '⛳', name: 'Gate Drill', desc: 'Roll through a tee gate. 10 putts.', badge: 'Accuracy', needsMat: true },
+    { id: 'streak', emoji: '🔥', name: 'Streak Challenge', desc: 'Consecutive 3-footers. Miss and it\'s over.', badge: 'Confidence', needsMat: false },
+    { id: 'target21', emoji: '🏆', name: 'Target 21', desc: 'Score points for makes. First to 21 wins.', badge: 'Game', needsMat: true }
+  ];
+
+  function showDrillMenu() {
+    var h = '<button class="pp-back btn btn--text" id="dm-back">&larr; Back</button>' +
+      '<div class="pp-card-header"><span class="pp-eyebrow">Choose a Drill</span>' +
+      '<h2 class="pp-card-title">Pick your putting drill</h2>' +
+      '<p class="pp-card-desc">Each drill targets a different skill. All designed for your Chiputt mat.</p></div>' +
+      '<div class="pp-drills__grid">';
+    DRILLS.forEach(function (d) {
+      h += '<button class="pp-drill-card" data-drill="' + d.id + '">' +
+        '<span class="pp-drill-card__emoji">' + d.emoji + '</span>' +
+        '<span class="pp-drill-card__name">' + d.name + '</span>' +
+        '<span class="pp-drill-card__desc">' + d.desc + '</span>' +
+        '<span class="pp-drill-card__badge">' + d.badge + '</span></button>';
+    });
+    h += '</div>';
+    render(h);
+    $('#dm-back').onclick = showHome;
+    $$('.pp-drill-card').forEach(function (card) {
+      card.onclick = function () {
+        var drillId = this.getAttribute('data-drill');
+        showDrillInstructions(drillId);
+      };
+    });
+  }
+
+  /* ═══════════════════════════════════════════
+     Drill Instructions
+     ═══════════════════════════════════════════ */
+  var INSTRUCTIONS = {
+    ladder: '<h2>🪜 Ladder Drill</h2><p><strong>Goal:</strong> Make putts from increasing distances (3ft → 6ft → 9ft → 12ft).</p>' +
+      '<ul><li>Make a putt to advance to the next distance.</li><li>Miss and you restart from 3ft.</li>' +
+      '<li>Complete the ladder in as few total attempts as possible.</li></ul>' +
+      '<p><strong>Tip:</strong> Focus on a consistent stroke. Don\'t rush.</p>',
+    speedzone: '<h2>🎯 Speed Zone Drill</h2><p><strong>Goal:</strong> Roll 10 putts so they stop in the target zone (past the hole but before the backstop).</p>' +
+      '<ul><li>Mark each putt "In Zone" or "Out of Zone".</li><li>Track your accuracy percentage.</li></ul>' +
+      '<p><strong>Tip:</strong> Speed control is the #1 factor in lag putting. Set up your chipping mat behind the hole as a backstop.</p>',
+    gate: '<h2>⛳ Gate Drill</h2><p><strong>Goal:</strong> Putt through a gate (two tees, just wider than your putter) 10 times.</p>' +
+      '<ul><li>Place 2 tees ~6 inches in front of the ball.</li><li>Roll through without touching either tee.</li></ul>' +
+      '<p><strong>Tip:</strong> This trains your start line. Focus on face angle at impact.</p>',
+    streak: '<h2>🔥 Streak Challenge</h2><p><strong>Goal:</strong> Make as many consecutive 3-foot putts as possible.</p>' +
+      '<ul><li>Keep putting from 3 feet until you miss.</li><li>Your streak ends on the first miss.</li><li>Try to beat your best streak!</li></ul>' +
+      '<p><strong>Tip:</strong> Stay in your routine. Don\'t let the count pressure you.</p>',
+    target21: '<h2>🏆 Target 21</h2><p><strong>Goal:</strong> Reach exactly 21 points.</p>' +
+      '<ul><li>3ft = 1 point, 6ft = 2 points, 9ft = 3 points, 12ft = 5 points</li>' +
+      '<li>Miss = 0 points. Go over 21 and your score resets to 15.</li>' +
+      '<li>Reach 21 in as few putts as possible.</li></ul>' +
+      '<p><strong>Tip:</strong> Think strategically about which distances to attempt near 21.</p>'
+  };
+
+  var currentDrill = null;
+
+  function showDrillInstructions(drillId) {
+    currentDrill = drillId;
+    var drill = DRILLS.find(function (d) { return d.id === drillId; });
+    var h = '<button class="pp-back btn btn--text" id="di-back">&larr; Back to Drills</button>' +
+      '<div class="pp-instructions__content">' + INSTRUCTIONS[drillId] + '</div>' +
+      '<button class="btn btn--primary btn--solid pp-btn-full" id="di-start">Start Drill</button>';
+    render(h);
+    $('#di-back').onclick = showDrillMenu;
+    $('#di-start').onclick = function () {
+      if (drill.needsMat) showMatSetup(drillId);
+      else launchDrill(drillId);
+    };
+  }
+
+  function launchDrill(drillId) {
+    if (drillId === 'ladder') startLadder();
+    else if (drillId === 'speedzone') startSpeedZone();
+    else if (drillId === 'gate') startGate();
+    else if (drillId === 'streak') startStreak();
+    else if (drillId === 'target21') startTarget21();
+  }
+
+  /* ═══════════════════════════════════════════
+     DRILL: Ladder
+     ═══════════════════════════════════════════ */
+  var ladder = { distances: [], step: 0, attempts: 0, restarts: 0, start: 0 };
+
+  function startLadder() {
+    if (S.maxFt >= 13) ladder.distances = [3, 6, 9, 12];
+    else if (S.maxFt >= 10) ladder.distances = [3, 5, 7, 9];
+    else ladder.distances = [3, 5, 7];
+    ladder.step = 0; ladder.attempts = 0; ladder.restarts = 0; ladder.start = Date.now();
     renderLadder();
   }
 
   function renderLadder() {
-    var dists = state.ladderDistances;
-    var step = state.ladderStep;
-    var h = '<div class="pp-ladder" id="ladder-visual">';
-    for (var i = dists.length - 1; i >= 0; i--) {
-      var cls = 'pp-ladder__step';
-      if (i < step) cls += ' pp-ladder__step--complete';
-      else if (i === step) cls += ' pp-ladder__step--active';
-      h += '<div class="' + cls + '">' + dists[i] + ' ft' + (i < step ? ' &#x2713;' : '') + '</div>';
+    var d = ladder.distances, step = ladder.step;
+    var h = '<div class="pp-session-meta"><span class="pp-session-meta__round">Attempt ' + (ladder.attempts + 1) + '</span>' +
+      '<div style="display:flex;gap:8px"><span class="pp-chip pp-chip--success">' + step + ' made</span>' +
+      '<span class="pp-chip pp-chip--error">' + ladder.restarts + ' restart' + (ladder.restarts !== 1 ? 's' : '') + '</span></div></div>';
+    h += '<div class="pp-ladder">';
+    for (var i = 0; i < d.length; i++) {
+      var cls = i < step ? 'made' : i === step ? 'current' : '';
+      h += '<div class="pp-ladder__rung ' + cls + '">' +
+        '<div class="pp-ladder__num">' + (i + 1) + '</div>' +
+        '<div class="pp-ladder__info"><div class="pp-ladder__dist">' + d[i] + ' ft</div>' +
+        '<div class="pp-ladder__status">' + (i < step ? 'Made ✓' : i === step ? 'Putt now' : '') + '</div></div></div>';
     }
     h += '</div>';
-    h += '<div class="pp-drill-status">Attempts: <strong>' + state.ladderAttempts + '</strong></div>';
-    h += '<div class="pp-drill-big-number">' + dists[step] + ' ft</div>';
-    h += '<div class="pp-drill-big-label">Current Distance</div>';
-    h += '<div class="pp-drill-actions">';
-    h += '<button class="btn pp-btn-made" data-action="ladder-made">Made It</button>';
-    h += '<button class="btn pp-btn-missed" data-action="ladder-missed">Missed</button>';
-    h += '</div>';
-    html(els.sessionBody, h);
-  }
-
-  function ladderMade() {
-    state.ladderAttempts++;
-    state.ladderStep++;
-    if (state.ladderStep >= state.ladderDistances.length) {
-      completeLadder();
-    } else {
+    h += '<div class="pp-drill-actions"><button class="btn pp-btn-made" id="l-made">Made It ✓</button>' +
+      '<button class="btn pp-btn-missed" id="l-miss">Missed ✗</button></div>' +
+      '<button class="btn btn--text pp-btn-full" id="l-quit" style="margin-top:12px">End Drill</button>';
+    render(h);
+    $('#l-made').onclick = function () {
+      ladder.attempts++; ladder.step++;
+      if (ladder.step >= ladder.distances.length) completeLadder();
+      else renderLadder();
+    };
+    $('#l-miss').onclick = function () {
+      ladder.attempts++; ladder.restarts++; ladder.step = 0;
       renderLadder();
-    }
-  }
-
-  function ladderMissed() {
-    state.ladderAttempts++;
-    state.ladderStep = 0;
-    renderLadder();
+    };
+    $('#l-quit').onclick = function () { completeLadder(); };
   }
 
   function completeLadder() {
-    var dur = (Date.now() - state.sessionStart) / 1000;
-    var attempts = state.ladderAttempts;
-    var isNewBest = updateBest('ladder', { value: attempts, label: attempts + ' attempts' });
-
-    var h = '<h2>Ladder Complete!</h2>';
-    h += '<div class="pp-complete__summary">';
-    h += '<div class="pp-complete__stat"><span class="pp-complete__stat-value">' + attempts + '</span><span class="pp-complete__stat-label">Total Attempts</span></div>';
-    h += '<div class="pp-complete__stat"><span class="pp-complete__stat-value">4/4</span><span class="pp-complete__stat-label">Distances Cleared</span></div>';
-    h += '</div>';
-    if (isNewBest) h += '<div class="pp-complete__new-best">New Personal Best!</div>';
-
-    recordSession('ladder', attempts + ' attempts to complete', attempts, dur, { attempts: attempts });
-    showComplete(h);
+    var dur = (Date.now() - ladder.start) / 1000;
+    var isNew = updateBest('ladder', { value: ladder.attempts, label: ladder.attempts + ' attempts' });
+    recordSession('ladder', ladder.attempts + ' attempts', ladder.attempts, dur, { attempts: ladder.attempts });
+    showDrillComplete('🪜', 'Ladder ' + (ladder.step >= ladder.distances.length ? 'Complete!' : 'Ended'),
+      [{ n: ladder.attempts, l: 'Attempts' }, { n: ladder.restarts, l: 'Restarts' }, { n: ladder.step + '/' + ladder.distances.length, l: 'Cleared' }], isNew);
   }
 
-  /* --- Speed Zone Drill --- */
+  /* ═══════════════════════════════════════════
+     DRILL: Speed Zone
+     ═══════════════════════════════════════════ */
+  var sz = { attempt: 0, inZone: 0, total: 10, start: 0 };
 
-  function initSpeedZone() {
-    state.szAttempt = 0;
-    state.szResults = [];
+  function startSpeedZone() {
+    sz.attempt = 0; sz.inZone = 0; sz.start = Date.now();
     renderSpeedZone();
   }
 
   function renderSpeedZone() {
-    var total = 10;
-    var attempt = state.szAttempt;
-    var results = state.szResults;
-    var inZone = results.filter(function (r) { return r; }).length;
-    var pct = attempt > 0 ? Math.round((inZone / attempt) * 100) : 0;
-
-    var h = '<div class="pp-dots">';
-    for (var i = 0; i < total; i++) {
+    var pct = sz.attempt > 0 ? Math.round(sz.inZone / sz.attempt * 100) : 0;
+    var h = '<div class="pp-session-meta"><span class="pp-session-meta__round">Speed Zone</span>' +
+      '<span class="pp-chip">Putt ' + (sz.attempt + 1) + ' of ' + sz.total + '</span></div>';
+    // Dots
+    h += '<div class="pp-dots">';
+    for (var i = 0; i < sz.total; i++) {
       var cls = 'pp-dot';
-      if (i < attempt) {
-        cls += results[i] ? ' pp-dot--success' : ' pp-dot--fail';
-      } else if (i === attempt) {
-        cls += ' pp-dot--active';
-      }
+      if (i < sz.attempt) cls += i < sz.inZone || (function () { /* track per-putt */ return false; })() ? '' : '';
+      if (i === sz.attempt) cls += ' pp-dot--active';
       h += '<div class="' + cls + '">' + (i + 1) + '</div>';
     }
     h += '</div>';
-    h += '<div class="pp-accuracy">' + pct + '%</div>';
-    h += '<div class="pp-drill-big-label">Accuracy (' + inZone + '/' + attempt + ' in zone)</div>';
-    h += '<div class="pp-drill-status">Putt ' + (attempt + 1) + ' of ' + total + '</div>';
-    h += '<div class="pp-drill-actions">';
-    h += '<button class="btn pp-btn-made" data-action="sz-in">In Zone</button>';
-    h += '<button class="btn pp-btn-missed" data-action="sz-out">Out of Zone</button>';
-    h += '</div>';
-    html(els.sessionBody, h);
-  }
-
-  function szRecord(inZone) {
-    state.szResults.push(inZone);
-    state.szAttempt++;
-    if (state.szAttempt >= 10) {
-      completeSpeedZone();
-    } else {
-      renderSpeedZone();
-    }
+    h += '<div class="pp-big-number">' + pct + '%</div><div class="pp-big-label">In Zone (' + sz.inZone + '/' + sz.attempt + ')</div>';
+    h += '<div class="pp-drill-actions"><button class="btn pp-btn-made" id="sz-in">In Zone ✓</button>' +
+      '<button class="btn pp-btn-missed" id="sz-out">Out of Zone ✗</button></div>' +
+      '<button class="btn btn--text pp-btn-full" id="sz-quit" style="margin-top:12px">End Drill</button>';
+    render(h);
+    $('#sz-in').onclick = function () { sz.inZone++; sz.attempt++; sz.attempt >= sz.total ? completeSpeedZone() : renderSpeedZone(); };
+    $('#sz-out').onclick = function () { sz.attempt++; sz.attempt >= sz.total ? completeSpeedZone() : renderSpeedZone(); };
+    $('#sz-quit').onclick = completeSpeedZone;
   }
 
   function completeSpeedZone() {
-    var dur = (Date.now() - state.sessionStart) / 1000;
-    var inZone = state.szResults.filter(function (r) { return r; }).length;
-    var pct = Math.round((inZone / 10) * 100);
-    var isNewBest = updateBest('speedzone', { value: pct, label: pct + '% accuracy' });
-
-    var h = '<h2>Speed Zone Complete!</h2>';
-    h += '<div class="pp-complete__summary">';
-    h += '<div class="pp-complete__stat"><span class="pp-complete__stat-value">' + pct + '%</span><span class="pp-complete__stat-label">Accuracy</span></div>';
-    h += '<div class="pp-complete__stat"><span class="pp-complete__stat-value">' + inZone + '/10</span><span class="pp-complete__stat-label">In Zone</span></div>';
-    h += '</div>';
-    if (isNewBest) h += '<div class="pp-complete__new-best">New Personal Best!</div>';
-
-    recordSession('speedzone', pct + '% accuracy (' + inZone + '/10)', 10, dur, { accuracy: pct });
-    showComplete(h);
+    var dur = (Date.now() - sz.start) / 1000;
+    var pct = sz.attempt > 0 ? Math.round(sz.inZone / sz.attempt * 100) : 0;
+    var isNew = updateBest('speedzone', { value: pct, label: pct + '% accuracy' });
+    recordSession('speedzone', pct + '% (' + sz.inZone + '/' + sz.attempt + ')', sz.attempt, dur, { accuracy: pct });
+    showDrillComplete('🎯', 'Speed Zone Complete!',
+      [{ n: pct + '%', l: 'Accuracy' }, { n: sz.inZone + '/' + sz.attempt, l: 'In Zone' }], isNew);
   }
 
-  /* --- Gate Drill --- */
+  /* ═══════════════════════════════════════════
+     DRILL: Gate
+     ═══════════════════════════════════════════ */
+  var gate = { attempt: 0, through: 0, total: 10, start: 0 };
 
-  function initGate() {
-    state.gateAttempt = 0;
-    state.gateResults = [];
+  function startGate() {
+    gate.attempt = 0; gate.through = 0; gate.start = Date.now();
     renderGate();
   }
 
   function renderGate() {
-    var total = 10;
-    var attempt = state.gateAttempt;
-    var results = state.gateResults;
-    var through = results.filter(function (r) { return r; }).length;
-    var pct = attempt > 0 ? Math.round((through / attempt) * 100) : 0;
-
-    var h = '<div class="pp-dots">';
-    for (var i = 0; i < total; i++) {
-      var cls = 'pp-dot';
-      if (i < attempt) {
-        cls += results[i] ? ' pp-dot--success' : ' pp-dot--fail';
-      } else if (i === attempt) {
-        cls += ' pp-dot--active';
-      }
-      h += '<div class="' + cls + '">' + (i + 1) + '</div>';
-    }
-    h += '</div>';
-    h += '<div class="pp-accuracy">' + pct + '%</div>';
-    h += '<div class="pp-drill-big-label">Gate Accuracy (' + through + '/' + attempt + ' through)</div>';
-    h += '<div class="pp-drill-status">Putt ' + (attempt + 1) + ' of ' + total + '</div>';
-    h += '<div class="pp-drill-actions">';
-    h += '<button class="btn pp-btn-made" data-action="gate-through">Through Gate</button>';
-    h += '<button class="btn pp-btn-missed" data-action="gate-missed">Missed Gate</button>';
-    h += '</div>';
-    html(els.sessionBody, h);
-  }
-
-  function gateRecord(through) {
-    state.gateResults.push(through);
-    state.gateAttempt++;
-    if (state.gateAttempt >= 10) {
-      completeGate();
-    } else {
-      renderGate();
-    }
+    var pct = gate.attempt > 0 ? Math.round(gate.through / gate.attempt * 100) : 0;
+    var h = '<div class="pp-session-meta"><span class="pp-session-meta__round">Gate Drill</span>' +
+      '<span class="pp-chip">Putt ' + (gate.attempt + 1) + ' of ' + gate.total + '</span></div>';
+    h += '<div class="pp-big-number">' + pct + '%</div><div class="pp-big-label">Through Gate (' + gate.through + '/' + gate.attempt + ')</div>';
+    h += '<div class="pp-drill-actions"><button class="btn pp-btn-made" id="g-through">Through ✓</button>' +
+      '<button class="btn pp-btn-missed" id="g-hit">Hit Tee ✗</button></div>' +
+      '<button class="btn btn--text pp-btn-full" id="g-quit" style="margin-top:12px">End Drill</button>';
+    render(h);
+    $('#g-through').onclick = function () { gate.through++; gate.attempt++; gate.attempt >= gate.total ? completeGate() : renderGate(); };
+    $('#g-hit').onclick = function () { gate.attempt++; gate.attempt >= gate.total ? completeGate() : renderGate(); };
+    $('#g-quit').onclick = completeGate;
   }
 
   function completeGate() {
-    var dur = (Date.now() - state.sessionStart) / 1000;
-    var through = state.gateResults.filter(function (r) { return r; }).length;
-    var pct = Math.round((through / 10) * 100);
-    var isNewBest = updateBest('gate', { value: pct, label: pct + '% accuracy' });
-
-    var h = '<h2>Gate Drill Complete!</h2>';
-    h += '<div class="pp-complete__summary">';
-    h += '<div class="pp-complete__stat"><span class="pp-complete__stat-value">' + pct + '%</span><span class="pp-complete__stat-label">Gate Accuracy</span></div>';
-    h += '<div class="pp-complete__stat"><span class="pp-complete__stat-value">' + through + '/10</span><span class="pp-complete__stat-label">Through Gate</span></div>';
-    h += '</div>';
-    if (isNewBest) h += '<div class="pp-complete__new-best">New Personal Best!</div>';
-
-    recordSession('gate', pct + '% accuracy (' + through + '/10)', 10, dur, { accuracy: pct });
-    showComplete(h);
+    var dur = (Date.now() - gate.start) / 1000;
+    var pct = gate.attempt > 0 ? Math.round(gate.through / gate.attempt * 100) : 0;
+    var isNew = updateBest('gate', { value: pct, label: pct + '% accuracy' });
+    recordSession('gate', pct + '% (' + gate.through + '/' + gate.attempt + ')', gate.attempt, dur, { accuracy: pct });
+    showDrillComplete('⛳', 'Gate Drill Complete!',
+      [{ n: pct + '%', l: 'Accuracy' }, { n: gate.through + '/' + gate.attempt, l: 'Through' }], isNew);
   }
 
-  /* --- Streak Challenge --- */
+  /* ═══════════════════════════════════════════
+     DRILL: Streak
+     ═══════════════════════════════════════════ */
+  var streak = { current: 0, total: 0, attempts: 0, start: 0 };
 
-  function initStreak() {
-    state.streakCurrent = 0;
-    state.streakTotal = 0;
-    state.streakAttempts = 0;
+  function startStreak() {
+    streak.current = 0; streak.total = 0; streak.attempts = 0; streak.start = Date.now();
     renderStreak();
   }
 
   function renderStreak() {
-    var current = state.streakCurrent;
-    var fireEmojis = '';
-    var fires = Math.min(current, 20);
-    for (var i = 0; i < fires; i++) fireEmojis += '\uD83D\uDD25';
-    if (current === 0) fireEmojis = '\u2014';
-
-    var h = '<div class="pp-streak-fire">' + fireEmojis + '</div>';
-    h += '<div class="pp-drill-big-number">' + current + '</div>';
-    h += '<div class="pp-drill-big-label">Current Streak</div>';
-    h += '<div class="pp-streak-stats">';
-    h += '<div><strong>' + state.streakTotal + '</strong> <span>makes</span></div>';
-    h += '<div><strong>' + state.streakAttempts + '</strong> <span>attempts</span></div>';
-    h += '</div>';
-    h += '<div class="pp-drill-actions">';
-    h += '<button class="btn pp-btn-made" data-action="streak-made">Made It</button>';
-    h += '<button class="btn pp-btn-missed" data-action="streak-missed">Missed</button>';
-    h += '</div>';
-    html(els.sessionBody, h);
-  }
-
-  function streakMade() {
-    state.streakCurrent++;
-    state.streakTotal++;
-    state.streakAttempts++;
-    renderStreak();
-  }
-
-  function streakMissed() {
-    state.streakAttempts++;
-    completeStreak();
+    var fires = '';
+    for (var i = 0; i < Math.min(streak.current, 20); i++) fires += '🔥';
+    if (!fires) fires = '—';
+    var h = '<div class="pp-session-meta"><span class="pp-session-meta__round">Streak Challenge</span>' +
+      '<span class="pp-chip">3 ft putts</span></div>';
+    h += '<div class="pp-streak-fire">' + fires + '</div>';
+    h += '<div class="pp-big-number">' + streak.current + '</div><div class="pp-big-label">Current Streak</div>';
+    h += '<div class="pp-streak-stats"><div><strong>' + streak.total + '</strong> makes</div>' +
+      '<div><strong>' + streak.attempts + '</strong> attempts</div></div>';
+    h += '<div class="pp-drill-actions"><button class="btn pp-btn-made" id="s-made">Made It ✓</button>' +
+      '<button class="btn pp-btn-missed" id="s-miss">Missed ✗</button></div>';
+    render(h);
+    $('#s-made').onclick = function () { streak.current++; streak.total++; streak.attempts++; renderStreak(); };
+    $('#s-miss').onclick = function () { streak.attempts++; completeStreak(); };
   }
 
   function completeStreak() {
-    var dur = (Date.now() - state.sessionStart) / 1000;
-    var streak = state.streakCurrent;
-    var total = state.streakTotal;
-    var attempts = state.streakAttempts;
-    var isNewBest = updateBest('streak', { value: streak, label: streak + ' in a row' });
-
-    var h = '<h2>Streak Over!</h2>';
-    h += '<div class="pp-complete__summary">';
-    h += '<div class="pp-complete__stat"><span class="pp-complete__stat-value">' + streak + '</span><span class="pp-complete__stat-label">Streak</span></div>';
-    h += '<div class="pp-complete__stat"><span class="pp-complete__stat-value">' + total + '</span><span class="pp-complete__stat-label">Total Makes</span></div>';
-    h += '<div class="pp-complete__stat"><span class="pp-complete__stat-value">' + attempts + '</span><span class="pp-complete__stat-label">Attempts</span></div>';
-    h += '</div>';
-    if (isNewBest) h += '<div class="pp-complete__new-best">New Personal Best!</div>';
-
-    recordSession('streak', streak + ' in a row (' + total + '/' + attempts + ')', attempts, dur, { makes: streak, attempts: attempts });
-    showComplete(h);
+    var dur = (Date.now() - streak.start) / 1000;
+    var isNew = updateBest('streak', { value: streak.current, label: streak.current + ' in a row' });
+    recordSession('streak', streak.current + ' in a row (' + streak.total + '/' + streak.attempts + ')', streak.attempts, dur,
+      { makes: streak.current, attempts: streak.attempts });
+    showDrillComplete('🔥', 'Streak Over!',
+      [{ n: streak.current, l: 'Streak' }, { n: streak.total, l: 'Total Makes' }, { n: streak.attempts, l: 'Attempts' }], isNew);
   }
 
-  /* --- Random Distance --- */
+  /* ═══════════════════════════════════════════
+     DRILL: Target 21
+     ═══════════════════════════════════════════ */
+  var T21_PTS = { 3: 1, 6: 2, 9: 3, 12: 5 };
+  var t21 = { score: 0, putts: 0, makes: 0, start: 0 };
 
-  function initRandom() {
-    state.randomAttempt = 0;
-    state.randomMade = 0;
-    state.randomCurrentDist = randomDist();
-    renderRandom();
-  }
-
-  function randomDist() {
-    return Math.floor(Math.random() * 10) + 3; // 3-12
-  }
-
-  function renderRandom() {
-    var attempt = state.randomAttempt;
-    var total = state.randomTotal;
-    var made = state.randomMade;
-    var pct = attempt > 0 ? Math.round((made / attempt) * 100) : 0;
-
-    var h = '<div class="pp-random-distance">' + state.randomCurrentDist + ' ft</div>';
-    h += '<div class="pp-random-label">Your distance</div>';
-    h += '<div class="pp-random-counter">';
-    h += 'Putt ' + (attempt + 1) + ' of ' + total;
-    h += ' &middot; Made: ' + made + '/' + attempt;
-    if (attempt > 0) h += ' (' + pct + '%)';
-    h += '</div>';
-    h += '<div class="pp-drill-actions">';
-    h += '<button class="btn pp-btn-made" data-action="random-made">Made It</button>';
-    h += '<button class="btn pp-btn-missed" data-action="random-missed">Missed</button>';
-    h += '</div>';
-    html(els.sessionBody, h);
-  }
-
-  function randomRecord(made) {
-    state.randomAttempt++;
-    if (made) state.randomMade++;
-    if (state.randomAttempt >= state.randomTotal) {
-      completeRandom();
-    } else {
-      state.randomCurrentDist = randomDist();
-      renderRandom();
-    }
-  }
-
-  function completeRandom() {
-    var dur = (Date.now() - state.sessionStart) / 1000;
-    var made = state.randomMade;
-    var total = state.randomTotal;
-    var pct = Math.round((made / total) * 100);
-    var isNewBest = updateBest('random', { value: pct, label: pct + '% (' + made + '/' + total + ')' });
-
-    var h = '<h2>Random Distance Complete!</h2>';
-    h += '<div class="pp-complete__summary">';
-    h += '<div class="pp-complete__stat"><span class="pp-complete__stat-value">' + pct + '%</span><span class="pp-complete__stat-label">Accuracy</span></div>';
-    h += '<div class="pp-complete__stat"><span class="pp-complete__stat-value">' + made + '/' + total + '</span><span class="pp-complete__stat-label">Putts Made</span></div>';
-    h += '</div>';
-    if (isNewBest) h += '<div class="pp-complete__new-best">New Personal Best!</div>';
-
-    recordSession('random', pct + '% accuracy (' + made + '/' + total + ')', total, dur, { accuracy: pct });
-    showComplete(h);
-  }
-
-  /* --- Target 21 --- */
-
-  var T21_POINTS = { 3: 1, 6: 2, 9: 3, 12: 5 };
-
-  function initTarget21() {
-    state.t21Score = 0;
-    state.t21Putts = 0;
+  function startTarget21() {
+    t21.score = 0; t21.putts = 0; t21.makes = 0; t21.start = Date.now();
     renderTarget21();
   }
 
   function renderTarget21() {
-    var score = state.t21Score;
-    var putts = state.t21Putts;
-    var data = loadData();
-    var best = data.drillBests && data.drillBests.target21 ? data.drillBests.target21.value : '—';
-
-    var h = '<div class="pp-t21-score">';
-    h += '<div class="pp-t21-score__item"><span class="pp-t21-score__value">' + score + '</span><span class="pp-t21-score__label">Score / 21</span></div>';
-    h += '<div class="pp-t21-score__item"><span class="pp-t21-score__value">' + putts + '</span><span class="pp-t21-score__label">Putts</span></div>';
-    h += '<div class="pp-t21-score__item"><span class="pp-t21-score__value">' + best + '</span><span class="pp-t21-score__label">Best</span></div>';
-    h += '</div>';
-
-    h += '<div class="pp-drill-status">Tap the distance you made, or tap Miss.</div>';
-
+    var best = loadData().drillBests.target21;
+    var bestLabel = best ? best.value : '—';
+    var h = '<div class="pp-session-meta"><span class="pp-session-meta__round">Target 21</span>' +
+      '<span class="pp-chip">Putt ' + (t21.putts + 1) + '</span></div>';
+    h += '<div class="pp-t21-score"><div class="pp-t21-score__item"><span class="pp-t21-score__value">' + t21.score + '</span>' +
+      '<span class="pp-t21-score__label">Score / 21</span></div>' +
+      '<div class="pp-t21-score__item"><span class="pp-t21-score__value">' + t21.putts + '</span>' +
+      '<span class="pp-t21-score__label">Putts</span></div>' +
+      '<div class="pp-t21-score__item"><span class="pp-t21-score__value">' + bestLabel + '</span>' +
+      '<span class="pp-t21-score__label">Best</span></div></div>';
+    h += '<p class="pp-t21-hint">Tap the distance you made, or tap Miss.</p>';
+    if (t21.score > 15) h += '<p class="pp-t21-warn">⚠️ Careful! Going over 21 resets to 15.</p>';
     h += '<div class="pp-t21-distances">';
-    var dists = [3, 6, 9, 12];
-    for (var i = 0; i < dists.length; i++) {
-      var d = dists[i];
-      h += '<button class="pp-t21-dist-btn" data-action="t21-made" data-distance="' + d + '">';
-      h += '<span class="pp-t21-dist-btn__distance">' + d + ' ft</span>';
-      h += '<span class="pp-t21-dist-btn__points">+' + T21_POINTS[d] + ' pt' + (T21_POINTS[d] > 1 ? 's' : '') + '</span>';
-      h += '</button>';
-    }
-    h += '<button class="pp-t21-miss-btn" data-action="t21-miss">';
-    h += '<span>Miss</span><span class="pp-t21-dist-btn__points">+0 pts</span>';
-    h += '</button>';
+    [3, 6, 9, 12].forEach(function (d) {
+      h += '<button class="pp-t21-dist-btn" data-d="' + d + '">' +
+        '<span class="pp-t21-dist-btn__distance">' + d + ' ft</span>' +
+        '<span class="pp-t21-dist-btn__points">+' + T21_PTS[d] + ' pt' + (T21_PTS[d] > 1 ? 's' : '') + '</span></button>';
+    });
+    h += '<button class="pp-t21-miss-btn" id="t21-miss"><span>Miss</span><span class="pp-t21-dist-btn__points">+0</span></button>';
     h += '</div>';
-
-    if (score > 15) {
-      h += '<div class="pp-drill-status" style="opacity:0.7;">Careful! Going over 21 resets you to 15.</div>';
-    }
-
-    html(els.sessionBody, h);
-  }
-
-  function t21Made(distance) {
-    var pts = T21_POINTS[distance] || 0;
-    state.t21Putts++;
-    state.t21Score += pts;
-
-    if (state.t21Score > 21) {
-      state.t21Score = 15;
-      renderTarget21();
-    } else if (state.t21Score === 21) {
-      completeTarget21();
-    } else {
-      renderTarget21();
-    }
-  }
-
-  function t21Miss() {
-    state.t21Putts++;
-    renderTarget21();
+    h += '<button class="btn btn--text pp-btn-full" id="t21-quit" style="margin-top:16px">End Game</button>';
+    render(h);
+    $$('.pp-t21-dist-btn').forEach(function (btn) {
+      btn.onclick = function () {
+        var d = parseInt(this.getAttribute('data-d'), 10);
+        t21.putts++; t21.makes++; t21.score += T21_PTS[d];
+        if (t21.score > 21) { t21.score = 15; renderTarget21(); }
+        else if (t21.score === 21) completeTarget21();
+        else renderTarget21();
+      };
+    });
+    $('#t21-miss').onclick = function () { t21.putts++; renderTarget21(); };
+    $('#t21-quit').onclick = completeTarget21;
   }
 
   function completeTarget21() {
-    var dur = (Date.now() - state.sessionStart) / 1000;
-    var putts = state.t21Putts;
-    var isNewBest = updateBest('target21', { value: putts, label: putts + ' putts' });
-
-    var h = '<h2>Target 21 — You Win!</h2>';
-    h += '<div class="pp-complete__summary">';
-    h += '<div class="pp-complete__stat"><span class="pp-complete__stat-value">21</span><span class="pp-complete__stat-label">Final Score</span></div>';
-    h += '<div class="pp-complete__stat"><span class="pp-complete__stat-value">' + putts + '</span><span class="pp-complete__stat-label">Putts Taken</span></div>';
-    h += '</div>';
-    if (isNewBest) h += '<div class="pp-complete__new-best">New Personal Best!</div>';
-
-    recordSession('target21', '21 points in ' + putts + ' putts', putts, dur, { score: 21 });
-    showComplete(h);
+    var dur = (Date.now() - t21.start) / 1000;
+    var isNew = t21.score === 21 ? updateBest('target21', { value: t21.putts, label: t21.putts + ' putts' }) : false;
+    recordSession('target21', t21.score + ' points in ' + t21.putts + ' putts', t21.putts, dur, { score: t21.score });
+    showDrillComplete('🏆', t21.score === 21 ? 'You Hit 21!' : 'Target 21 — Game Over',
+      [{ n: t21.score, l: 'Points' }, { n: t21.putts, l: 'Putts' }, { n: t21.makes, l: 'Makes' }], isNew);
   }
 
-  /* =========================================================================
-     Stats Dashboard (Tier 2)
-     ========================================================================= */
+  /* ═══════════════════════════════════════════
+     Drill Complete (shared)
+     ═══════════════════════════════════════════ */
+  function showDrillComplete(emoji, title, stats, isNewBest) {
+    var h = '<div class="pp-summary-hero"><div class="pp-summary-hero__emoji">' + emoji + '</div>' +
+      '<h2 class="pp-summary-hero__title">' + title + '</h2></div>';
+    if (isNewBest) h += '<div class="pp-new-best">🌟 New Personal Best!</div>';
+    h += '<div class="pp-stat-grid">';
+    stats.forEach(function (s) {
+      h += '<div class="pp-stat-box"><div class="pp-stat-box__num">' + s.n + '</div><div class="pp-stat-box__label">' + s.l + '</div></div>';
+    });
+    h += '</div>';
+    h += '<div class="pp-btn-stack">' +
+      '<button class="btn btn--primary btn--solid pp-btn-full" id="dc-again">Try Again</button>' +
+      '<button class="btn btn--text pp-btn-full" id="dc-home">&larr; Back to Hub</button></div>';
+    render(h);
+    $('#dc-again').onclick = function () {
+      if (currentDrill) {
+        var drill = DRILLS.find(function (d) { return d.id === currentDrill; });
+        if (drill && drill.needsMat) launchDrill(currentDrill);
+        else launchDrill(currentDrill);
+      }
+    };
+    $('#dc-home').onclick = showHome;
+  }
+
+  /* ═══════════════════════════════════════════
+     Stats Dashboard
+     ═══════════════════════════════════════════ */
+  var DRILL_LABELS = { ladder: 'Ladder', speedzone: 'Speed Zone', gate: 'Gate', streak: 'Streak', random: 'Random', target21: 'Target 21' };
 
   function refreshStats() {
-    var data = loadData();
+    var d = loadData(), statsEl = $('#pp-stats');
+    if (!statsEl) return;
+    if (d.totalSessions > 0) { statsEl.style.display = ''; } else { statsEl.style.display = 'none'; return; }
 
-    // Show stats panel if user has any data
-    if (data.totalSessions > 0) {
-      show(els.stats);
-    } else {
-      hide(els.stats);
-      return;
+    var el;
+    el = $('#stat-sessions'); if (el) el.textContent = d.totalSessions;
+    el = $('#stat-putts'); if (el) el.textContent = d.totalPutts;
+    el = $('#stat-minutes'); if (el) el.textContent = d.totalMinutes;
+    el = $('#streak-current'); if (el) el.textContent = d.streak.current;
+    el = $('#streak-best'); if (el) el.textContent = d.streak.best;
+
+    // Calendar
+    var cal = $('#streak-calendar');
+    if (cal) {
+      var days = d.practiceDays || [], h = '', today = new Date();
+      for (var i = 29; i >= 0; i--) {
+        var dd = new Date(today); dd.setDate(dd.getDate() - i);
+        var dStr = dd.toISOString().slice(0, 10);
+        var cls = 'pp-streak__day';
+        if (days.indexOf(dStr) !== -1) cls += ' pp-streak__day--active';
+        if (i === 0) cls += ' pp-streak__day--today';
+        h += '<div class="' + cls + '">' + dd.getDate() + '</div>';
+      }
+      cal.innerHTML = h;
     }
-
-    // Overview numbers
-    var elSessions = $('#stat-sessions');
-    var elPutts = $('#stat-putts');
-    var elMinutes = $('#stat-minutes');
-    if (elSessions) elSessions.textContent = data.totalSessions;
-    if (elPutts) elPutts.textContent = data.totalPutts;
-    if (elMinutes) elMinutes.textContent = data.totalMinutes;
-
-    // Streak info
-    var elStreakCurrent = $('#streak-current');
-    var elStreakBest = $('#streak-best');
-    if (elStreakCurrent) elStreakCurrent.textContent = data.streak.current;
-    if (elStreakBest) elStreakBest.textContent = data.streak.best;
-
-    // Streak calendar (last 30 days)
-    renderCalendar(data);
 
     // Bests
-    renderBests(data);
+    var bGrid = $('#pp-bests-grid');
+    if (bGrid) {
+      var bests = d.drillBests || {}, bh = '', hasAny = false;
+      ['ladder', 'speedzone', 'gate', 'streak', 'random', 'target21'].forEach(function (id) {
+        var b = bests[id];
+        if (b) { hasAny = true;
+          bh += '<div class="pp-best-card"><div class="pp-best-card__name">' + DRILL_LABELS[id] + '</div>' +
+            '<div class="pp-best-card__value">' + b.label + '</div><div class="pp-best-card__date">' + b.date + '</div></div>';
+        }
+      });
+      bGrid.innerHTML = hasAny ? bh : '<p style="opacity:0.5;font-size:0.9rem;">Complete drills to see your personal bests.</p>';
+    }
 
     // Recent
-    renderRecent(data);
-  }
-
-  function renderCalendar(data) {
-    var cal = $('#streak-calendar');
-    if (!cal) return;
-
-    var days = data.practiceDays || [];
-    var h = '';
-    var today = new Date();
-    for (var i = 29; i >= 0; i--) {
-      var d = new Date(today);
-      d.setDate(d.getDate() - i);
-      var dStr = d.toISOString().slice(0, 10);
-      var dayNum = d.getDate();
-      var cls = 'pp-streak__day';
-      if (days.indexOf(dStr) !== -1) cls += ' pp-streak__day--active';
-      if (i === 0) cls += ' pp-streak__day--today';
-      h += '<div class="' + cls + '" title="' + dStr + '">' + dayNum + '</div>';
-    }
-    cal.innerHTML = h;
-  }
-
-  var DRILL_LABELS = {
-    ladder: 'Ladder',
-    speedzone: 'Speed Zone',
-    gate: 'Gate',
-    streak: 'Streak',
-    random: 'Random',
-    target21: 'Target 21'
-  };
-
-  function renderBests(data) {
-    var grid = $('#pp-bests-grid');
-    if (!grid) return;
-
-    var bests = data.drillBests || {};
-    var h = '';
-    var drills = ['ladder', 'speedzone', 'gate', 'streak', 'random', 'target21'];
-    var hasAny = false;
-
-    for (var i = 0; i < drills.length; i++) {
-      var id = drills[i];
-      var best = bests[id];
-      if (best) {
-        hasAny = true;
-        h += '<div class="pp-best-card">';
-        h += '<div class="pp-best-card__name">' + DRILL_LABELS[id] + '</div>';
-        h += '<div class="pp-best-card__value">' + best.label + '</div>';
-        h += '<div class="pp-best-card__date">' + best.date + '</div>';
-        h += '</div>';
-      }
-    }
-
-    if (!hasAny) {
-      h = '<p style="color:var(--text);opacity:0.5;font-size:0.9rem;">Complete drills to see your personal bests.</p>';
-    }
-
-    grid.innerHTML = h;
-  }
-
-  function renderRecent(data) {
-    var list = $('#pp-recent-list');
-    if (!list) return;
-
-    var sessions = data.recentSessions || [];
-    if (sessions.length === 0) {
-      list.innerHTML = '<p class="pp-recent__empty">Complete a drill to see your recent sessions.</p>';
-      return;
-    }
-
-    var h = '';
-    var max = Math.min(sessions.length, 10);
-    for (var i = 0; i < max; i++) {
-      var s = sessions[i];
-      h += '<div class="pp-recent__item">';
-      h += '<span class="pp-recent__item-drill">' + (DRILL_LABELS[s.drill] || s.drill) + '</span>';
-      h += '<span class="pp-recent__item-summary">' + s.summary + '</span>';
-      h += '<span class="pp-recent__item-date">' + s.date + '</span>';
-      h += '</div>';
-    }
-    list.innerHTML = h;
-  }
-
-  /* =========================================================================
-     Event Handling
-     ========================================================================= */
-
-  function handleAction(action, target) {
-    switch (action) {
-      case 'ladder-made': ladderMade(); break;
-      case 'ladder-missed': ladderMissed(); break;
-      case 'sz-in': szRecord(true); break;
-      case 'sz-out': szRecord(false); break;
-      case 'gate-through': gateRecord(true); break;
-      case 'gate-missed': gateRecord(false); break;
-      case 'streak-made': streakMade(); break;
-      case 'streak-missed': streakMissed(); break;
-      case 'random-made': randomRecord(true); break;
-      case 'random-missed': randomRecord(false); break;
-      case 't21-made':
-        var dist = parseInt(target.getAttribute('data-distance'), 10);
-        t21Made(dist);
-        break;
-      case 't21-miss': t21Miss(); break;
-    }
-  }
-
-  function bindEvents() {
-    // Drill card selection
-    $$('.pp-drill-card').forEach(function (card) {
-      card.addEventListener('click', function () {
-        var drillId = this.getAttribute('data-drill');
-        showInstructions(drillId);
+    var rList = $('#pp-recent-list');
+    if (rList) {
+      var sessions = d.recentSessions || [];
+      if (!sessions.length) { rList.innerHTML = '<p class="pp-recent__empty">Complete a drill to see history.</p>'; return; }
+      var rh = '';
+      sessions.slice(0, 10).forEach(function (s) {
+        rh += '<div class="pp-recent__item"><span class="pp-recent__item-drill">' + (DRILL_LABELS[s.drill] || s.drill) + '</span>' +
+          '<span class="pp-recent__item-summary">' + s.summary + '</span>' +
+          '<span class="pp-recent__item-date">' + s.date + '</span></div>';
       });
-    });
-
-    // Start drill
-    var startBtn = $('#pp-start-drill');
-    if (startBtn) {
-      startBtn.addEventListener('click', function () {
-        showSession(state.currentDrill);
-      });
+      rList.innerHTML = rh;
     }
+  }
 
-    // Back to drills
-    var backBtns = ['#pp-back-to-drills', '#pp-back-to-drills-complete'];
-    backBtns.forEach(function (sel) {
-      var btn = $(sel);
-      if (btn) btn.addEventListener('click', showDrills);
-    });
-
-    // Quit drill
-    var quitBtn = $('#pp-quit-drill');
-    if (quitBtn) {
-      quitBtn.addEventListener('click', showDrills);
-    }
-
-    // Try again
-    var tryAgainBtn = $('#pp-try-again');
-    if (tryAgainBtn) {
-      tryAgainBtn.addEventListener('click', function () {
-        showSession(state.currentDrill);
-      });
-    }
-
-    // Session body actions (delegated)
-    if (els.sessionBody) {
-      els.sessionBody.addEventListener('click', function (e) {
-        var btn = e.target.closest('[data-action]');
-        if (btn) {
-          var action = btn.getAttribute('data-action');
-          handleAction(action, btn);
-        }
-      });
-    }
+  /* ═══════════════════════════════════════════
+     Init
+     ═══════════════════════════════════════════ */
+  function init() {
+    app = $('#pp-app');
+    if (!app) return;
 
     // Stats toggle
-    if (els.statsToggle) {
-      els.statsToggle.addEventListener('click', function () {
-        var body = els.statsBody;
+    var toggle = $('#pp-stats-toggle');
+    if (toggle) {
+      toggle.onclick = function () {
+        var body = $('#pp-stats-body');
         var expanded = this.getAttribute('aria-expanded') === 'true';
-        if (expanded) {
-          hide(body);
-          this.setAttribute('aria-expanded', 'false');
-          $('.pp-stats__toggle-text', this).textContent = 'Show';
-        } else {
-          show(body);
-          this.setAttribute('aria-expanded', 'true');
-          $('.pp-stats__toggle-text', this).textContent = 'Hide';
-        }
-      });
+        if (expanded) { body.style.display = 'none'; this.setAttribute('aria-expanded', 'false'); $('.pp-stats__toggle-text', this).textContent = 'Show'; }
+        else { body.style.display = ''; this.setAttribute('aria-expanded', 'true'); $('.pp-stats__toggle-text', this).textContent = 'Hide'; }
+      };
     }
-  }
 
-  /* =========================================================================
-     Init
-     ========================================================================= */
-
-  function init() {
-    if (!initElements()) return;
-    bindEvents();
-    refreshStats();
-
-    // Recalculate streak on load (in case days have passed)
-    var data = loadData();
-    if (data.streak.lastDate) {
+    // Fix broken streak on load
+    var d = loadData();
+    if (d.streak.lastDate) {
       var today = getTodayStr();
-      var last = data.streak.lastDate;
-      if (last !== today) {
-        var yesterday = new Date();
-        yesterday.setDate(yesterday.getDate() - 1);
-        var yesterdayStr = yesterday.toISOString().slice(0, 10);
-        if (last !== yesterdayStr) {
-          // Streak broken
-          data.streak.current = 0;
-          saveData(data);
+      if (d.streak.lastDate !== today) {
+        var yest = new Date(); yest.setDate(yest.getDate() - 1);
+        if (d.streak.lastDate !== yest.toISOString().slice(0, 10)) {
+          d.streak.current = 0; saveData(d);
         }
       }
     }
+
+    showHome();
   }
 
-  // Run on DOMContentLoaded or immediately if already loaded
-  if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', init);
-  } else {
-    init();
-  }
+  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', init);
+  else init();
 })();
 </script></body></html>
-<!-- cache bust 1772199294 -->
